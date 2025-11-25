@@ -37,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${exo2.variable} ${orbitron.variable} bg-cyber-navy`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${exo2.variable} ${orbitron.variable} `}>
       <NavBar />
         <main>
         {children}

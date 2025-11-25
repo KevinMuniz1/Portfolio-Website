@@ -13,28 +13,38 @@ export default function NavBar() {
   ];
  
   return (
-    <nav className={`bg-cyber-navy border-b-2 border-cyber-neon w-full p-4 items-center flex `} >
-        <div className="flex space-x-4 mb-2">
-                <button>
-                    <img src="/github.png" alt="Logo" className="w-20 h-20 justify-start"/>
-                </button>
+    <nav className={`bg-cyber-navy border-b-2 border-cyber-magenta w-full items-center flex px-4 py-2`} >
+        <div className="flex items-center gap-3">
 
+                <a href="https://github.com/KevinMuniz1" target="_blank" rel="noopener noreferrer">
                 <button>
-                    <img src="/resumeIcon.png" alt="Logo" className="w-20 h-20 justify-start"/>
+                    <img src="/github.png" alt="Logo" className=" flex w-20 h-20 justify-start hover:scale-120"/>
                 </button>
+                </a>
 
+                <a href="/" target="_blank" rel="noopener noreferrer">
                 <button>
-                    <img src="/linkedin.png" alt="Logo" className="w-20 h-20 justify-start"/>
+                    <img src="/resumeIcon.png" alt="Logo" className="flex w-20 h-20 justify-start hover:scale-120"/>
                 </button>
+                </a>
+                
+                <a href="https://www.linkedin.com/in/muniz-kevin/" target="_blank" rel="noopener noreferrer">
+                <button>
+                    <img src="/linkedin.png" alt="Logo" className="flex w-20 h-20 justify-start hover:scale-120"/>
+                </button>
+                </a>
         </div>
-        <div className="grow flex justify-end">
-      <ul className="flex gap-6 text-cyan-400 font-medium justify-end">
+        <div className="grow flex justify-center">
+      <ul className="flex gap-12 text-cyan-400 font-medium shadow-lg shadow-cyan-500/50 border-4 rounded-3xl px-4 py-2">
         {links.map((item) => (
           <li key={item.href}>
             <Link href={item.href}>{item.label}</Link>
           </li>
         ))}
       </ul>
+      </div>
+      <div className="justify-end">
+        <img src="/namelogo.png" alt="Logo" className="flex w-20 h-20"/>
       </div>
     </nav>
   );
