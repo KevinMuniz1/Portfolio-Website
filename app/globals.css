@@ -9,3 +9,14 @@ backdrop-filter: blur(5px);
 -webkit-backdrop-filter: blur(5px);
 border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+.welcomePageNavContainer{
+   display: flex;
+  justify-content: center;
+  align-items: center;    
+  min-height: 100vh;      
+}
+
+.orbitron-text {
+  font-family: var(--font-orbitron), sans-serif;
+}

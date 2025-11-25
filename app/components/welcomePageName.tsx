@@ -5,24 +5,33 @@ import Typewriter from "typewriter-effect";
 
 export default function TypingEffect() {
   return (
-    <div className="text-4xl font-[var(--font-exo2)] leading-snug text-green-400">
+  <div className="glass-card flex flex-col items-center p-8">
+    {/* image placeholder - replace src with your photo in /public and alt text */}
+    <img
+      src="/profilePic.JPG"
+      alt="Kevin Muniz"
+      className="welcome-avatar w-100 h-100 rounded-full mb-6 object-cover"
+    />
+
+    <div className="text-3xl  leading-snug text-cyan-400 orbitron-text text-center">
       <Typewriter
         options={{
-          delay: 18,
+          delay: 25,
           cursor: "_", // terminal cursor
           loop: false,
         }}
         onInit={(typewriter) => {
           typewriter
-            .typeString("&gt; WELCOME! I'M KEVIN MUNIZ<br/>")
+            .typeString("> HEY! I'M KEVIN MUNIZ, ")
             .pauseFor(400)
-            .typeString("&gt; CLASS: COMPUTER SCIENCE @ UCF<br/>")
+            .typeString("A COMPUTER SCIENCE MAJOR @ UCF<br/>")
             .pauseFor(350)
-            .typeString("&gt; STATUS: SENIOR · DEVELOPER · CREATOR<br/><br/>")
+            .typeString("> SENIOR · DEVELOPER · CREATOR")
             .pauseFor(400)
             .start();
         }}
       />
+    </div>
     </div>
   );
 }
