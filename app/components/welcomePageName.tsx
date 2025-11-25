@@ -9,7 +9,7 @@ export default function TypingEffect() {
     <img
       src="/profilePic.JPG"
       alt="Kevin Muniz" 
-      className="welcome-avatar w-100 h-100 rounded-full mb-6 object-cover"
+      className="rounded-full object-cover w-48 h-48 sm:w-56 sm:h-56 md:w-100 md:h-100"
     />
 
     <div className="text-3xl  leading-snug text-cyan-400 orbitron-text text-center">
