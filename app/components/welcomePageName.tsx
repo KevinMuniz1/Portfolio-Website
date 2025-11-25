@@ -8,7 +8,7 @@ export default function TypingEffect() {
     {/* image placeholder - replace src with your photo in /public and alt text */}
     <img
       src="/profilePic.JPG"
-      alt="Kevin Muniz"
+      alt="Kevin Muniz" 
       className="welcome-avatar w-100 h-100 rounded-full mb-6 object-cover"
     />
 
