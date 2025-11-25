@@ -24,8 +24,8 @@ export default function NavBar() {
   }, []);
 
   return (
-    <nav className={`bg-pink-500 w-full p-4 transition-all duration-300 ease-in-out ${isShrunk ? "h-12 py-2 shadow-md" : "h-20 py-4 shadow-lg"}">`} >
-      <ul className="flex gap-6 text-white font-medium justify-end">
+    <nav className={`bg-blue-950 border-b-cyber-neon w-full p-4 transition-all duration-300 ease-in-out ${isShrunk ? "h-12 py-2 shadow-md" : "h-20 py-4 shadow-lg"}"`} >
+      <ul className="flex gap-6 text-cyan-400 font-medium justify-end">
         {links.map((item) => (
           <li key={item.href}>
             <Link href={item.href}>{item.label}</Link>

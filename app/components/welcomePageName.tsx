@@ -5,7 +5,7 @@ import Typewriter from "typewriter-effect";
 
 export default function TypingEffect() {
   return (
-  <div className="glass-card flex flex-col items-center p-8">
+  <div className="flex flex-col items-center p-8">
     {/* image placeholder - replace src with your photo in /public and alt text */}
     <img
       src="/profilePic.JPG"
@@ -26,8 +26,6 @@ export default function TypingEffect() {
             .pauseFor(400)
             .typeString("A COMPUTER SCIENCE MAJOR @ UCF<br/>")
             .pauseFor(350)
-            .typeString("> SENIOR · DEVELOPER · CREATOR")
-            .pauseFor(400)
             .start();
         }}
       />

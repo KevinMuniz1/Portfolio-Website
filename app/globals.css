@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@theme {
+  --color-cyber-neon: #31E8FF;
+  --color-cyber-purple: #C238FF;
+  --color-cyber-magenta: #D936FF;
+  --color-cyber-pinkGlow: #F047FF;
+  --color-cyber-blueGlow: #6E00F5;
+
+  --color-cyber-navy: #050A1A;
+  --color-cyber-gradient: #0B0F22;
+  --color-cyber-grid: #0E1A33;
+
+  --color-cyber-text: #A8B2D1;
+}
+
 
 .glass-card {
 background: rgba(255, 255, 255, 0.2);

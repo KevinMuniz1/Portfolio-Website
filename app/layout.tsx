@@ -33,11 +33,11 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode; 
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${exo2.variable} ${orbitron.variable} bg-zinc-900`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${exo2.variable} ${orbitron.variable} bg-cyber-navy`}>
       <NavBar />
         <main>
         {children}
