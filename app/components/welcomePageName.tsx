@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Typewriter from "typewriter-effect";
 
 export default function TypingEffect() {
@@ -24,7 +23,7 @@ export default function TypingEffect() {
           typewriter
             .typeString("> HEY! I'M KEVIN MUNIZ, ")
             .pauseFor(400)
-            .typeString("A COMPUTER SCIENCE MAJOR @ UCF<br/>")
+            .typeString("A COMPUTER SCIENCE MAJOR @ UCF")
             .pauseFor(350)
             .start();
         }}
