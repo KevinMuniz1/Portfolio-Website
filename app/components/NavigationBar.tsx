@@ -16,7 +16,7 @@ export default function NavBar() {
           <img src="/github.png" className="w-20 h-20 hover:scale-110" />
           <span style={{color: "#aa44ff"}}className="text-xs">GitHub</span>
         </a>
-        <a href="/resume.pdf" target="_blank" className="flex flex-col items-center gap-1">
+        <a href="/KevinMunizResume.pdf" target="_blank" className="flex flex-col items-center gap-1">
           <img src="/resumeIcon.png" className="w-20 h-20 hover:scale-110" />
           <span style={{color: "#aa44ff"}}className="text-xs">Resume</span>
         </a>
