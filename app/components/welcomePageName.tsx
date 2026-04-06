@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const LINES = [
   { prefix: "C:\\> ", text: "WHO AM I?", color: "#fff" },
   { prefix: "> ", text: "NAME    : Kevin Muniz", color: "#f0e8ff" },
-  { prefix: "> ", text: "EDUCATION  : UCF — B.S Computer Science", color: "#f0e8ff" },
+  { prefix: "> ", text: "EDUCATION  : UCF — B.S. Computer Science", color: "#f0e8ff" },
   { prefix: "> ", text: "Currently looking for full-time roles involving Web/App development or AI and Machine Learning", color: "#f0e8ff" },
 ];
 
@@ -119,8 +119,8 @@ export default function Home() {
           <div className="relative">
             <div style={{ border: "3px solid #ff2060", background: "#0f0018" }}>
               <div style={{ background: "#ff2060", padding: "5px 10px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "6px", color: "#fff" }}>PLAYER AVATAR</span>
-                <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "6px", color: "#fff" }}>P1</span>
+                <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px", color: "#fff" }}>PLAYER AVATAR</span>
+                <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px", color: "#fff" }}>P1</span>
               </div>
               <div style={{ position: "relative" }}>
                 <img
@@ -185,14 +185,14 @@ export default function Home() {
         {/* CTA buttons */}
         <div className="flex gap-4 flex-wrap justify-center">
           <a
-            href="mailto:kevinmuniz@email.com"
-            style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "7px", padding: "12px 24px", background: "#ff2060", color: "#fff", border: "2px solid #ff6090", textDecoration: "none", letterSpacing: "0.08em", display: "inline-flex", alignItems: "center", gap: "8px" }}
+            href="mailto:muniz.kevin@outlook.com"
+            style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "#ff2060", color: "#fff", border: "2px solid #ff6090", textDecoration: "none", letterSpacing: "0.08em", display: "inline-flex", alignItems: "center", gap: "8px" }}
           >
             &#9654; CONTACT
           </a>
           <a
             href="/projects"
-            style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "7px", padding: "12px 24px", background: "transparent", color: "#aa44ff", border: "2px solid #aa44ff", textDecoration: "none", letterSpacing: "0.08em" }}
+            style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "transparent", color: "#aa44ff", border: "2px solid #aa44ff", textDecoration: "none", letterSpacing: "0.08em" }}
           >
             PROJECTS &gt;&gt;
           </a>

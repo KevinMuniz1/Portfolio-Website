@@ -16,7 +16,7 @@ export default function NavBar() {
      
 
         {/* LEFT — Logo + icon links */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-center gap-3">
 
           <div className="flex items-center gap-3">
             <a href="https://github.com/KevinMuniz1" target="_blank">
