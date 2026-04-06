@@ -52,7 +52,7 @@ export default function Home() {
         className="absolute inset-0 pointer-events-none z-0"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(180,60,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(180,60,255,0.04) 1px, transparent 1px)",
+            "linear-gradient(rgba(180,60,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(180,60,255,0.04) 1px, transparent 1px)",
           backgroundSize: "32px 32px",
         }}
       />
@@ -63,7 +63,7 @@ export default function Home() {
         style={{
           height: "40vh",
           backgroundImage:
-            "linear-gradient(rgba(255,60,120,0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(255,60,120,0.06) 1px, transparent 1px)",
+            "linear-gradient(rgba(255,60,120,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,60,120,0.15) 1px, transparent 1px)",
           backgroundSize: "48px 24px",
           transform: "perspective(260px) rotateX(62deg)",
           transformOrigin: "bottom center",
@@ -86,7 +86,7 @@ export default function Home() {
           top: "-160px", right: "-80px",
           width: "500px", height: "500px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(255,60,120,0.07) 0%, transparent 65%)",
+          background: "radial-gradient(circle, rgba(255,60,120,0.18) 0%, transparent 65%)",
         }}
       />
 
@@ -97,7 +97,7 @@ export default function Home() {
           bottom: "10%", left: "-80px",
           width: "350px", height: "350px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(100,0,255,0.07) 0%, transparent 65%)",
+          background: "radial-gradient(circle, rgba(100,0,255,0.18) 0%, transparent 65%)",
         }}
       />
 
