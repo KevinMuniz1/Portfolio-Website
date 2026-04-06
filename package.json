@@ -12,6 +12,7 @@
     "next": "^16.2.2",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "react-typed": "^2.0.12",
     "typewriter-effect": "^2.22.0"
   },
   "devDependencies": {
