@@ -118,7 +118,7 @@ export default function NavBar() {
           </div>
         </div>
 
-        {/* CENTER — Desktop nav pill */}
+        {/* CENTER */}
         <div
           className="hidden md:flex gap-[1px] overflow-hidden"
           style={{ border: "2px solid #aa44ff" }}
