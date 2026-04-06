@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 
 const LINES = [
-  { prefix: "C:\\> ", text: "WHOAMI", color: "#fff" },
+  { prefix: "C:\\> ", text: "WHO AM I?", color: "#fff" },
   { prefix: "> ", text: "NAME    : Kevin Muniz", color: "#f0e8ff" },
   { prefix: "> ", text: "SCHOOL  : UCF — B.S Computer Science", color: "#f0e8ff" },
-  { prefix: "> ", text: "Currently looking for roles involving Web/App development or AI and Machine Learning", color: "#ff2060" },
+  { prefix: "> ", text: "Currently looking for full-time roles involving Web/App development or AI and Machine Learning", color: "#f0e8ff" },
 ];
 
 const CHAR_DELAY = 28;
@@ -107,7 +107,7 @@ export default function Home() {
         {/* Player badge */}
         <div className="flex items-center gap-2">
           <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
-          <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "12px", color: "#660033", letterSpacing: "0.25em" }}>
+          <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "12px", color: "#f0e8ff", letterSpacing: "0.25em" }}>
             Hey! I'm Kevin Muniz
           </span>
         </div>
@@ -198,38 +198,22 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Stat strip */}
-        <div className="w-full max-w-lg grid grid-cols-3 overflow-hidden" style={{ border: "2px solid #330055" }}>
-          {[
-            { num: "3+", label: "YRS XP" },
-            { num: "10+", label: "QUESTS" },
-            { num: "LVL 4", label: "SR. DEV", purple: true },
-          ].map((s, i) => (
-            <div key={i} className="py-3 text-center" style={{ background: "#0f0018", borderRight: i < 2 ? "2px solid #330055" : "none" }}>
-              <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: s.purple ? "12px" : "16px", color: s.purple ? "#aa44ff" : "#ff2060", textShadow: s.purple ? "2px 2px 0 #550088" : "2px 2px 0 #880022" }}>
-                {s.num}
-              </div>
-              <div style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "12px", color: "#330033", letterSpacing: "0.12em", marginTop: "5px" }}>
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
+
 
         {/* Tech stack */}
         <div className="w-full max-w-3xl">
           <div className="flex items-center gap-3 mb-3">
-            <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "6px", color: "#ff2060", whiteSpace: "nowrap" }}>TECH STACK:</span>
+            <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px", color: "#ff2060", whiteSpace: "nowrap" }}>TECH STACK:</span>
             <div style={{ flex: 1, height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)" }} />
           </div>
           <div className="flex gap-2 flex-wrap">
             {[
               { label: "REACT NATIVE", hot: true },
               { label: "TYPESCRIPT",   hot: true },
-              { label: "EXPO ROUTER",  hot: false },
+              { label: "PYTHON",  hot: false },
               { label: "REACT",        hot: false },
               { label: "NODE.JS",      hot: false },
-              { label: "PYTHON",       hot: false },
+              { label: "SWIFT",       hot: false },
               { label: "JAVA",         hot: false },
               { label: "POSTGRESQL",   hot: false },
               { label: "GIT",          hot: false },
