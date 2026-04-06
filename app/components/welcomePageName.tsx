@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const LINES = [
   { prefix: "C:\\> ", text: "WHO AM I?", color: "#fff" },
   { prefix: "> ", text: "NAME    : Kevin Muniz", color: "#f0e8ff" },
-  { prefix: "> ", text: "SCHOOL  : UCF — B.S Computer Science", color: "#f0e8ff" },
+  { prefix: "> ", text: "EDUCATION  : UCF — B.S Computer Science", color: "#f0e8ff" },
   { prefix: "> ", text: "Currently looking for full-time roles involving Web/App development or AI and Machine Learning", color: "#f0e8ff" },
 ];
 

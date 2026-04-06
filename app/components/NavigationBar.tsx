@@ -22,101 +22,22 @@ export default function NavBar() {
         fontFamily: "'Press Start 2P', monospace",
       }}
     >
-      <div className="flex items-center justify-between px-5 py-2.5">
+     
 
         {/* LEFT — Logo + icon links */}
         <div className="flex items-center gap-3">
 
-          {/* KM pixel logo box */}
-          <div className="relative Shrink-0">
-            <div
-              style={{
-                fontSize: "12px",
-                color: "#ff2060",
-                padding: "7px 12px",
-                border: "2px solid #ff2060",
-                background: "#1a000a",
-                letterSpacing: "0.1em",
-                imageRendering: "pixelated",
-              }}
-            >
-              KM
-            </div>
-            <div className="absolute -top-[3px] -left-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
-            <div className="absolute -top-[3px] -right-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
-            <div className="absolute -bottom-[3px] -left-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
-            <div className="absolute -bottom-[3px] -right-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
-          </div>
-
-          {/* Name + subtext */}
-          <div className="hidden sm:block">
-            <div style={{ fontSize: "6px", color: "#ff2060", letterSpacing: "0.08em", lineHeight: "1.8" }}>
-              KEVIN MUNIZ
-            </div>
-            <div
-              style={{
-                fontFamily: "'Share Tech Mono', monospace",
-                fontSize: "13px",
-                color: "#aa44ff",
-                letterSpacing: "0.15em",
-              }}
-            >
-              PLAYER ONE &bull; UCF NODE
-            </div>
-          </div>
-
-          {/* Icon links */}
-          <div className="flex items-center gap-2 ml-3">
-            <a
-              href="https://github.com/KevinMuniz1"
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                fontSize: "6px",
-                color: "#ff2060",
-                padding: "7px 10px",
-                border: "2px solid #ff2060",
-                background: "#1a000a",
-                letterSpacing: "0.05em",
-                textDecoration: "none",
-              }}
-            >
-              GH
+          <div className="flex items-center gap-3">
+            <a href="https://github.com/KevinMuniz1" target="_blank">
+              <img src="/github.png" className="w-20 h-20 hover:scale-110" />
             </a>
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                fontSize: "6px",
-                color: "#ff2060",
-                padding: "7px 10px",
-                border: "2px solid #ff2060",
-                background: "#1a000a",
-                letterSpacing: "0.05em",
-                textDecoration: "none",
-              }}
-            >
-              CV
+            <a href="/resume.pdf" target="_blank">
+              <img src="/resumeIcon.png" className="w-20 h-20 hover:scale-110" />
             </a>
-            <a
-              href="https://www.linkedin.com/in/muniz-kevin/"
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                fontSize: "6px",
-                color: "#ff2060",
-                padding: "7px 10px",
-                border: "2px solid #ff2060",
-                background: "#1a000a",
-                letterSpacing: "0.05em",
-                textDecoration: "none",
-              }}
-            >
-              LI
+            <a href="https://www.linkedin.com/in/muniz-kevin/" target="_blank">
+              <img src="/linkedin.png" className="w-20 h-20 hover:scale-110" />
             </a>
           </div>
-        </div>
 
         {/* CENTER */}
         <div
