@@ -5,9 +5,8 @@ import { useEffect, useState } from "react";
 const LINES = [
   { prefix: "C:\\> ", text: "WHOAMI", color: "#fff" },
   { prefix: "> ", text: "NAME    : Kevin Muniz", color: "#f0e8ff" },
-  { prefix: "> ", text: "SCHOOL  : UCF — Senior CS", color: "#f0e8ff" },
-  { prefix: "> ", text: "STATUS  : OPEN TO HIRE", color: "#ff2060" },
-  { prefix: "> ", text: "QUEST   : BUILD. SHIP. REPEAT.", color: "#ffcc00" },
+  { prefix: "> ", text: "SCHOOL  : UCF — B.S Computer Science", color: "#f0e8ff" },
+  { prefix: "> ", text: "Currently looking for roles involving Web/App development or AI and Machine Learning", color: "#ff2060" },
 ];
 
 const CHAR_DELAY = 28;
@@ -109,7 +108,7 @@ export default function Home() {
         <div className="flex items-center gap-2">
           <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
           <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "12px", color: "#660033", letterSpacing: "0.25em" }}>
-            PLAYER PROFILE // LOADED
+            Hey! I'm Kevin Muniz
           </span>
         </div>
 
@@ -139,7 +138,7 @@ export default function Home() {
                   style={{ background: "rgba(10,0,16,0.9)", border: "2px solid #aa44ff" }}
                 >
                   <div className="w-1.5 h-1.5 bg-[#00cc66] animate-pulse" />
-                  <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "5px", color: "#aa44ff", letterSpacing: "0.1em" }}>ONLINE</span>
+                  <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px", color: "#aa44ff", letterSpacing: "0.1em" }}>ONLINE</span>
                 </div>
               </div>
             </div>
@@ -152,7 +151,7 @@ export default function Home() {
           {/* Terminal typing block */}
           <div className="w-full" style={{ border: "2px solid #aa44ff", background: "#0f0018" }}>
             <div style={{ background: "#aa44ff", padding: "5px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "6px", color: "#0a0010" }}>TERMINAL v2.4</span>
+              <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px", color: "#0a0010" }}>TERMINAL v2.4</span>
               <div className="flex gap-1">
                 <div className="w-2 h-2 bg-[#ff2060]" />
                 <div className="w-2 h-2 bg-[#ffcc00]" />
