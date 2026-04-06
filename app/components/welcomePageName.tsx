@@ -107,7 +107,7 @@ export default function Home() {
         {/* Player badge */}
         <div className="flex items-center gap-2">
           <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
-          <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "12px", color: "#f0e8ff", letterSpacing: "0.25em" }}>
+          <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "16px", color: "#f0e8ff", letterSpacing: "0.25em" }}>
             Hey! I'm Kevin Muniz
           </span>
         </div>
