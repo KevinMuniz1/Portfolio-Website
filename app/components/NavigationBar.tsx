@@ -120,7 +120,7 @@ export default function NavBar() {
 
         {/* CENTER */}
         <div
-          className="hidden md:flex gap-[1px] overflow-hidden"
+          className="hidden md:flex gap-px overflow-hidden"
           style={{ border: "2px solid #aa44ff" }}
         >
           {links.map((item, i) => (
