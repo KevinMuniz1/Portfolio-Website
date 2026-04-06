@@ -86,7 +86,7 @@ export default function Home() {
           top: "-160px", right: "-80px",
           width: "500px", height: "500px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(255,60,120,0.18) 0%, transparent 65%)",
+          background: "radial-gradient(circle, rgba(255,60,120,0.25) 0%, transparent 65%)",
         }}
       />
 
@@ -97,7 +97,7 @@ export default function Home() {
           bottom: "10%", left: "-80px",
           width: "350px", height: "350px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(100,0,255,0.18) 0%, transparent 65%)",
+          background: "radial-gradient(circle, rgba(100,0,255,0.25) 0%, transparent 65%)",
         }}
       />
 
