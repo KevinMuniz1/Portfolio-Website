@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import {Link} from "react-router-dom"
+
 const LINES = [
   { prefix: "C:\\> ", text: "WHO AM I?", color: "#fff" },
   { prefix: "> ", text: "NAME    : Kevin Muniz", color: "#f0e8ff" },
@@ -191,12 +193,11 @@ export default function Home() {
           >
             &#9654; CONTACT
           </a>
-          <a
-            href="/projectsPage"
-            style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "transparent", color: "#aa44ff", border: "2px solid #aa44ff", textDecoration: "none", letterSpacing: "0.08em" }}
-          >
+          <nav>
+            <Link to="/projectsPage" style={{fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "transparent", color: "#aa44ff", border: "2px solid #aa44ff", textDecoration: "none", letterSpacing: "0.08em" }}>
             PROJECTS &gt;&gt;
-          </a>
+            </Link>
+          </nav>
         </div>
 
 
