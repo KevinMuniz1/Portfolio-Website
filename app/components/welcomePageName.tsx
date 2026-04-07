@@ -7,6 +7,7 @@ const LINES = [
   { prefix: "> ", text: "NAME    : Kevin Muniz", color: "#f0e8ff" },
   { prefix: "> ", text: "EDUCATION  : UCF — B.S. Computer Science", color: "#f0e8ff" },
   { prefix: "> ", text: "Currently looking for full-time roles involving Web/App development or AI and Machine Learning", color: "#f0e8ff" },
+  { prefix: "> ", text: "Ask me anything below!", color: "#f0e8ff" },
 ];
 
 const CHAR_DELAY = 28;
@@ -191,7 +192,7 @@ export default function Home() {
             &#9654; CONTACT
           </a>
           <a
-            href="/projects/projectsPage.tsx"
+            href="/projectsPage"
             style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "transparent", color: "#aa44ff", border: "2px solid #aa44ff", textDecoration: "none", letterSpacing: "0.08em" }}
           >
             PROJECTS &gt;&gt;
