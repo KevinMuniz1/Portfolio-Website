@@ -203,20 +203,20 @@ export default function Home() {
         {/* Tech stack */}
         <div className="w-full max-w-3xl">
           <div className="flex items-center gap-3 mb-3">
-            <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px", color: "#ff2060", whiteSpace: "nowrap" }}>TECH STACK:</span>
+            <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px", color: "#ff2060", whiteSpace: "nowrap" }}>Skills:</span>
             <div style={{ flex: 1, height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)" }} />
           </div>
           <div className="flex gap-2 flex-wrap">
             {[
               { label: "REACT NATIVE", hot: true },
               { label: "TYPESCRIPT",   hot: true },
-              { label: "PYTHON",  hot: false },
-              { label: "REACT",        hot: false },
-              { label: "NODE.JS",      hot: false },
-              { label: "SWIFT",       hot: false },
-              { label: "JAVA",         hot: false },
-              { label: "POSTGRESQL",   hot: false },
-              { label: "GIT",          hot: false },
+              { label: "PYTHON",  hot: true},
+              { label: "REACT",        hot: true},
+              { label: "NODE.JS",      hot: true},
+              { label: "SWIFT",       hot: true},
+              { label: "JAVA",         hot: true },
+              { label: "POSTGRESQL",   hot: true },
+              { label: "GIT",          hot: true },
             ].map((t) => (
               <span key={t.label} style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "13px", color: t.hot ? "#ff2060" : "#aa44ff", padding: "3px 10px", border: `2px solid ${t.hot ? "#ff2060" : "#aa44ff"}`, background: t.hot ? "#1a000a" : "#0f0018", letterSpacing: "0.06em" }}>
                 {t.label}
