@@ -181,13 +181,27 @@ export default function Home() {
                 </div>
               )}
               {!activeLine && (
-                <div>
-                  <span style={{ color: "#ff2060" }}>C:\&gt; </span>
-                  <span style={{ opacity: showCursor ? 1 : 0, color: "#aa44ff" }}>█</span>
-                  <input type="text" 
-                value={text} 
-                onChange={handleChange} />
-                </div>
+                <div style={{ position: "relative", display: "inline-block" }}>
+  {/* Hidden input (still captures typing) */}
+                  <input
+                    type="text"
+                    value={text}
+                    onChange={handleChange}
+                    style={{
+                      position: "absolute",
+                      opacity: 0,
+                      pointerEvents: "auto"
+                  }}
+                autoFocus
+                />
+
+  {/* Visible terminal text */}
+  <span style={{ color: "white" }}>{text}</span>
+
+  <span style={{ opacity: showCursor ? 1 : 0, color: "#aa44ff" }}>
+    █
+  </span>
+</div>
               )}
             </div>
           </div>
