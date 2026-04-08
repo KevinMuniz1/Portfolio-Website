@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, ChangeEvent} from "react";
 
 import Link from "next/link"
 
@@ -20,6 +20,11 @@ export default function Home() {
   const [currentLine, setCurrentLine] = useState(0);
   const [currentChar, setCurrentChar] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
+  const [text, setText] = useState<string>("");
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
+  };
 
   useEffect(() => {
     if (currentLine >= LINES.length) return;
@@ -181,6 +186,12 @@ export default function Home() {
                   <span style={{ opacity: showCursor ? 1 : 0, color: "#aa44ff" }}>█</span>
                 </div>
               )}
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <span>C:\&gt;</span>
+                <input type="text" 
+                value={text} 
+                onChange={handleChange} />
+                </div>
             </div>
           </div>
         </div>

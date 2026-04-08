@@ -1,0 +1,131 @@
+{
+  "bio": "Kevin Muniz is a Computer Science student at the University of Central Florida, graduating in May 2026, with hands-on experience in software engineering, systems engineering, and AI-driven applications. He has worked at leading companies including Lockheed Martin and Apple, where he built scalable systems, improved engineering workflows, and contributed to mission-critical technologies. Kevin specializes in full-stack development, mobile app development, AI & Machine Learning, Finance Applications and business analytics",
+
+  "education": {
+    "school": "University of Central Florida",
+    "degree": "Bachelor of Science in Computer Science",
+    "graduation": "May 2026",
+    "coursework": [
+      "Data Structures and Algorithms",
+      "Natural Language Processing",
+      "Matrix and Linear Algebra",
+      "Engineering Entrepreneurship",
+      "Robot Vision",
+      "Topics in Cybersecurity",
+      "Algorithms for Machine Learning"
+    ]
+  },
+
+  "skills": {
+    "languages": ["C", "C#", "Python", "Java", "JavaScript", "Swift", "SQL", "HTML/CSS"],
+    "frameworks": ["React", "Node.js", "Express", "Next.js", "FastAPI", "Spring Boot", "Tailwind", "Razor"],
+    "tools": ["Git", "Docker", "Kubernetes", "Jenkins", "AWS", "PostgreSQL", "MySQL", "MongoDB", "Jira"],
+    "data_ml": ["Pandas", "NumPy", "Matplotlib", "Backtrader", "yFinance", "TensorFlow", "PyTorch", "Scikit-learn"]
+  },
+
+  "experience": [
+    {
+      "role": "Systems Engineer Intern",
+      "company": "Lockheed Martin",
+      "duration": "May 2025 – Present",
+      "description": "Worked on advanced land and air-based targeting systems, including platforms such as the F-35 and F-16. Gathered and translated complex engineering requirements into structured technical documentation, improving cross-team understanding and system integration.",
+      "impact": [
+        "Reduced onboarding time for new engineers by 25% by developing comprehensive documentation and onboarding guides",
+        "Improved cross-platform communication reliability by researching and analyzing interactions between legacy and modern systems"
+      ]
+    },
+    {
+      "role": "Full Stack Software Engineer Intern",
+      "company": "Lockheed Martin",
+      "duration": "Sept 2024 – May 2025",
+      "description": "Developed scalable internal web applications using C#, Razor, and SQL to automate data workflows and improve operational efficiency.",
+      "impact": [
+        "Built a dynamic data visualization system that improved report turnaround time by over 30%",
+        "Reduced manual data entry by 40% through backend automation and database integration"
+      ]
+    },
+    {
+      "role": "Apple College Program",
+      "company": "Apple",
+      "duration": "March 2023 – Sept 2024",
+      "description": "Resolved technical cases within Apple’s CORE system while maintaining high customer satisfaction and detailed technical documentation for engineering teams.",
+      "impact": [
+        "Handled 75+ cases per week with a 92% satisfaction rate",
+        "Improved issue traceability through structured technical documentation",
+        "Mentored peers, contributing to multiple students earning Apple internships"
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "Lightweight Energy Meter Aggregator (LEMA)",
+      "description": "A cross-platform energy monitoring application designed to drastically reduce facility monitoring costs while maintaining enterprise-level capabilities.",
+      "details": [
+        "Projected to reduce monitoring costs by up to 80% compared to traditional enterprise systems costing $50k–$100k",
+        "Implemented LAN-based meter polling with offline caching, achieving 95%+ uptime without requiring internet connectivity",
+        "Processes over 1,500 daily data points per facility with modular reporting tools and export capabilities"
+      ],
+      "tech": ["React Native", "PostgreSQL", "Express", "Node.js"]
+    },
+    {
+      "name": "AI-Enhanced Paper Trading Platform",
+      "description": "A full-stack trading simulator designed for real-time execution, monitoring, and analysis of simulated trades with AI-driven insights.",
+      "details": [
+        "Supports sub-100 ms trade execution latency for real-time trading simulation",
+        "Integrated AI-powered sentiment analysis using financial news and social media data to generate trading signals",
+        "Built scalable backend microservices using Docker for reliability under concurrent user load"
+      ],
+      "tech": ["MongoDB", "Express", "React", "Node.js", "OpenAI API", "Docker"]
+    }
+  ],
+
+  "leadership": [
+    {
+      "role": "Treasurer",
+      "organization": "Theta Tau Professional Engineering Fraternity",
+      "duration": "Jan 2025 – Jan 2026",
+      "description": "Led financial operations and strategic budgeting for the organization while improving transparency and financial literacy among members.",
+      "impact": [
+        "Reduced unnecessary expenses by 25% through a full financial audit and budget optimization",
+        "Delivered monthly financial reports with data visualizations to improve executive decision-making",
+        "Designed and led a financial literacy program covering budgeting, investing, and post-graduate financial planning"
+      ]
+    }
+  ],
+
+  "personality": {
+    "about": "Kevin is naturally outgoing and enjoys talking with people about just about anything, whether it’s work, ideas, or everyday life. He loves collaborating and bouncing ideas around to create things that can actually be built and brought to life. While he likes to joke around and keep things fun, he’s also able to switch gears quickly and stay focused when it’s time to get serious and execute.",
+
+    "hobbies": [
+      "Kevin is passionate about fitness and enjoys working out regularly to maintain a disciplined and healthy lifestyle. He lifts and runs everyday",
+      "He enjoys snowboarding, hiking, and almost any outdoor activity",
+      "Kevin enjoys cooking for others whenever he can! It's one of the ways he shows that he cares"
+    ],
+
+    "interests_extended": [
+      "Kevin is really interested in listining to all kinds of music but his favorite genres are house,rock and indie pop.",
+      "He enjoys traveling a lot, Paris,France is his current favorite place that he has traveled to. His current dream destination is Japan."
+    ],
+
+    "favorite_foods": [
+      "Kevin enjoys high-protein meals that support his fitness goals, including chicken, steak, and rice-based dishes.",
+      "He likes trying new foods and restaurants, especially meals that balance flavor and nutrition.",
+      "His favorite foods are Sushi and Italian/Latin food."
+    ],
+
+    "fun_facts": [
+      "Kevin has been skydiving, it was really scary but so much more fun",
+      "The only food that Kevin does not like is olives lol",
+      "Kevin is the second engineer in his family"
+    ]
+  },
+
+  "goals": "Kevin is seeking full-time roles involving software engineering that allow him to grow and become the best engineer he could be while working along side an amazing team that feels like family",
+
+  "contact": {
+    "linkedin": "https://www.linkedin.com/in/muniz-kevin/",
+    "github": "https://github.com/KevinMuniz1",
+    "portfolio": "https://kevinmuniz.dev"
+  }
+}
