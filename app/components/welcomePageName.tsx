@@ -182,6 +182,7 @@ export default function Home() {
               )}
               {!activeLine && (
                 <div style={{ position: "relative", display: "inline-block" }}>
+                <span style={{ color: "#ff2060" }}>&gt;C:\ </span>
   {/* Hidden input (still captures typing) */}
                   <input
                     type="text"
