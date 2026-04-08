@@ -184,14 +184,11 @@ export default function Home() {
                 <div>
                   <span style={{ color: "#ff2060" }}>C:\&gt; </span>
                   <span style={{ opacity: showCursor ? 1 : 0, color: "#aa44ff" }}>█</span>
-                </div>
-              )}
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <span>C:\&gt;</span>
-                <input type="text" 
+                  <input type="text" 
                 value={text} 
                 onChange={handleChange} />
                 </div>
+              )}
             </div>
           </div>
         </div>
