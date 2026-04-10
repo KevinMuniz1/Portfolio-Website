@@ -40,7 +40,7 @@ def retrieve_chunks(question: str, limit: int = 5) -> List[Dict[str, Any]]:
     try:
         cur.execute(
             """
-            SELECT content, metadata
+            SELECT content, section
             FROM portfolio_embeddings
             ORDER BY embedding <-> %s::vector
             LIMIT %s;
@@ -52,14 +52,14 @@ def retrieve_chunks(question: str, limit: int = 5) -> List[Dict[str, Any]]:
 
         results = []
         for row in rows:
-            content, metadata = row
+            content, section = row
 
-            if isinstance(metadata, str):
-                metadata = json.loads(metadata)
+            if isinstance(section, str):
+                metadata = json.loads(section)
 
             results.append({
                 "content": content,
-                "metadata": metadata
+                "section": section
             })
 
         return results
