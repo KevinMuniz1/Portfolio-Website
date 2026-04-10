@@ -54,9 +54,6 @@ def retrieve_chunks(question: str, limit: int = 5) -> List[Dict[str, Any]]:
         for row in rows:
             content, section = row
 
-            if isinstance(section, str):
-                metadata = json.loads(section)
-
             results.append({
                 "content": content,
                 "section": section
