@@ -59,5 +59,5 @@ def chat(request: ChatRequest):
     reply = response.choices[0].message.content
     return {
         "reply": reply,
-        "sources": [{"section": chunk["metadata"]["section"]} for chunk in chunks]
+        "sources": [{"section": chunk["content"]["section"]} for chunk in chunks]
     }
