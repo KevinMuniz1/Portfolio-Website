@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useState, ChangeEvent} from "react";
+import { useEffect, useState, useRef, ChangeEvent, KeyboardEvent } from "react";
+import Link from "next/link";
 
-import Link from "next/link"
+// ── CONFIG ──────────────────────────────────────────────────────────────────
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
+// ── INTRO LINES ──────────────────────────────────────────────────────────────
 const LINES = [
   { prefix: "C:\\> ", text: "WHO AM I?", color: "#fff" },
   { prefix: "> ", text: "NAME    : Kevin Muniz", color: "#f0e8ff" },
@@ -15,19 +18,40 @@ const LINES = [
 const CHAR_DELAY = 28;
 const LINE_DELAY = 180;
 
+// ── TYPES ─────────────────────────────────────────────────────────────────────
+interface Message {
+  role: "user" | "assistant";
+  text: string;
+  sources?: { title?: string; url?: string }[];
+}
+
+// ── COMPONENT ─────────────────────────────────────────────────────────────────
 export default function Home() {
+  // intro typing
   const [displayed, setDisplayed] = useState<{ prefix: string; text: string; color: string }[]>([]);
   const [currentLine, setCurrentLine] = useState(0);
   const [currentChar, setCurrentChar] = useState(0);
+  const [introComplete, setIntroComplete] = useState(false);
+
+  // chat
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
-  const [text, setText] = useState<string>("");
+  const bottomRef = useRef<HTMLDivElement>(null);
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-  };
-
+  // ── cursor blink ────────────────────────────────────────────────────────────
   useEffect(() => {
-    if (currentLine >= LINES.length) return;
+    const t = setInterval(() => setShowCursor((v) => !v), 530);
+    return () => clearInterval(t);
+  }, []);
+
+  // ── intro animation ─────────────────────────────────────────────────────────
+  useEffect(() => {
+    if (currentLine >= LINES.length) {
+      setIntroComplete(true);
+      return;
+    }
     const line = LINES[currentLine];
     if (currentChar < line.text.length) {
       const t = setTimeout(() => setCurrentChar((c) => c + 1), CHAR_DELAY);
@@ -42,14 +66,52 @@ export default function Home() {
     }
   }, [currentLine, currentChar]);
 
+  // ── auto-scroll ─────────────────────────────────────────────────────────────
   useEffect(() => {
-    const t = setInterval(() => setShowCursor((v) => !v), 530);
-    return () => clearInterval(t);
-  }, []);
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, loading]);
+
+  // ── send message ────────────────────────────────────────────────────────────
+  const sendMessage = async () => {
+    const trimmed = input.trim();
+    if (!trimmed || loading) return;
+
+    const userMsg: Message = { role: "user", text: trimmed };
+    setMessages((prev) => [...prev, userMsg]);
+    setInput("");
+    setLoading(true);
+
+    try {
+      const res = await fetch(`${API_URL}/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: trimmed }),
+      });
+      const data = await res.json();
+      const assistantMsg: Message = {
+        role: "assistant",
+        text: data.reply ?? "No response received.",
+        sources: data.sources ?? [],
+      };
+      setMessages((prev) => [...prev, assistantMsg]);
+    } catch (err) {
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", text: "ERROR: Could not reach the backend. Is it running?" },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") sendMessage();
+  };
 
   const activeLine = currentLine < LINES.length ? LINES[currentLine] : null;
   const activeText = activeLine ? activeLine.text.slice(0, currentChar) : "";
 
+  // ── RENDER ──────────────────────────────────────────────────────────────────
   return (
     <main
       className="min-h-screen w-full relative overflow-hidden"
@@ -156,8 +218,9 @@ export default function Home() {
             <div className="absolute -bottom-[3px] -right-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
           </div>
 
-          {/* Terminal typing block */}
+          {/* Terminal / Chat */}
           <div className="w-full" style={{ border: "2px solid #aa44ff", background: "#0f0018" }}>
+            {/* Title bar */}
             <div style={{ background: "#aa44ff", padding: "5px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px", color: "#0a0010" }}>TERMINAL v2.4</span>
               <div className="flex gap-1">
@@ -166,7 +229,23 @@ export default function Home() {
                 <div className="w-2 h-2 bg-[#00cc66]" />
               </div>
             </div>
-            <div style={{ padding: "14px 16px", fontFamily: "'Share Tech Mono', monospace", fontSize: "15px", lineHeight: "1.9", minHeight: "160px" }}>
+
+            {/* Scrollable message area */}
+            <div
+              style={{
+                padding: "14px 16px",
+                fontFamily: "'Share Tech Mono', monospace",
+                fontSize: "14px",
+                lineHeight: "1.9",
+                minHeight: "200px",
+                maxHeight: "420px",
+                overflowY: "auto",
+                display: "flex",
+                flexDirection: "column",
+                gap: "4px",
+              }}
+            >
+              {/* Intro animation */}
               {displayed.map((line, i) => (
                 <div key={i}>
                   <span style={{ color: "#ff2060" }}>{line.prefix}</span>
@@ -180,30 +259,100 @@ export default function Home() {
                   <span style={{ opacity: showCursor ? 1 : 0, color: "#aa44ff" }}>█</span>
                 </div>
               )}
-              {!activeLine && (
-                <div style={{ position: "relative", display: "inline-block" }}>
-                <span style={{ color: "#ff2060" }}>&gt;C:\ </span>
-  {/* Hidden input (still captures typing) */}
-                  <input
-                    type="text"
-                    value={text}
-                    onChange={handleChange}
-                    style={{
-                      position: "absolute",
-                      opacity: 0,
-                      pointerEvents: "auto"
-                  }}
-                autoFocus
-                />
 
-  {/* Visible terminal text */}
-  <span style={{ color: "white" }}>{text}</span>
+              {/* Chat history (shown after intro) */}
+              {introComplete && messages.map((msg, i) => (
+                <div key={i} style={{ marginTop: "6px" }}>
+                  {msg.role === "user" ? (
+                    <div>
+                      <span style={{ color: "#ff2060" }}>C:\&gt; </span>
+                      <span style={{ color: "#fff" }}>{msg.text}</span>
+                    </div>
+                  ) : (
+                    <div>
+                      <span style={{ color: "#aa44ff" }}>&gt; </span>
+                      <span style={{ color: "#f0e8ff" }}>{msg.text}</span>
+                      {/* Sources */}
+                      {msg.sources && msg.sources.length > 0 && (
+                        <div style={{ marginTop: "4px", paddingLeft: "16px" }}>
+                          {msg.sources.map((s, si) => s.url ? (
+                            <div key={si} style={{ fontSize: "11px", color: "#aa44ff", opacity: 0.7 }}>
+                              <span style={{ color: "#ff2060" }}>SRC: </span>
+                              <a href={s.url} target="_blank" rel="noopener noreferrer" style={{ color: "#aa44ff", textDecoration: "underline" }}>
+                                {s.title ?? s.url}
+                              </a>
+                            </div>
+                          ) : null)}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
 
-  <span style={{ opacity: showCursor ? 1 : 0, color: "#aa44ff" }}>
-    █
-  </span>
-</div>
+              {/* Loading indicator */}
+              {loading && (
+                <div style={{ marginTop: "6px" }}>
+                  <span style={{ color: "#aa44ff" }}>&gt; </span>
+                  <span style={{ color: "#aa44ff", opacity: showCursor ? 1 : 0.3 }}>█ █ █</span>
+                </div>
               )}
+
+              <div ref={bottomRef} />
+            </div>
+
+            {/* Input row */}
+            <div
+              style={{
+                borderTop: "1px solid #aa44ff33",
+                padding: "10px 16px",
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                background: "#0a0010",
+              }}
+            >
+              <span style={{ color: "#ff2060", fontFamily: "'Share Tech Mono', monospace", fontSize: "14px", whiteSpace: "nowrap" }}>
+                C:\&gt;
+              </span>
+              <input
+                type="text"
+                value={input}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder={introComplete ? "Type your question..." : ""}
+                disabled={!introComplete || loading}
+                autoFocus={introComplete}
+                style={{
+                  flex: 1,
+                  background: "transparent",
+                  border: "none",
+                  outline: "none",
+                  color: "#fff",
+                  fontFamily: "'Share Tech Mono', monospace",
+                  fontSize: "14px",
+                  caretColor: "#aa44ff",
+                  opacity: introComplete ? 1 : 0.4,
+                }}
+              />
+              <button
+                onClick={sendMessage}
+                disabled={!introComplete || loading || !input.trim()}
+                style={{
+                  fontFamily: "'Press Start 2P', monospace",
+                  fontSize: "9px",
+                  padding: "6px 12px",
+                  background: input.trim() && introComplete && !loading ? "#ff2060" : "#2a0020",
+                  color: input.trim() && introComplete && !loading ? "#fff" : "#aa44ff",
+                  border: "2px solid #ff2060",
+                  cursor: input.trim() && introComplete && !loading ? "pointer" : "not-allowed",
+                  transition: "background 0.15s",
+                  letterSpacing: "0.05em",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                SEND &gt;
+              </button>
             </div>
           </div>
         </div>
@@ -216,14 +365,13 @@ export default function Home() {
           >
             &#9654; CONTACT
           </a>
-  
-            <Link href="/projects" style={{fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "transparent", color: "#aa44ff", border: "2px solid #aa44ff", textDecoration: "none", letterSpacing: "0.08em" }}>
+          <Link
+            href="/projects"
+            style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "transparent", color: "#aa44ff", border: "2px solid #aa44ff", textDecoration: "none", letterSpacing: "0.08em" }}
+          >
             PROJECTS &gt;&gt;
-            </Link>
-      
+          </Link>
         </div>
-
-
 
         {/* Tech stack */}
         <div className="w-full max-w-3xl">
@@ -233,18 +381,18 @@ export default function Home() {
           </div>
           <div className="flex gap-2 flex-wrap">
             {[
-              { label: "REACT NATIVE", hot: true },
-              { label: "TYPESCRIPT",   hot: true },
-              { label: "PYTHON",  hot: true},
-              { label: "REACT",        hot: true},
-              { label: "NODE.JS",      hot: true},
-              { label: "SWIFT",       hot: true},
-              { label: "JAVA",         hot: true },
-              { label: "POSTGRESQL",   hot: true },
-              { label: "GIT",          hot: true },
-            ].map((t) => (
-              <span key={t.label} style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "13px", color: t.hot ? "#ff2060" : "#aa44ff", padding: "3px 10px", border: `2px solid ${t.hot ? "#ff2060" : "#aa44ff"}`, background: t.hot ? "#1a000a" : "#0f0018", letterSpacing: "0.06em" }}>
-                {t.label}
+              "REACT NATIVE", "TYPESCRIPT", "PYTHON", "REACT",
+              "NODE.JS", "SWIFT", "JAVA", "POSTGRESQL", "GIT",
+            ].map((label) => (
+              <span
+                key={label}
+                style={{
+                  fontFamily: "'Share Tech Mono', monospace", fontSize: "13px",
+                  color: "#ff2060", padding: "3px 10px",
+                  border: "2px solid #ff2060", background: "#1a000a", letterSpacing: "0.06em",
+                }}
+              >
+                {label}
               </span>
             ))}
           </div>
