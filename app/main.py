@@ -10,6 +10,8 @@ from openai.types.chat import ChatCompletionMessageParam
 from retrieval import retrieve_chunks
 
 
+
+
 load_dotenv()
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -29,6 +31,17 @@ class ChatResponse(BaseModel):
 @app.get("/")
 def root():
     return {"message": "Portfolio chatbot backend is running."}
+
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.post("/chat", response_model=ChatResponse)
