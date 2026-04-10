@@ -41,7 +41,7 @@ def retrieve_chunks(question: str, limit: int = 5) -> List[Dict[str, Any]]:
         cur.execute(
             """
             SELECT content, metadata
-            FROM documents
+            FROM portfolio_embeddings
             ORDER BY embedding <-> %s::vector
             LIMIT %s;
             """,
