@@ -1,4 +1,4 @@
-fastapi
+fastapi[standard]
 uvicorn
 openai
 psycopg2-binary
