@@ -206,7 +206,7 @@ export default function Home() {
       />
 
       {/* ── ABOVE-FOLD CONTENT ────────────────────────────────────────────────── */}
-      <div className="relative z-20 flex flex-col items-center justify-center min-h-[calc(100vh-64px)] px-4 py-12 gap-10">
+      <div className="relative z-20 flex flex-col items-center min-h-[calc(100vh-64px)] px-4 py-12 gap-10">
 
         {/* Player badge */}
         <div className="flex items-center gap-2">
