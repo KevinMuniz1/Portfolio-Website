@@ -396,7 +396,7 @@ export default function Home() {
             href="mailto:muniz.kevin@outlook.com"
             style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "#ff2060", color: "#fff", border: "2px solid #ff6090", textDecoration: "none", letterSpacing: "0.08em", display: "inline-flex", alignItems: "center", gap: "8px" }}
           >
-            &#9654; CONTACT
+            &#128233; CONTACT
           </a>
         </div>
 
@@ -556,27 +556,6 @@ export default function Home() {
             );
           })}
         </div>
-
-        {/* Bottom CTA */}
-        <a
-          href="mailto:muniz.kevin@outlook.com"
-          style={{
-            fontFamily: "'Press Start 2P', monospace",
-            fontSize: "13px",
-            padding: "12px 28px",
-            background: "#ff2060",
-            color: "#fff",
-            border: "2px solid #ff6090",
-            textDecoration: "none",
-            letterSpacing: "0.08em",
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            marginTop: "8px",
-          }}
-        >
-          &#9654; CONTACT ME
-        </a>
 
       </section>
     </main>
