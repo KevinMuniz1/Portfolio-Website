@@ -398,12 +398,6 @@ export default function Home() {
           >
             &#9654; CONTACT
           </a>
-          <a
-            href="#projects"
-            style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "transparent", color: "#aa44ff", border: "2px solid #aa44ff", textDecoration: "none", letterSpacing: "0.08em" }}
-          >
-            PROJECTS &gt;&gt;
-          </a>
         </div>
 
         {/* Tech stack */}
@@ -438,16 +432,7 @@ export default function Home() {
         id="projects"
         className="relative z-20 flex flex-col items-center px-4 pb-20 pt-4 gap-10"
       >
-        {/* Section divider */}
-        <div className="w-full max-w-4xl flex items-center gap-4">
-          <div style={{ flex: 1, height: "1px", background: "repeating-linear-gradient(90deg, #aa44ff 0, #aa44ff 6px, transparent 6px, transparent 12px)", opacity: 0.4 }} />
-          <div style={{ border: "2px solid #aa44ff", padding: "6px 16px", background: "#0f0018" }}>
-            <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "9px", color: "#aa44ff", letterSpacing: "0.15em" }}>
-              SELECT STAGE
-            </span>
-          </div>
-          <div style={{ flex: 1, height: "1px", background: "repeating-linear-gradient(90deg, #aa44ff 0, #aa44ff 6px, transparent 6px, transparent 12px)", opacity: 0.4 }} />
-        </div>
+
 
         {/* Section heading */}
         <div className="w-full max-w-4xl flex flex-col gap-2">
@@ -490,9 +475,7 @@ export default function Home() {
                     alignItems: "center",
                   }}
                 >
-                  <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "9px", color: "#0a0010" }}>
-                    PROJECT_{project.id}
-                  </span>
+                  
                   <span
                     style={{
                       fontFamily: "'Press Start 2P', monospace",
