@@ -13,6 +13,16 @@ export default function NavBar() {
         zIndex: 1000,
       }}
     >
+      <div>
+        <div className="flex gap-4 flex-wrap justify-center">
+          <a
+            href="mailto:muniz.kevin@outlook.com"
+            style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "rgba(10,0,16,0.97)", color: "#fff", border: "2px solid #aa44ff", textDecoration: "none", letterSpacing: "0.08em", display: "inline-flex", alignItems: "center", gap: "8px" }}
+          >
+            &#128233; CONTACT
+          </a>
+        </div>
+      </div>
       <div className="flex items-center justify-center gap-6 py-3, margin-bottom: 100px">
         <a href="https://github.com/KevinMuniz1" target="_blank" className="flex flex-col items-center gap-1">
           <img src="/github.png" className="w-20 h-20 hover:scale-110" />

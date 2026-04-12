@@ -394,7 +394,7 @@ export default function Home() {
         <div className="flex gap-4 flex-wrap justify-center">
           <a
             href="mailto:muniz.kevin@outlook.com"
-            style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "#ff2060", color: "#fff", border: "2px solid #ff6090", textDecoration: "none", letterSpacing: "0.08em", display: "inline-flex", alignItems: "center", gap: "8px" }}
+            style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "rgba(10,0,16,0.97)", color: "#fff", border: "2px solid #aa44ff", textDecoration: "none", letterSpacing: "0.08em", display: "inline-flex", alignItems: "center", gap: "8px" }}
           >
             &#128233; CONTACT
           </a>
