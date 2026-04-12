@@ -73,11 +73,6 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
   const bottomRef = useRef<HTMLDivElement>(null);
-  
-
-    useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   // ── cursor blink ────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -106,9 +101,9 @@ export default function Home() {
   }, [currentLine, currentChar]);
 
   // ── auto-scroll ─────────────────────────────────────────────────────────────
-  useEffect(() => {
+  /* useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, loading]);
+  }, [messages, loading]); */
 
   // ── send message ────────────────────────────────────────────────────────────
   const sendMessage = async () => {
@@ -211,7 +206,7 @@ export default function Home() {
       />
 
       {/* ── ABOVE-FOLD CONTENT ────────────────────────────────────────────────── */}
-      <div className="relative z-20 flex flex-col items-center min-h-[calc(100vh-64px)] px-4 py-12 gap-10">
+      <div className="relative z-20 flex flex-col items-center justify-center min-h-[calc(100vh-64px)] px-4 py-12 gap-10">
 
         {/* Player badge */}
         <div className="flex items-center gap-2">
