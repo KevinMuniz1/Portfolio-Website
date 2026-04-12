@@ -34,7 +34,7 @@ const PROJECTS = [
     description:
       "Full-stack MERN trading simulator with sub-100ms latency for real-time trade execution and analysis. Integrates OpenAI API for market sentiment insights and uses Dockerized microservices for scalable, fault-tolerant deployment.",
     stack: ["MONGODB", "EXPRESS", "REACT", "NODE.JS", "OPENAI API", "DOCKER"],
-    status: "COMPLETED",
+    status: "LIVE",
   },
   {
   id: "03",
@@ -42,7 +42,7 @@ const PROJECTS = [
   description:
     "Built a transformer-based language model in Python, implementing attention mechanisms and sequence modeling from scratch. Trained on custom datasets to generate coherent text and explored performance tuning and optimization.",
   stack: ["PYTHON", "PYTORCH", "NUMPY"],
-  status: "COMPLETED",
+  status: "LIVE",
 },
 ];
 
