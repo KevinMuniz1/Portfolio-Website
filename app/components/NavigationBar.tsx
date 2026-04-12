@@ -9,6 +9,8 @@ export default function NavBar() {
         background: "rgba(10,0,16,0.97)",
         borderBottom: "2px solid #cc0044",
         fontFamily: "'Press Start 2P', monospace",
+        position: "fixed",
+        zIndex: 1000,
       }}
     >
       <div className="flex items-center justify-center gap-6 py-3">
