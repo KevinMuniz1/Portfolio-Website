@@ -13,7 +13,7 @@ export default function NavBar() {
         zIndex: 1000,
       }}
     >
-      <div className="flex items-center justify-center gap-6 py-3">
+      <div className="flex items-center justify-center gap-6 py-3, margin-bottom: 100px">
         <a href="https://github.com/KevinMuniz1" target="_blank" className="flex flex-col items-center gap-1">
           <img src="/github.png" className="w-20 h-20 hover:scale-110" />
           <span style={{color: "#aa44ff"}}className="text-xs">GitHub</span>
