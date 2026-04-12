@@ -19,11 +19,7 @@ export default function NavBar() {
             href="mailto:muniz.kevin@outlook.com"
             style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "rgba(10,0,16,0.97)", color: "#fff", border: "2px solid #aa44ff", textDecoration: "none", letterSpacing: "0.08em", display: "inline-flex", alignItems: "center", gap: "8px" }}
           >
-            <a>
             <span> &#128233; </span>
-            <span style={{color: "#aa44ff"}}className="text-xs">Contact Me</span>
-            </a>
-
             <span className="hidden md:inline">CONTACT ME</span>
 
           </a>
