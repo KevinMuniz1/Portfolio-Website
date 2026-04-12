@@ -18,6 +18,48 @@ const LINES = [
 const CHAR_DELAY = 28;
 const LINE_DELAY = 180;
 
+// ── PROJECTS DATA ─────────────────────────────────────────────────────────────
+const PROJECTS = [
+  {
+    id: "01",
+    name: "PORTFOLIO SITE",
+    description:
+      "Personal developer portfolio with a retro gaming aesthetic. Features a live AI-powered terminal chat, animated intro sequence, and pixel-art UI components.",
+    stack: ["NEXT.JS", "TAILWIND CSS", "TYPESCRIPT", "PYTHON"],
+    status: "LIVE",
+  },
+  {
+    id: "02",
+    name: "ENERGY MONITOR",
+    description:
+      "React Native mobile dashboard for real-time energy monitoring. Grid-based card layout with auth flow, session persistence via AsyncStorage, and dynamic data visualization.",
+    stack: ["REACT NATIVE", "EXPO", "TYPESCRIPT", "NODE.JS"],
+    status: "IN DEV",
+  },
+  {
+    id: "03",
+    name: "AI CHAT API",
+    description:
+      "FastAPI backend powering the portfolio terminal chat. Integrates with Anthropic's Claude API with web search, streaming responses, and source attribution.",
+    stack: ["PYTHON", "FASTAPI", "CLAUDE API", "POSTGRESQL"],
+    status: "LIVE",
+  },
+  {
+    id: "04",
+    name: "PROJECT ALPHA",
+    description:
+      "Placeholder for your next project. Drop in a name, description, and tech stack and this card will slot right in with the rest.",
+    stack: ["REACT", "NODE.JS", "POSTGRESQL"],
+    status: "SOON",
+  },
+];
+
+const STATUS_STYLE: Record<string, { color: string; border: string; bg: string }> = {
+  LIVE:     { color: "#00cc66", border: "#00cc66", bg: "rgba(0,204,102,0.1)" },
+  "IN DEV": { color: "#ffcc00", border: "#ffcc00", bg: "rgba(255,204,0,0.1)" },
+  SOON:     { color: "#aa44ff", border: "#aa44ff", bg: "rgba(170,68,255,0.1)" },
+};
+
 // ── TYPES ─────────────────────────────────────────────────────────────────────
 interface Message {
   role: "user" | "assistant";
@@ -171,7 +213,7 @@ export default function Home() {
         }}
       />
 
-      {/* Content */}
+      {/* ── ABOVE-FOLD CONTENT ────────────────────────────────────────────────── */}
       <div className="relative z-20 flex flex-col items-center justify-center min-h-[calc(100vh-64px)] px-4 py-12 gap-10">
 
         {/* Player badge */}
@@ -260,7 +302,7 @@ export default function Home() {
                 </div>
               )}
 
-              {/* Chat history (shown after intro) */}
+              {/* Chat history */}
               {introComplete && messages.map((msg, i) => (
                 <div key={i} style={{ marginTop: "6px" }}>
                   {msg.role === "user" ? (
@@ -272,7 +314,6 @@ export default function Home() {
                     <div>
                       <span style={{ color: "#aa44ff" }}>&gt; </span>
                       <span style={{ color: "#f0e8ff" }}>{msg.text}</span>
-                      {/* Sources */}
                       {msg.sources && msg.sources.length > 0 && (
                         <div style={{ marginTop: "4px", paddingLeft: "16px" }}>
                           {msg.sources.map((s, si) => s.url ? (
@@ -365,12 +406,12 @@ export default function Home() {
           >
             &#9654; CONTACT
           </a>
-          <Link
-            href="/projects"
+          <a
+            href="#projects"
             style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "transparent", color: "#aa44ff", border: "2px solid #aa44ff", textDecoration: "none", letterSpacing: "0.08em" }}
           >
             PROJECTS &gt;&gt;
-          </Link>
+          </a>
         </div>
 
         {/* Tech stack */}
@@ -399,6 +440,170 @@ export default function Home() {
         </div>
 
       </div>
+
+      {/* ── PROJECTS SECTION ──────────────────────────────────────────────────── */}
+      <section
+        id="projects"
+        className="relative z-20 flex flex-col items-center px-4 pb-20 pt-4 gap-10"
+      >
+        {/* Section divider */}
+        <div className="w-full max-w-4xl flex items-center gap-4">
+          <div style={{ flex: 1, height: "1px", background: "repeating-linear-gradient(90deg, #aa44ff 0, #aa44ff 6px, transparent 6px, transparent 12px)", opacity: 0.4 }} />
+          <div style={{ border: "2px solid #aa44ff", padding: "6px 16px", background: "#0f0018" }}>
+            <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "9px", color: "#aa44ff", letterSpacing: "0.15em" }}>
+              SELECT STAGE
+            </span>
+          </div>
+          <div style={{ flex: 1, height: "1px", background: "repeating-linear-gradient(90deg, #aa44ff 0, #aa44ff 6px, transparent 6px, transparent 12px)", opacity: 0.4 }} />
+        </div>
+
+        {/* Section heading */}
+        <div className="w-full max-w-4xl flex flex-col gap-2">
+          <div className="flex items-center gap-3">
+            <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
+            <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(18px, 4vw, 26px)", color: "#fff", margin: 0, letterSpacing: "0.05em" }}>
+              PROJECTS
+            </h2>
+          </div>
+          <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "180px", marginLeft: "22px" }} />
+        </div>
+
+        {/* Project cards grid */}
+        <div
+          className="w-full max-w-4xl"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 340px), 1fr))",
+            gap: "24px",
+          }}
+        >
+          {PROJECTS.map((project) => {
+            const statusStyle = STATUS_STYLE[project.status] ?? STATUS_STYLE["SOON"];
+            return (
+              <div key={project.id} className="relative" style={{ border: "2px solid #aa44ff", background: "#0f0018" }}>
+
+                {/* Pixel corner dots */}
+                <div className="absolute -top-[3px] -left-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
+                <div className="absolute -top-[3px] -right-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
+                <div className="absolute -bottom-[3px] -left-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
+                <div className="absolute -bottom-[3px] -right-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
+
+                {/* Card header bar */}
+                <div
+                  style={{
+                    background: "#aa44ff",
+                    padding: "5px 12px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "9px", color: "#0a0010" }}>
+                    PROJECT_{project.id}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "'Press Start 2P', monospace",
+                      fontSize: "8px",
+                      color: statusStyle.color,
+                      background: statusStyle.bg,
+                      border: `1px solid ${statusStyle.border}`,
+                      padding: "2px 6px",
+                    }}
+                  >
+                    {project.status}
+                  </span>
+                </div>
+
+                {/* Card body */}
+                <div style={{ padding: "16px" }}>
+                  <h3
+                    style={{
+                      fontFamily: "'Press Start 2P', monospace",
+                      fontSize: "13px",
+                      color: "#fff",
+                      margin: "0 0 10px 0",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    {project.name}
+                  </h3>
+
+                  <p
+                    style={{
+                      fontFamily: "'Share Tech Mono', monospace",
+                      fontSize: "13px",
+                      color: "#f0e8ff",
+                      lineHeight: "1.8",
+                      margin: "0 0 16px 0",
+                      opacity: 0.85,
+                    }}
+                  >
+                    {project.description}
+                  </p>
+
+                  <div style={{ height: "1px", background: "#aa44ff33", marginBottom: "12px" }} />
+
+                  <div>
+                    <span
+                      style={{
+                        fontFamily: "'Press Start 2P', monospace",
+                        fontSize: "8px",
+                        color: "#ff2060",
+                        display: "block",
+                        marginBottom: "8px",
+                        letterSpacing: "0.1em",
+                      }}
+                    >
+                      STACK:
+                    </span>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                      {project.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          style={{
+                            fontFamily: "'Share Tech Mono', monospace",
+                            fontSize: "11px",
+                            color: "#ff2060",
+                            padding: "2px 8px",
+                            border: "2px solid #ff2060",
+                            background: "#1a000a",
+                            letterSpacing: "0.06em",
+                          }}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Bottom CTA */}
+        <a
+          href="mailto:muniz.kevin@outlook.com"
+          style={{
+            fontFamily: "'Press Start 2P', monospace",
+            fontSize: "13px",
+            padding: "12px 28px",
+            background: "#ff2060",
+            color: "#fff",
+            border: "2px solid #ff6090",
+            textDecoration: "none",
+            letterSpacing: "0.08em",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            marginTop: "8px",
+          }}
+        >
+          &#9654; CONTACT ME
+        </a>
+
+      </section>
     </main>
   );
 }
