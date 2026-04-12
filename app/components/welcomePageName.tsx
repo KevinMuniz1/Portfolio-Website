@@ -22,36 +22,28 @@ const LINE_DELAY = 180;
 const PROJECTS = [
   {
     id: "01",
-    name: "PORTFOLIO SITE",
+    name: "LEMA ENERGY AGGREGATOR",
     description:
-      "Personal developer portfolio with a retro gaming aesthetic. Features a live AI-powered terminal chat, animated intro sequence, and pixel-art UI components.",
-    stack: ["NEXT.JS", "TAILWIND CSS", "TYPESCRIPT", "PYTHON"],
+      "Cross-platform mobile app for scalable energy monitoring, reducing facility costs by up to 80%. Supports offline LAN-based meter polling with 95%+ uptime and modular reporting tools that process 1,500+ daily data points per facility.",
+    stack: ["REACT NATIVE", "POSTGRESQL", "EXPRESS", "NODE.JS"],
     status: "LIVE",
   },
   {
     id: "02",
-    name: "ENERGY MONITOR",
+    name: "AI PAPER TRADING PLATFORM",
     description:
-      "React Native mobile dashboard for real-time energy monitoring. Grid-based card layout with auth flow, session persistence via AsyncStorage, and dynamic data visualization.",
-    stack: ["REACT NATIVE", "EXPO", "TYPESCRIPT", "NODE.JS"],
-    status: "IN DEV",
+      "Full-stack MERN trading simulator with sub-100ms latency for real-time trade execution and analysis. Integrates OpenAI API for market sentiment insights and uses Dockerized microservices for scalable, fault-tolerant deployment.",
+    stack: ["MONGODB", "EXPRESS", "REACT", "NODE.JS", "OPENAI API", "DOCKER"],
+    status: "COMPLETED",
   },
   {
-    id: "03",
-    name: "AI CHAT API",
-    description:
-      "FastAPI backend powering the portfolio terminal chat. Integrates with Anthropic's Claude API with web search, streaming responses, and source attribution.",
-    stack: ["PYTHON", "FASTAPI", "CLAUDE API", "POSTGRESQL"],
-    status: "LIVE",
-  },
-  {
-    id: "04",
-    name: "PROJECT ALPHA",
-    description:
-      "Placeholder for your next project. Drop in a name, description, and tech stack and this card will slot right in with the rest.",
-    stack: ["REACT", "NODE.JS", "POSTGRESQL"],
-    status: "SOON",
-  },
+  id: "03",
+  name: "TRANSFORMER LANGUAGE MODEL",
+  description:
+    "Built a transformer-based language model in Python, implementing attention mechanisms and sequence modeling from scratch. Trained on custom datasets to generate coherent text and explored performance tuning and optimization.",
+  stack: ["PYTHON", "PYTORCH", "NUMPY"],
+  status: "COMPLETED",
+},
 ];
 
 const STATUS_STYLE: Record<string, { color: string; border: string; bg: string }> = {
