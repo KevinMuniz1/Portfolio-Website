@@ -8,7 +8,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 // ── INTRO LINES ──────────────────────────────────────────────────────────────
 const LINES = [
-  { prefix: "C:\\> ", text: "WHO AM I?", color: "#fff" },
+  { prefix: "C:\\> ", text: "Hey! I'm so happy you're here! Here is a little bit about me.", color: "#fff" },
   { prefix: "> ", text: "NAME    : Kevin Muniz", color: "#f0e8ff" },
   { prefix: "> ", text: "EDUCATION  : UCF — B.S. Computer Science", color: "#f0e8ff" },
   { prefix: "> ", text: "Currently looking for full-time roles involving Web/App development or AI and Machine Learning", color: "#f0e8ff" },
