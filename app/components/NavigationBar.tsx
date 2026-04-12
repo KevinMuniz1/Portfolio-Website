@@ -13,10 +13,8 @@ export default function NavBar() {
         zIndex: 1000,
       }}
     >
-      <div>
-      </div>
-      <div className="flex items-center justify-center gap-6 py-3, margin-bottom: 100px">
-        <div>
+      <div className="flex items-center justify-center gap-6 py-3, relative margin-bottom: 100px">
+        <div className="absolute left-6">
           <a
             href="mailto:muniz.kevin@outlook.com"
             style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "rgba(10,0,16,0.97)", color: "#fff", border: "2px solid #aa44ff", textDecoration: "none", letterSpacing: "0.08em", display: "inline-flex", alignItems: "center", gap: "8px" }}
