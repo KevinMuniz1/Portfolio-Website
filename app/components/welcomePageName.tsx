@@ -100,7 +100,7 @@ export default function Home() {
     }
   }, [currentLine, currentChar]);
 
-  // ── auto-scroll ─────────────────────────────────────────────────────────────
+  // ── auto-scroll in the terminal only ─────────────────────────────────────────────────────────────
   /* useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]); */
@@ -266,6 +266,7 @@ export default function Home() {
 
             {/* Scrollable message area */}
             <div
+            ref={bottomRef}
               style={{
                 padding: "14px 16px",
                 fontFamily: "'Share Tech Mono', monospace",
@@ -331,7 +332,8 @@ export default function Home() {
                 </div>
               )}
 
-              <div ref={bottomRef} />
+              
+              
             </div>
 
             {/* Input row */}
