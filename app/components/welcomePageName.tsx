@@ -73,6 +73,11 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
   const bottomRef = useRef<HTMLDivElement>(null);
+  
+
+    useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // ── cursor blink ────────────────────────────────────────────────────────────
   useEffect(() => {
