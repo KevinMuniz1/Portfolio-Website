@@ -101,7 +101,7 @@ export default function Home() {
   }, [currentLine, currentChar]);
 
   // ── auto-scroll in the terminal only ─────────────────────────────────────────────────────────────
-  /* useEffect(() => {
+  /*useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]); */
 
