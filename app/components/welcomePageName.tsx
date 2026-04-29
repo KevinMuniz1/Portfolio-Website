@@ -444,26 +444,47 @@ export default function Home() {
           </div>
 
         <div className="relative z-20 flex flex-col items-center px-4 w-full">
-          <div className="w-full max-w-4xl flex flex-col gap-2">
-            <div className="flex items-center gap-3">
-              <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
-              <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(18px, 4vw, 26px)", color: "#fff", margin: 0, letterSpacing: "0.05em" }}>
-                Experience: Prev @
-              </h2>
+          <div className="w-full max-w-4xl flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-3">
+                <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
+                <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(18px, 4vw, 26px)", color: "#fff", margin: 0, letterSpacing: "0.05em" }}>
+                  Experience: Prev @
+                </h2>
+              </div>
+              <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "180px", marginLeft: "22px" }} />
             </div>
-            <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "180px", marginLeft: "22px" }} />
+            <div className="flex flex-row gap-6 flex-wrap">
+              {[
+                { src: "/AppleLogo.png", alt: "Apple Inc." },
+                { src: "/SGWSlogo.jpg", alt: "SGWS" },
+                { src: "/lmlogo.jpeg", alt: "LM" },
+              ].map(({ src, alt }) => (
+                <div
+                  key={alt}
+                  style={{
+                    width: "140px",
+                    height: "140px",
+                    borderRadius: "50%",
+                    overflow: "hidden",
+                    border: "2px solid #aa44ff",
+                    background: "#fff",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <img
+                    src={src}
+                    alt={alt}
+                    style={{ width: "100%", height: "100%", objectFit: "contain", padding: "12px" }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-
-            <div className="flex gap-2 flex-wrap justify-center">
-                  <img
-                  src="/AppleLogo.png"
-                  alt="Apple Inc."
-                  className="object-cover w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 block"
-                  style={{ filter: "contrast(1.05) saturate(1.1)" }}
-                />
-            
-          </div>
 
       {/* ── PROJECTS SECTION ──────────────────────────────────────────────────── */}
       <section
