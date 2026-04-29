@@ -476,7 +476,7 @@ export default function Home() {
                   <img
                     src="/SGWSlogo.jpg"
                     alt="Southern Glazer's Wine & Spirits"
-                    style={{ width: "100%", height: "100%", objectFit: "contain", padding: "4px" }}
+                    style={{ width: "100%", height: "100%", objectFit: "contain", padding: "0px" }}
                   />
                 </div>
                 <div className="flex flex-col gap-1">
