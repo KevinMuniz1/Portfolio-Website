@@ -32,7 +32,7 @@ const PROJECTS = [
     id: "02",
     name: "Data Insight Engine",
     description:
-      "",
+      "a full-stack analytics tool that ingests datasets and automatically generates insights, including summary statistics, visualizations, and anomaly detection. Implements dynamic charting, data type inference, and scalable backend processing for efficient analysis.",
     stack: [""],
     status: "SOON",
   },
