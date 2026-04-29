@@ -20,16 +20,24 @@ const LINE_DELAY = 180;
 
 // ── PROJECTS DATA ─────────────────────────────────────────────────────────────
 const PROJECTS = [
-  {
+    {
     id: "01",
     name: "Secure Payment Network",
     description:
-      "Cross-platform mobile app for scalable energy monitoring, reducing facility costs by up to 80%. Supports offline LAN-based meter polling with 95%+ uptime and modular reporting tools that process 1,500+ daily data points per facility.",
+      "Built a secure payment backend using Spring Boot and PostgreSQL supporting deposits and peer-to-peer transfers. Implemented JWT authentication, HTTPS encryption, and ACID-compliant transaction handling to ensure data security and integrity.",
     stack: ["Spring Boot", "REACT TYPESCRIPT", "POSTGRESQL", "OPENAI API", "DOCKER"],
     status: "INDEV",
   },
   {
     id: "02",
+    name: "Data Insight Engine",
+    description:
+      "",
+    stack: [""],
+    status: "SOON",
+  },
+  {
+    id: "03",
     name: "LEMA ENERGY AGGREGATOR",
     description:
       "Cross-platform mobile app for scalable energy monitoring, reducing facility costs by up to 80%. Supports offline LAN-based meter polling with 95%+ uptime and modular reporting tools that process 1,500+ daily data points per facility.",
@@ -37,7 +45,7 @@ const PROJECTS = [
     status: "LIVE",
   },
   {
-    id: "03",
+    id: "04",
     name: "AI PAPER TRADING PLATFORM",
     description:
       "Full-stack MERN trading simulator with sub-100ms latency for real-time trade execution and analysis. Integrates OpenAI API for market sentiment insights and uses Dockerized microservices for scalable, fault-tolerant deployment.",
@@ -45,7 +53,7 @@ const PROJECTS = [
     status: "LIVE",
   },
   {
-  id: "04",
+  id: "05",
   name: "TRANSFORMER LANGUAGE MODEL",
   description:
     "Built a transformer-based language model in Python, implementing attention mechanisms and sequence modeling from scratch. Trained on custom datasets to generate coherent text and explored performance tuning and optimization.",
