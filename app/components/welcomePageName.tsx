@@ -22,14 +22,22 @@ const LINE_DELAY = 180;
 const PROJECTS = [
   {
     id: "01",
-    name: "LEMA ENERGY AGGREGATOR",
+    name: "Secure Payment Network",
     description:
       "Cross-platform mobile app for scalable energy monitoring, reducing facility costs by up to 80%. Supports offline LAN-based meter polling with 95%+ uptime and modular reporting tools that process 1,500+ daily data points per facility.",
-    stack: ["REACT NATIVE", "POSTGRESQL", "EXPRESS", "NODE.JS"],
-    status: "LIVE",
+    stack: ["Spring Boot", "REACT TYPESCRIPT", "POSTGRESQL", "OPENAI API", "DOCKER"],
+    status: "INDEV",
   },
   {
     id: "02",
+    name: "LEMA ENERGY AGGREGATOR",
+    description:
+      "Cross-platform mobile app for scalable energy monitoring, reducing facility costs by up to 80%. Supports offline LAN-based meter polling with 95%+ uptime and modular reporting tools that process 1,500+ daily data points per facility.",
+    stack: ["REACT TYPESCRIPT", "POSTGRESQL", "EXPRESS", "NODE.JS"],
+    status: "LIVE",
+  },
+  {
+    id: "03",
     name: "AI PAPER TRADING PLATFORM",
     description:
       "Full-stack MERN trading simulator with sub-100ms latency for real-time trade execution and analysis. Integrates OpenAI API for market sentiment insights and uses Dockerized microservices for scalable, fault-tolerant deployment.",
@@ -37,7 +45,7 @@ const PROJECTS = [
     status: "LIVE",
   },
   {
-  id: "03",
+  id: "04",
   name: "TRANSFORMER LANGUAGE MODEL",
   description:
     "Built a transformer-based language model in Python, implementing attention mechanisms and sequence modeling from scratch. Trained on custom datasets to generate coherent text and explored performance tuning and optimization.",
@@ -48,7 +56,7 @@ const PROJECTS = [
 
 const STATUS_STYLE: Record<string, { color: string; border: string; bg: string }> = {
   LIVE:     { color: "#00cc66", border: "#00cc66", bg: "rgba(0,204,102,0.1)" },
-  "IN DEV": { color: "#ffcc00", border: "#ffcc00", bg: "rgba(255,204,0,0.1)" },
+  INDEV: { color: "#ffcc00", border: "#ffcc00", bg: "rgba(255,204,0,0.1)" },
   SOON:     { color: "#aa44ff", border: "#aa44ff", bg: "rgba(170,68,255,0.1)" },
 };
 
