@@ -455,6 +455,16 @@ export default function Home() {
           </div>
         </div>
 
+            <div className="flex gap-2 flex-wrap justify-center">
+                  <img
+                  src="/AppleLogo.png"
+                  alt="Apple Inc."
+                  className="object-cover w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 block"
+                  style={{ filter: "contrast(1.05) saturate(1.1)" }}
+                />
+            
+          </div>
+
       {/* ── PROJECTS SECTION ──────────────────────────────────────────────────── */}
       <section
         id="projects"
