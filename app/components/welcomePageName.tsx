@@ -444,45 +444,93 @@ export default function Home() {
           </div>
 
         <div className="relative z-20 flex flex-col items-center px-4 w-full">
-          <div className="w-full max-w-4xl flex flex-col gap-6">
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-3">
-                <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
-                <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(18px, 4vw, 26px)", color: "#fff", margin: 0, letterSpacing: "0.05em" }}>
-                  Experience: Prev @
-                </h2>
+          <div className="w-full max-w-4xl flex flex-col gap-8">
+
+            {/* Currently @ */}
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-3">
+                  <span style={{ color: "#00cc66", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
+                  <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(14px, 3vw, 20px)", color: "#00cc66", margin: 0, letterSpacing: "0.05em" }}>
+                    CURRENTLY @
+                  </h2>
+                </div>
+                <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #00cc66 0, #00cc66 6px, transparent 6px, transparent 12px)", maxWidth: "180px", marginLeft: "22px" }} />
               </div>
-              <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "180px", marginLeft: "22px" }} />
-            </div>
-            <div className="flex flex-row gap-6 flex-wrap">
-              {[
-                { src: "/AppleLogo.png", alt: "Apple Inc." },
-                { src: "/SGWSlogo.jpg", alt: "SGWS" },
-                { src: "/lmlogo.jpeg", alt: "LM" },
-              ].map(({ src, alt }) => (
+              <div className="flex flex-row gap-6 flex-wrap items-center">
                 <div
-                  key={alt}
                   style={{
-                    width: "140px",
-                    height: "140px",
+                    width: "200px",
+                    height: "200px",
                     borderRadius: "50%",
                     overflow: "hidden",
-                    border: "2px solid #aa44ff",
+                    border: "3px solid #00cc66",
                     background: "#fff",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     flexShrink: 0,
+                    boxShadow: "0 0 18px rgba(0,204,102,0.3)",
                   }}
                 >
                   <img
-                    src={src}
-                    alt={alt}
-                    style={{ width: "100%", height: "100%", objectFit: "contain", padding: "12px" }}
+                    src="/SGWSlogo.jpg"
+                    alt="Southern Glazer's Wine & Spirits"
+                    style={{ width: "100%", height: "100%", objectFit: "contain", padding: "16px" }}
                   />
                 </div>
-              ))}
+                <div className="flex flex-col gap-1">
+                  <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "13px", color: "#fff", letterSpacing: "0.05em" }}>
+                    Southern Glazer&apos;s Wine &amp; Spirits
+                  </span>
+                  <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "13px", color: "#00cc66" }}>
+                    Software Engineer Intern
+                  </span>
+                </div>
+              </div>
             </div>
+
+            {/* Prev @ */}
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-3">
+                  <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
+                  <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(14px, 3vw, 20px)", color: "#fff", margin: 0, letterSpacing: "0.05em" }}>
+                    PREV @
+                  </h2>
+                </div>
+                <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "120px", marginLeft: "22px" }} />
+              </div>
+              <div className="flex flex-row gap-6 flex-wrap">
+                {[
+                  { src: "/AppleLogo.png", alt: "Apple Inc." },
+                  { src: "/lmlogo.jpeg", alt: "LM" },
+                ].map(({ src, alt }) => (
+                  <div
+                    key={alt}
+                    style={{
+                      width: "140px",
+                      height: "140px",
+                      borderRadius: "50%",
+                      overflow: "hidden",
+                      border: "2px solid #aa44ff",
+                      background: "#fff",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    <img
+                      src={src}
+                      alt={alt}
+                      style={{ width: "100%", height: "100%", objectFit: "contain", padding: "12px" }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
 
