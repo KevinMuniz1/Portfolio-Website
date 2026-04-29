@@ -411,36 +411,45 @@ export default function Home() {
         </div>        
 
         {/* Tech stack */}
-         
-        <div className="w-full max-w-4xl flex flex-col gap-2">
-
-          <div className="flex items-center gap-3">
-            <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
-            <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(18px, 4vw, 26px)", color: "#fff", margin: 0, letterSpacing: "0.05em" }}>
-              SKILLS
-            </h2>
+        <div className="w-full max-w-4xl flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-3">
+              <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
+              <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(18px, 4vw, 26px)", color: "#fff", margin: 0, letterSpacing: "0.05em" }}>
+                SKILLS
+              </h2>
+            </div>
+            <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "180px", marginLeft: "22px" }} />
           </div>
-          <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "180px", marginLeft: "22px" }} />
-        </div>
 
-          <div style={{ flex: 1, height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)" }} />
-          </div>
-          <div className="flex gap-2 flex-wrap justify-center">
+          <div className="flex flex-col gap-4">
             {[
-              "REACT NATIVE", "TYPESCRIPT", "PYTHON", "REACT",
-              "NODE.JS", "SWIFT", "JAVA", "POSTGRESQL", "GIT",
-            ].map((label) => (
-              <span
-                key={label}
-                style={{
-                  fontFamily: "'Share Tech Mono', monospace", fontSize: "13px",
-                  color: "#ff2060", padding: "3px 10px",
-                  border: "2px solid #ff2060", background: "#1a000a", letterSpacing: "0.06em",
-                }}
-              >
-                {label}
-              </span>
+              { category: "LANGUAGES", items: ["TYPESCRIPT", "PYTHON", "JAVA", "SWIFT"] },
+              { category: "FRAMEWORKS", items: ["REACT", "REACT NATIVE", "NODE.JS", "SPRING BOOT"] },
+              { category: "TOOLS & DATABASES", items: ["POSTGRESQL", "GIT", "DOCKER"] },
+            ].map(({ category, items }) => (
+              <div key={category} className="flex flex-col gap-2">
+                <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "8px", color: "#aa44ff", letterSpacing: "0.15em" }}>
+                  {category}
+                </span>
+                <div className="flex gap-2 flex-wrap">
+                  {items.map((label) => (
+                    <span
+                      key={label}
+                      style={{
+                        fontFamily: "'Share Tech Mono', monospace", fontSize: "13px",
+                        color: "#ff2060", padding: "3px 10px",
+                        border: "2px solid #ff2060", background: "#1a000a", letterSpacing: "0.06em",
+                      }}
+                    >
+                      {label}
+                    </span>
+                  ))}
+                </div>
+              </div>
             ))}
+          </div>
+        </div>
           </div>
 
         <div className="relative z-20 flex flex-col items-center px-4 w-full">
@@ -476,7 +485,7 @@ export default function Home() {
                   <img
                     src="/SGWSlogo.jpg"
                     alt="Southern Glazer's Wine & Spirits"
-                    style={{ width: "100%", height: "100%", objectFit: "contain", padding: "0px" }}
+                    style={{ width: "100%", height: "100%", objectFit: "contain"}}
                   />
                 </div>
                 <div className="flex flex-col gap-1">
@@ -484,7 +493,7 @@ export default function Home() {
                     Southern Glazer&apos;s Wine &amp; Spirits
                   </span>
                   <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "13px", color: "#00cc66" }}>
-                    Software Engineer Intern
+                    OneTech Data Intern
                   </span>
                 </div>
               </div>
