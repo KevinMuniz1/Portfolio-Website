@@ -65,7 +65,7 @@ const PROJECTS = [
 const STATUS_STYLE: Record<string, { color: string; border: string; bg: string }> = {
   LIVE:     { color: "#00cc66", border: "#00cc66", bg: "rgba(0,204,102,0.1)" },
   INDEV: { color: "#ffcc00", border: "#ffcc00", bg: "rgba(255,204,0,0.1)" },
-  SOON:     { color: "FF0000", border: "#FF0000", bg: "rgba(170,68,255,0.1)" },
+  SOON:     { color: "#FF0000", border: "#FF0000", bg: "rgba(170,68,255,0.1)" },
 };
 
 // ── TYPES ─────────────────────────────────────────────────────────────────────
