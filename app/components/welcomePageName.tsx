@@ -455,6 +455,17 @@ export default function Home() {
         <div className="relative z-20 flex flex-col items-center px-4 w-full">
           <div className="w-full max-w-4xl flex flex-col gap-8">
 
+            {/* Experience heading */}
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-3">
+                <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
+                <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(18px, 4vw, 26px)", color: "#fff", margin: 0, letterSpacing: "0.05em" }}>
+                  EXPERIENCE
+                </h2>
+              </div>
+              <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "220px", marginLeft: "22px" }} />
+            </div>
+
             {/* Currently @ */}
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
@@ -483,9 +494,9 @@ export default function Home() {
                   }}
                 >
                   <img
-                    src="/SGWSlogo.jpg"
+                    src="/SGWSlogo.png"
                     alt="Southern Glazer's Wine & Spirits"
-                    style={{ width: "100%", height: "100%", objectFit: "contain"}}
+                    style={{ width: "100%", height: "100%", objectFit: "contain", padding: "8px" }}
                   />
                 </div>
                 <div className="flex flex-col gap-1">
