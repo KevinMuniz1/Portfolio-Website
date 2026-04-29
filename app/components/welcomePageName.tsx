@@ -412,7 +412,7 @@ export default function Home() {
 
         {/* Tech stack */}
          
-          <div className="w-full max-w-4xl flex flex-col gap-2">
+        <div className="w-full max-w-4xl flex flex-col gap-2">
 
           <div className="flex items-center gap-3">
             <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
@@ -443,15 +443,16 @@ export default function Home() {
             ))}
           </div>
 
+        <div className="relative z-20 flex flex-col items-center px-4 w-full">
           <div className="w-full max-w-4xl flex flex-col gap-2">
-
-          <div className="flex items-center gap-3">
-            <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
-            <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(18px, 4vw, 26px)", color: "#fff", margin: 0, letterSpacing: "0.05em" }}>
-              Experience: Prev @
-            </h2>
+            <div className="flex items-center gap-3">
+              <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
+              <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(18px, 4vw, 26px)", color: "#fff", margin: 0, letterSpacing: "0.05em" }}>
+                Experience: Prev @
+              </h2>
+            </div>
+            <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "180px", marginLeft: "22px" }} />
           </div>
-          <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "180px", marginLeft: "22px" }} />
         </div>
 
       {/* ── PROJECTS SECTION ──────────────────────────────────────────────────── */}
