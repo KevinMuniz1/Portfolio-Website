@@ -1,43 +1,151 @@
 "use client";
 
+import { useState } from "react";
+
+const NAV_LINKS = [
+  { label: "ABOUT",      href: "#about" },
+  { label: "SKILLS",     href: "#skills" },
+  { label: "EXPERIENCE", href: "#experience" },
+  { label: "PROJECTS",   href: "#projects" },
+];
 
 export default function NavBar() {
+  const [open, setOpen] = useState(false);
+
   return (
     <nav
-      className="w-full relative"
       style={{
         background: "rgba(10,0,16,0.97)",
         borderBottom: "2px solid #cc0044",
         fontFamily: "'Press Start 2P', monospace",
         position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
         zIndex: 1000,
       }}
     >
-      <div className="flex items-center justify-center gap-6 py-3, relative margin-bottom: 100px">
-        <div className="absolute left-3 md:left-6">
+      {/* Main bar */}
+      <div className="flex items-center justify-between px-4 md:px-8 py-3">
+
+        {/* Left: section links (desktop only) */}
+        <div className="hidden md:flex items-center gap-6">
+          {NAV_LINKS.map(({ label, href }) => (
+            <a
+              key={label}
+              href={href}
+              style={{
+                fontSize: "10px",
+                color: "#f0e8ff",
+                textDecoration: "none",
+                letterSpacing: "0.1em",
+                transition: "color 0.15s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#ff2060")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#f0e8ff")}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+
+        {/* Right: social icons */}
+        <div className="hidden md:flex items-center gap-5 ml-auto">
+          <a href="https://github.com/KevinMuniz1" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 hover:scale-110 transition-transform">
+            <img src="/github.png" className="w-8 h-8" alt="GitHub" />
+            <span style={{ color: "#aa44ff", fontSize: "9px" }}>GitHub</span>
+          </a>
+          <a href="/KevinMunizResume.pdf" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 hover:scale-110 transition-transform">
+            <img src="/resumeIcon.png" className="w-8 h-8" alt="Resume" />
+            <span style={{ color: "#aa44ff", fontSize: "9px" }}>Resume</span>
+          </a>
+          <a href="https://www.linkedin.com/in/muniz-kevin/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 hover:scale-110 transition-transform">
+            <img src="/linkedin.png" className="w-8 h-8" alt="LinkedIn" />
+            <span style={{ color: "#aa44ff", fontSize: "9px" }}>LinkedIn</span>
+          </a>
           <a
             href="mailto:muniz.kevin@outlook.com"
-            style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "16px", padding: "12px 24px", background: "rgba(10,0,16,0.97)", color: "#fff", border: "2px solid #aa44ff", textDecoration: "none", letterSpacing: "0.08em", display: "inline-flex", alignItems: "center", gap: "8px" }}
+            style={{
+              fontSize: "9px",
+              padding: "8px 16px",
+              background: "transparent",
+              color: "#fff",
+              border: "2px solid #aa44ff",
+              textDecoration: "none",
+              letterSpacing: "0.08em",
+            }}
           >
-            <span> &#128233;</span>
-
-            <span className="hidden md:inline">CONTACT ME</span>
-
+            CONTACT
           </a>
         </div>
-        <a href="https://github.com/KevinMuniz1" target="_blank" className="flex flex-col items-center gap-1">
-          <img src="/github.png" className="w-10 h-10 md:w-20 md:h-20 hover:scale-110" />
-          <span style={{color: "#aa44ff"}}className="text-xs">GitHub</span>
-        </a>
-        <a href="/KevinMunizResume.pdf" target="_blank" className="flex flex-col items-center gap-1">
-          <img src="/resumeIcon.png" className="w-10 h-10 md:w-20 md:h-20 hover:scale-110" />
-          <span style={{color: "#aa44ff"}}className="text-xs">Resume</span>
-        </a>
-        <a href="https://www.linkedin.com/in/muniz-kevin/" target="_blank" className="flex flex-col items-center gap-1">
-          <img src="/linkedin.png" className="w-10 h-10 md:w-20 md:h-20 hover:scale-110" />
-          <span style={{color: "#aa44ff"}}className="text-xs">LinkedIn</span>
-        </a>
+
+        {/* Mobile: social icons + hamburger */}
+        <div className="flex md:hidden items-center gap-4 w-full justify-between">
+          <div className="flex items-center gap-3">
+            <a href="https://github.com/KevinMuniz1" target="_blank" rel="noopener noreferrer">
+              <img src="/github.png" className="w-8 h-8" alt="GitHub" />
+            </a>
+            <a href="/KevinMunizResume.pdf" target="_blank" rel="noopener noreferrer">
+              <img src="/resumeIcon.png" className="w-8 h-8" alt="Resume" />
+            </a>
+            <a href="https://www.linkedin.com/in/muniz-kevin/" target="_blank" rel="noopener noreferrer">
+              <img src="/linkedin.png" className="w-8 h-8" alt="LinkedIn" />
+            </a>
+          </div>
+
+          {/* Hamburger button */}
+          <button
+            onClick={() => setOpen((v) => !v)}
+            style={{ background: "none", border: "none", cursor: "pointer", padding: "4px" }}
+            aria-label="Toggle menu"
+          >
+            <div style={{ width: "22px", display: "flex", flexDirection: "column", gap: "5px" }}>
+              <span style={{ display: "block", height: "2px", background: open ? "#ff2060" : "#f0e8ff", transition: "background 0.15s", transform: open ? "translateY(7px) rotate(45deg)" : "none", transformOrigin: "center" }} />
+              <span style={{ display: "block", height: "2px", background: open ? "transparent" : "#f0e8ff", transition: "background 0.15s" }} />
+              <span style={{ display: "block", height: "2px", background: open ? "#ff2060" : "#f0e8ff", transition: "background 0.15s", transform: open ? "translateY(-7px) rotate(-45deg)" : "none", transformOrigin: "center" }} />
+            </div>
+          </button>
+        </div>
       </div>
+
+      {/* Mobile dropdown */}
+      {open && (
+        <div
+          className="flex md:hidden flex-col"
+          style={{ borderTop: "1px solid #aa44ff33", background: "rgba(10,0,16,0.99)" }}
+        >
+          {NAV_LINKS.map(({ label, href }) => (
+            <a
+              key={label}
+              href={href}
+              onClick={() => setOpen(false)}
+              style={{
+                padding: "14px 24px",
+                fontSize: "11px",
+                color: "#f0e8ff",
+                textDecoration: "none",
+                letterSpacing: "0.1em",
+                borderBottom: "1px solid #aa44ff22",
+              }}
+            >
+              {label}
+            </a>
+          ))}
+          <a
+            href="mailto:muniz.kevin@outlook.com"
+            onClick={() => setOpen(false)}
+            style={{
+              padding: "14px 24px",
+              fontSize: "11px",
+              color: "#ff2060",
+              textDecoration: "none",
+              letterSpacing: "0.1em",
+            }}
+          >
+            CONTACT
+          </a>
+        </div>
+      )}
     </nav>
   );
 }

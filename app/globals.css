@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 @theme {
   --color-cyber-neon: #31E8FF;
   --color-cyber-purple: #C238FF;

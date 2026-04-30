@@ -25,14 +25,14 @@ const PROJECTS = [
     name: "Secure Payment Network",
     description:
       "Built a secure payment backend using Spring Boot and PostgreSQL supporting deposits and peer-to-peer transfers. Implemented JWT authentication, HTTPS encryption, and ACID-compliant transaction handling to ensure data security and integrity.",
-    stack: ["Spring Boot", "REACT TYPESCRIPT", "POSTGRESQL", "OPENAI API", "DOCKER"],
+    stack: ["SPRING BOOT", "REACT TYPESCRIPT", "POSTGRESQL", "OPENAI API", "DOCKER"],
     status: "INDEV",
   },
   {
     id: "02",
     name: "Data Insight Engine",
     description:
-      "a full-stack analytics tool that ingests datasets and automatically generates insights, including summary statistics, visualizations, and anomaly detection. Implements dynamic charting, data type inference, and scalable backend processing for efficient analysis.",
+      "A full-stack analytics tool that ingests datasets and automatically generates insights, including summary statistics, visualizations, and anomaly detection. Implements dynamic charting, data type inference, and scalable backend processing for efficient analysis.",
     stack: [""],
     status: "SOON",
   },
@@ -224,7 +224,7 @@ export default function Home() {
       />
 
       {/* ── ABOVE-FOLD CONTENT ────────────────────────────────────────────────── */}
-      <div className="relative z-20 flex flex-col items-center justify-center min-h-[calc(100vh-64px)] px-4 py-12 gap-10">
+      <div id="about" className="relative z-20 flex flex-col items-center justify-center min-h-[calc(100vh-64px)] px-4 py-12 gap-10">
 
         {/* Player badge */}
         <div className="flex items-center gap-2">
@@ -411,7 +411,7 @@ export default function Home() {
         </div>        
 
         {/* Tech stack */}
-        <div className="w-full max-w-4xl flex flex-col gap-4">
+        <div id="skills" className="w-full max-w-4xl flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-3">
               <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
@@ -452,7 +452,7 @@ export default function Home() {
         </div>
           </div>
 
-        <div className="relative z-20 flex flex-col items-center px-4 w-full">
+        <div id="experience" className="relative z-20 flex flex-col items-center px-4 w-full">
           <div className="w-full max-w-4xl flex flex-col gap-8">
 
             {/* Experience heading */}
