@@ -52,14 +52,6 @@ const PROJECTS = [
     stack: ["MONGODB", "EXPRESS", "REACT", "NODE.JS", "OPENAI API", "DOCKER"],
     status: "LIVE",
   },
-  {
-  id: "05",
-  name: "TRANSFORMER LANGUAGE MODEL",
-  description:
-    "Built a transformer-based language model in Python, implementing attention mechanisms and sequence modeling from scratch. Trained on custom datasets to generate coherent text and explored performance tuning and optimization.",
-  stack: ["PYTHON", "PYTORCH", "NUMPY"],
-  status: "LIVE",
-},
 ];
 
 const STATUS_STYLE: Record<string, { color: string; border: string; bg: string }> = {
