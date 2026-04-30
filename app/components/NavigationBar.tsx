@@ -52,16 +52,16 @@ export default function NavBar() {
         {/* Right: social icons */}
         <div className="hidden md:flex items-center gap-6 ml-auto">
           <a href="https://github.com/KevinMuniz1" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 hover:scale-110 transition-transform">
-            <img src="/github.png" className="w-10 h-10" alt="GitHub" />
-            <span style={{ color: "#aa44ff", fontSize: "10px" }}>GitHub</span>
+            <img src="/github.png" className="w-14 h-14" alt="GitHub" />
+            <span style={{ color: "#aa44ff", fontSize: "13px" }}>GitHub</span>
           </a>
           <a href="/KevinMunizResume.pdf" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 hover:scale-110 transition-transform">
-            <img src="/resumeIcon.png" className="w-10 h-10" alt="Resume" />
-            <span style={{ color: "#aa44ff", fontSize: "10px" }}>Resume</span>
+            <img src="/resumeIcon.png" className="w-14 h-14" alt="Resume" />
+            <span style={{ color: "#aa44ff", fontSize: "13px" }}>Resume</span>
           </a>
           <a href="https://www.linkedin.com/in/muniz-kevin/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 hover:scale-110 transition-transform">
-            <img src="/linkedin.png" className="w-10 h-10" alt="LinkedIn" />
-            <span style={{ color: "#aa44ff", fontSize: "10px" }}>LinkedIn</span>
+            <img src="/linkedin.png" className="w-14 h-14" alt="LinkedIn" />
+            <span style={{ color: "#aa44ff", fontSize: "13px" }}>LinkedIn</span>
           </a>
           <a
             href="mailto:muniz.kevin@outlook.com"
@@ -83,13 +83,13 @@ export default function NavBar() {
         <div className="flex md:hidden items-center gap-4 w-full justify-between">
           <div className="flex items-center gap-4">
             <a href="https://github.com/KevinMuniz1" target="_blank" rel="noopener noreferrer">
-              <img src="/github.png" className="w-10 h-10" alt="GitHub" />
+              <img src="/github.png" className="w-14 h-14" alt="GitHub" />
             </a>
             <a href="/KevinMunizResume.pdf" target="_blank" rel="noopener noreferrer">
-              <img src="/resumeIcon.png" className="w-10 h-10" alt="Resume" />
+              <img src="/resumeIcon.png" className="w-14 h-14" alt="Resume" />
             </a>
             <a href="https://www.linkedin.com/in/muniz-kevin/" target="_blank" rel="noopener noreferrer">
-              <img src="/linkedin.png" className="w-10 h-10" alt="LinkedIn" />
+              <img src="/linkedin.png" className="w-14 h-14" alt="LinkedIn" />
             </a>
           </div>
 
