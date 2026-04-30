@@ -1,5 +1,9 @@
 {
-  "bio": "Kevin Muniz is a 24 year old Computer Science student at the University of Central Florida, graduating in May 2026, with hands-on experience in software engineering, systems engineering, and AI-driven applications. He has worked at leading companies including Lockheed Martin and Apple, where he built scalable systems, improved engineering workflows, and contributed to mission-critical technologies. Kevin specializes in full-stack development, mobile app development, AI & Machine Learning, Finance Applications and business analytics",
+  "bio": "Kevin Muniz is a 24 year old Computer Science student at the University of Central Florida, graduating in May 2026. He has hands-on experience in software engineering, systems engineering, and AI-driven applications. He has worked at Southern Glazer's Wine & Spirits, Lockheed Martin, and Apple, where he built scalable systems, improved engineering workflows, and contributed to mission-critical technologies. Kevin specializes in full-stack development, mobile app development, AI and Machine Learning, finance applications, and business analytics.",
+
+  "general_summary": "Kevin Muniz is a 24 year old software engineer and Computer Science student at the University of Central Florida graduating in May 2026. He has professional experience at three companies — Southern Glazer's Wine and Spirits where he currently works as an OneTech Data Intern, Lockheed Martin where he worked as both a Systems Engineer Intern and a Full Stack Software Engineer Intern building internal tools and working on F-35 and F-16 targeting systems, and Apple where he worked through the Apple College Program managing 75 or more weekly technical cases with a 92% satisfaction rate. Kevin is skilled in Python, Java, JavaScript, TypeScript, C, C#, Swift, and SQL. He builds with React, React Native, Node.js, Express, Next.js, FastAPI, Spring Boot, and more. He is experienced with Docker, AWS, PostgreSQL, MongoDB, Git, and machine learning tools like PyTorch, TensorFlow, and Scikit-learn. His projects include LEMA a cross-platform energy monitoring app, an AI-enhanced paper trading platform, a secure payment network, and a transformer language model built from scratch. Outside of work Kevin is passionate about fitness, snowboarding, hiking, cooking, traveling, and music. He is outgoing, collaborative, and looking for full-time software engineering roles where he can grow alongside a great team.",
+
+  "work_history_summary": "Kevin has worked at three companies: Southern Glazer's Wine & Spirits, Lockheed Martin, and Apple. He is currently working at Southern Glazer's Wine & Spirits as an OneTech Data Intern. Before that he had two roles at Lockheed Martin — first as a Full Stack Software Engineer Intern from September 2024 to May 2025, then as a Systems Engineer Intern starting May 2025. Before Lockheed Martin he worked at Apple from March 2023 to September 2024 through the Apple College Program AHA. His background spans software engineering, systems engineering, data, full-stack web development, and technical support.",
 
   "education": {
     "school": "University of Central Florida",
@@ -18,41 +22,50 @@
 
   "skills": {
     "languages": ["C", "C#", "Python", "Java", "JavaScript", "Swift", "SQL", "HTML/CSS"],
-    "frameworks": ["React", "Node.js", "Express", "Next.js", "FastAPI", "Spring Boot", "Tailwind", "Razor"],
-    "tools": ["Git", "Docker", "Kubernetes", "Jenkins", "AWS", "PostgreSQL", "MySQL", "MongoDB", "Jira"],
+    "frameworks": ["React", "React Native", "Node.js", "Express", "Next.js", "FastAPI", "Spring Boot", "Tailwind", "Razor"],
+    "tools": ["Git", "Docker", "Kubernetes", "Jenkins", "AWS", "PostgreSQL", "MySQL", "MongoDB", "Jira", "Linux"],
     "data_ml": ["Pandas", "NumPy", "Matplotlib", "Backtrader", "yFinance", "TensorFlow", "PyTorch", "Scikit-learn"]
   },
 
   "experience": [
     {
+      "role": "OneTech Data Intern",
+      "company": "Southern Glazer's Wine & Spirits",
+      "duration": "May 2025 – Present",
+      "description": "Kevin is currently working at Southern Glazer's Wine & Spirits as an OneTech Data Intern. Southern Glazer's is the largest wine and spirits distributor in the United States. In this role Kevin works within the technology and data division contributing to data-driven initiatives and internal tooling.",
+      "impact": []
+    },
+    {
       "role": "Systems Engineer Intern",
       "company": "Lockheed Martin",
       "duration": "May 2025 – Present",
-      "description": "Worked on advanced land and air-based targeting systems, including platforms such as the F-35 and F-16. Gathered and translated complex engineering requirements into structured technical documentation, improving cross-team understanding and system integration.",
+      "description": "Kevin worked at Lockheed Martin as a Systems Engineer Intern. He gathered requirements for land and air-based targeting systems including the F-35 and F-16 fighter jets and created detailed technical documentation to improve process understanding across engineering teams. He developed onboarding guides and reference materials that cut new engineer ramp-up time by 25% and standardized knowledge transfer across projects. He also conducted research on communication networks between legacy and newly developed systems, reducing miscommunication errors and increasing cross-platform reliability.",
       "impact": [
-        "Reduced onboarding time for new engineers by 25% by developing comprehensive documentation and onboarding guides",
-        "Improved cross-platform communication reliability by researching and analyzing interactions between legacy and modern systems"
+        "Reduced new engineer onboarding time by 25% through comprehensive documentation and onboarding guides",
+        "Improved cross-platform communication reliability by researching interactions between legacy and modern systems",
+        "Worked on F-35 and F-16 land and air-based targeting systems"
       ]
     },
     {
       "role": "Full Stack Software Engineer Intern",
       "company": "Lockheed Martin",
       "duration": "Sept 2024 – May 2025",
-      "description": "Developed scalable internal web applications using C#, Razor, and SQL to automate data workflows and improve operational efficiency.",
+      "description": "Kevin worked at Lockheed Martin as a Full Stack Software Engineer Intern. He developed full-stack internal web applications using C#, Razor, and SQL through automated data pipelines. He built and deployed a scalable datagrid system to organize and visualize user data, streamline resource allocation, and improve turnaround time on mission-critical reports by over 30%. He also reduced manual data entry by 40% by integrating backend logic with existing databases.",
       "impact": [
-        "Built a dynamic data visualization system that improved report turnaround time by over 30%",
-        "Reduced manual data entry by 40% through backend automation and database integration"
+        "Improved mission-critical report turnaround time by over 30% with a scalable datagrid visualization system",
+        "Reduced manual data entry by 40% through backend automation and database integration",
+        "Built full-stack internal tools using C#, Razor, and SQL"
       ]
     },
     {
-      "role": "Apple College Program",
+      "role": "Apple College Program AHA",
       "company": "Apple",
       "duration": "March 2023 – Sept 2024",
-      "description": "Resolved technical cases within Apple’s CORE system while maintaining high customer satisfaction and detailed technical documentation for engineering teams.",
+      "description": "Kevin worked at Apple through the Apple College Program AHA. He resolved user cases in Apple's CORE system, managing 75 or more weekly issues and maintaining a 92% customer satisfaction rate. He created and maintained detailed technical case notes for senior engineers improving issue traceability. He also provided mentorship and career guidance to peers, contributing to multiple students earning Apple internships.",
       "impact": [
-        "Handled 75+ cases per week with a 92% satisfaction rate",
-        "Improved issue traceability through structured technical documentation",
-        "Mentored peers, contributing to multiple students earning Apple internships"
+        "Managed 75+ weekly cases with a 92% customer satisfaction rate",
+        "Improved issue traceability through structured technical case documentation for senior engineers",
+        "Mentored peers resulting in multiple students earning Apple internships"
       ]
     }
   ],
@@ -60,23 +73,44 @@
   "projects": [
     {
       "name": "Lightweight Energy Meter Aggregator (LEMA)",
-      "description": "A cross-platform energy monitoring application designed to drastically reduce facility monitoring costs while maintaining enterprise-level capabilities.",
+      "description": "LEMA is a cross-platform mobile app Kevin built to cut facility energy monitoring costs by up to 80%, enabling scalable deployment for buildings over 5,000 square feet without requiring $50k to $100k enterprise systems. Kevin implemented LAN-based meter polling with offline data caching achieving 95%+ uptime and full functionality without internet access. He also built modular reporting tools with CSV, XLSX, and PDF export and interactive dashboards that reduce manual reporting time by 70% and process 1,500 or more daily data points per facility.",
       "details": [
-        "Projected to reduce monitoring costs by up to 80% compared to traditional enterprise systems costing $50k–$100k",
-        "Implemented LAN-based meter polling with offline caching, achieving 95%+ uptime without requiring internet connectivity",
-        "Processes over 1,500 daily data points per facility with modular reporting tools and export capabilities"
+        "Reduces facility energy monitoring costs by up to 80% compared to $50k–$100k enterprise systems",
+        "LAN-based meter polling with offline caching achieving 95%+ uptime without internet connectivity",
+        "Processes 1,500+ daily data points per facility with CSV/XLSX/PDF export and interactive dashboards",
+        "Reduces manual reporting time by 70%"
       ],
       "tech": ["React Native", "PostgreSQL", "Express", "Node.js"]
     },
     {
       "name": "AI-Enhanced Paper Trading Platform",
-      "description": "A full-stack trading simulator designed for real-time execution, monitoring, and analysis of simulated trades with AI-driven insights.",
+      "description": "Kevin built a full-stack MERN trading simulator to execute, monitor, and analyze simulated trades in real time with sub-100 millisecond transaction latency. He integrated the OpenAI API for large-scale market sentiment analysis enabling users to derive actionable trading signals from financial news and social media data. He containerized backend microservices with Docker to ensure scalable deployment, fault tolerance, and consistent API performance under concurrent user load.",
       "details": [
-        "Supports sub-100 ms trade execution latency for real-time trading simulation",
-        "Integrated AI-powered sentiment analysis using financial news and social media data to generate trading signals",
-        "Built scalable backend microservices using Docker for reliability under concurrent user load"
+        "Sub-100ms transaction latency for real-time paper trading simulation",
+        "OpenAI API integration for market sentiment analysis from financial news and social media",
+        "Dockerized microservices for scalable and fault-tolerant deployment"
       ],
       "tech": ["MongoDB", "Express", "React", "Node.js", "OpenAI API", "Docker"]
+    },
+    {
+      "name": "Secure Payment Network",
+      "description": "Kevin built a secure payment backend using Spring Boot and PostgreSQL supporting deposits and peer-to-peer transfers. He implemented JWT authentication, HTTPS encryption, and ACID-compliant transaction handling to ensure data security and integrity. The project is currently in active development.",
+      "details": [
+        "Supports deposits and peer-to-peer transfers with ACID-compliant transaction handling",
+        "JWT authentication and HTTPS encryption for data security",
+        "Built with Spring Boot and PostgreSQL"
+      ],
+      "tech": ["Spring Boot", "React TypeScript", "PostgreSQL", "OpenAI API", "Docker"]
+    },
+    {
+      "name": "Transformer Language Model",
+      "description": "Kevin built a transformer-based language model from scratch in Python, implementing attention mechanisms and sequence modeling without using pre-built model libraries. He trained the model on custom datasets to generate coherent text and explored performance tuning and optimization techniques.",
+      "details": [
+        "Built attention mechanisms and sequence modeling from scratch",
+        "Trained on custom datasets to generate coherent text",
+        "Explored performance tuning and optimization"
+      ],
+      "tech": ["Python", "PyTorch", "NumPy"]
     }
   ],
 
@@ -85,45 +119,47 @@
       "role": "Treasurer",
       "organization": "Theta Tau Professional Engineering Fraternity",
       "duration": "Jan 2025 – Jan 2026",
-      "description": "Led financial operations and strategic budgeting for the organization while improving transparency and financial literacy among members.",
+      "description": "Kevin served as Treasurer of Theta Tau Professional Engineering Fraternity at UCF. He optimized the fraternity budget by conducting a full audit of recurring expenses, cutting unnecessary costs by 25% and reallocating resources toward high-impact academic and professional events. He generated comprehensive monthly financial reports for the executive board with visual breakdowns and year-over-year analyses. He also designed and led a weekly financial literacy program covering budgeting, credit management, investing basics, and post-graduate financial planning.",
       "impact": [
-        "Reduced unnecessary expenses by 25% through a full financial audit and budget optimization",
-        "Delivered monthly financial reports with data visualizations to improve executive decision-making",
-        "Designed and led a financial literacy program covering budgeting, investing, and post-graduate financial planning"
+        "Cut unnecessary costs by 25% through a full financial audit and budget optimization",
+        "Delivered monthly financial reports with visual breakdowns to the executive board",
+        "Designed and led a weekly financial literacy program for fraternity members"
       ]
     }
   ],
 
   "personality": {
-    "about": "Kevin is naturally outgoing and enjoys talking with people about just about anything, whether it’s work, ideas, or everyday life. He loves collaborating and bouncing ideas around to create things that can actually be built and brought to life. While he likes to joke around and keep things fun, he’s also able to switch gears quickly and stay focused when it’s time to get serious and execute.",
+    "about": "Kevin is naturally outgoing and enjoys talking with people about just about anything, whether it is work, ideas, or everyday life. He loves collaborating and bouncing ideas around to create things that can actually be built and brought to life. While he likes to joke around and keep things fun, he is also able to switch gears quickly and stay focused when it is time to get serious and execute.",
 
     "hobbies": [
-      "Kevin is passionate about fitness and enjoys working out regularly to maintain a disciplined and healthy lifestyle. He lifts and runs everyday",
-      "He enjoys snowboarding, hiking, and almost any outdoor activity",
-      "Kevin enjoys cooking for others whenever he can! It's one of the ways he shows that he cares"
+      "Kevin is passionate about fitness and enjoys working out regularly to maintain a disciplined and healthy lifestyle. He lifts and runs every day.",
+      "He enjoys snowboarding, hiking, and almost any outdoor activity.",
+      "Kevin enjoys cooking for others whenever he can. It is one of the ways he shows that he cares."
     ],
 
     "interests_extended": [
-      "Kevin is really interested in listining to all kinds of music but his favorite genres are house,rock and indie pop.",
-      "He enjoys traveling a lot, Paris,France is his current favorite place that he has traveled to. His current dream destination is Japan."
+      "Kevin is really interested in listening to all kinds of music but his favorite genres are house, rock and indie pop.",
+      "He enjoys traveling a lot. Paris, France is his current favorite place he has visited. His dream destination is Japan."
     ],
 
     "favorite_foods": [
       "Kevin enjoys high-protein meals that support his fitness goals, including chicken, steak, and rice-based dishes.",
       "He likes trying new foods and restaurants, especially meals that balance flavor and nutrition.",
-      "His favorite foods are Sushi and Italian/Latin food."
+      "His favorite foods are sushi and Italian and Latin food."
     ],
 
     "fun_facts": [
-      "Kevin has been skydiving, it was really scary but so much more fun",
-      "The only food that Kevin does not like is olives lol",
-      "Kevin is the second engineer in his family"
+      "Kevin has been skydiving. It was really scary but so much more fun.",
+      "The only food Kevin does not like is olives.",
+      "Kevin is the second engineer in his family."
     ]
   },
 
-  "goals": "Kevin is seeking full-time roles involving software engineering that allow him to grow and become the best engineer he could be while working along side an amazing team that feels like family",
+  "goals": "Kevin is seeking full-time roles involving software engineering that allow him to grow and become the best engineer he could be while working alongside an amazing team that feels like family.",
 
   "contact": {
+    "email": "Muniz.Kevin@outlook.com",
+    "phone": "(786) 234-5959",
     "linkedin": "https://www.linkedin.com/in/muniz-kevin/",
     "github": "https://github.com/KevinMuniz1",
     "portfolio": "https://kevinmuniz.dev"

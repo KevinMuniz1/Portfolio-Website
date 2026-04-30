@@ -1,8 +1,7 @@
 import os
 from typing import Any, Dict, List
 
-import psycopg2
-from psycopg2 import pool
+from psycopg2.pool import ThreadedConnectionPool
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -10,8 +9,7 @@ load_dotenv()
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Connection pool — keeps 2 connections open, scales up to 10 under load
-_pool = psycopg2.pool.ThreadedConnectionPool(
+_pool = ThreadedConnectionPool(
     minconn=2,
     maxconn=10,
     dbname=os.getenv("DB_NAME"),
@@ -42,7 +40,8 @@ def expand_query(question: str) -> List[str]:
         max_tokens=100,
         temperature=0.3,
     )
-    rephrases = response.choices[0].message.content.strip().splitlines()
+    content = response.choices[0].message.content or ""
+    rephrases = content.strip().splitlines()
     # Return original + rephrases, capped at 3 total
     return [question] + [r.strip() for r in rephrases if r.strip()][:2]
 

@@ -51,6 +51,14 @@ def flatten_profile(profile: dict) -> list[tuple[str, str]]:
     if profile.get("bio"):
         chunks.append(("bio", profile["bio"]))
 
+    # General summary — catches broad questions like "tell me about kevin" or "who is kevin"
+    if profile.get("general_summary"):
+        chunks.append(("general_summary", profile["general_summary"]))
+
+    # Work history summary — conversational chunk for casual questions like "where has kevin worked"
+    if profile.get("work_history_summary"):
+        chunks.append(("work_history_summary", profile["work_history_summary"]))
+
     # Education
     edu = profile.get("education", {})
     if edu:

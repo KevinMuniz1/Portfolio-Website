@@ -31,7 +31,7 @@ def root():
 @app.post("/chat")
 def chat(request: ChatRequest):
     question = request.message
-    chunks = retrieve_chunks(question, limit=5)
+    chunks = retrieve_chunks(question, limit=10)
     context = "\n\n".join([chunk["content"] for chunk in chunks])
 
     messages: list[ChatCompletionMessageParam] = [
@@ -41,7 +41,8 @@ def chat(request: ChatRequest):
                 "You are Kevin Muniz's portfolio assistant. "
                 "Answer using the provided context. If you can reason an answer from the context, do so. "
                 "Only say you don't know if the context has truly no relevant information. "
-                "Be clear, professional, and concise."
+                "Keep answers short and to the point — 1 to 3 sentences max unless the question genuinely requires more detail. "
+                "Do not repeat information or pad your response."
             )
         },
         {
