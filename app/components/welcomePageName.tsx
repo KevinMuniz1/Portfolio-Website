@@ -542,31 +542,38 @@ export default function Home() {
                 </div>
                 <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "120px", marginLeft: "22px" }} />
               </div>
-              <div className="flex flex-row gap-6 flex-wrap">
+              <div className="flex flex-row gap-8 flex-wrap">
                 {[
-                  { src: "/AppleLogo.png", alt: "Apple Inc.", size: "140px", padding: "12px" },
-                  { src: "/lmlogo.jpeg", alt: "LM", size: "140px", padding: "4px" },
-                ].map(({ src, alt, size, padding }) => (
-                  <div
-                    key={alt}
-                    style={{
-                      width: size,
-                      height: size,
-                      borderRadius: "50%",
-                      overflow: "hidden",
-                      border: "2px solid #aa44ff",
-                      background: "#fff",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                    }}
-                  >
-                    <img
-                      src={src}
-                      alt={alt}
-                      style={{ width: "100%", height: "100%", objectFit: "contain", padding }}
-                    />
+                  { src: "/AppleLogo.png", alt: "Apple Inc.", size: "140px", padding: "12px", roles: ["Apple College Program"] },
+                  { src: "/lmlogo.jpeg", alt: "LM", size: "140px", padding: "4px", roles: ["Systems Engineer Intern", "Full Stack Software Engineer Intern"] },
+                ].map(({ src, alt, size, padding, roles }) => (
+                  <div key={alt} className="flex flex-col items-center gap-2" style={{ flexShrink: 0 }}>
+                    <div
+                      style={{
+                        width: size,
+                        height: size,
+                        borderRadius: "50%",
+                        overflow: "hidden",
+                        border: "2px solid #aa44ff",
+                        background: "#fff",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <img
+                        src={src}
+                        alt={alt}
+                        style={{ width: "100%", height: "100%", objectFit: "contain", padding }}
+                      />
+                    </div>
+                    <div className="flex flex-col items-center gap-1">
+                      {roles.map((role) => (
+                        <span key={role} style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "11px", color: "#aa44ff", textAlign: "center" }}>
+                          {role}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
