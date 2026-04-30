@@ -83,13 +83,13 @@ export default function NavBar() {
         <div className="flex md:hidden items-center gap-4 w-full justify-between">
           <div className="flex items-center gap-4">
             <a href="https://github.com/KevinMuniz1" target="_blank" rel="noopener noreferrer">
-              <img src="/github.png" className="w-14 h-14" alt="GitHub" />
+              <img src="/github.png" className="w-12 h-12" alt="GitHub" />
             </a>
             <a href="/KevinMunizResume.pdf" target="_blank" rel="noopener noreferrer">
-              <img src="/resumeIcon.png" className="w-14 h-14" alt="Resume" />
+              <img src="/resumeIcon.png" className="w-12 h-12" alt="Resume" />
             </a>
             <a href="https://www.linkedin.com/in/muniz-kevin/" target="_blank" rel="noopener noreferrer">
-              <img src="/linkedin.png" className="w-14 h-14" alt="LinkedIn" />
+              <img src="/linkedin.png" className="w-12 h-12" alt="LinkedIn" />
             </a>
           </div>
 
