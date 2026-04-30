@@ -404,7 +404,7 @@ export default function Home() {
                   outline: "none",
                   color: "#fff",
                   fontFamily: "'Share Tech Mono', monospace",
-                  fontSize: "14px",
+                  fontSize: "16px",
                   caretColor: "#aa44ff",
                   opacity: introComplete ? 1 : 0.4,
                 }}
