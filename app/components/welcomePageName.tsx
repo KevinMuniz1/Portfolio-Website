@@ -142,26 +142,30 @@ export default function Home() {
 
       if (!res.body) throw new Error("No response body");
 
-      // Add an empty assistant message that we'll fill in token by token
-      setMessages((prev) => [...prev, { role: "assistant", text: "" }]);
-      setLoading(false);
-
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
+      let firstToken = true;
 
-      // Read chunks from the stream as they arrive and append to the last message
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
         const token = decoder.decode(value, { stream: true });
-        setMessages((prev) => {
-          const updated = [...prev];
-          updated[updated.length - 1] = {
-            ...updated[updated.length - 1],
-            text: updated[updated.length - 1].text + token,
-          };
-          return updated;
-        });
+
+        if (firstToken) {
+          // Hide loading indicator and add the first token as a new message
+          setLoading(false);
+          setMessages((prev) => [...prev, { role: "assistant", text: token }]);
+          firstToken = false;
+        } else {
+          setMessages((prev) => {
+            const updated = [...prev];
+            updated[updated.length - 1] = {
+              ...updated[updated.length - 1],
+              text: updated[updated.length - 1].text + token,
+            };
+            return updated;
+          });
+        }
       }
     } catch (err) {
       setMessages((prev) => [
