@@ -523,14 +523,14 @@ export default function Home() {
               </div>
               <div className="flex flex-row gap-6 flex-wrap">
                 {[
-                  { src: "/AppleLogo.png", alt: "Apple Inc." },
-                  { src: "/lmlogo.jpeg", alt: "LM" },
-                ].map(({ src, alt }) => (
+                  { src: "/AppleLogo.png", alt: "Apple Inc.", size: "140px" },
+                  { src: "/lmlogo.jpeg", alt: "LM", size: "190px" },
+                ].map(({ src, alt, size }) => (
                   <div
                     key={alt}
                     style={{
-                      width: "140px",
-                      height: "140px",
+                      width: size,
+                      height: size,
                       borderRadius: "50%",
                       overflow: "hidden",
                       border: "2px solid #aa44ff",
