@@ -523,9 +523,9 @@ export default function Home() {
               </div>
               <div className="flex flex-row gap-6 flex-wrap">
                 {[
-                  { src: "/AppleLogo.png", alt: "Apple Inc.", size: "140px" },
-                  { src: "/lmlogo.jpeg", alt: "LM", size: "190px" },
-                ].map(({ src, alt, size }) => (
+                  { src: "/AppleLogo.png", alt: "Apple Inc.", size: "140px", padding: "12px" },
+                  { src: "/lmlogo.jpeg", alt: "LM", size: "190px", padding: "4px" },
+                ].map(({ src, alt, size, padding }) => (
                   <div
                     key={alt}
                     style={{
@@ -544,7 +544,7 @@ export default function Home() {
                     <img
                       src={src}
                       alt={alt}
-                      style={{ width: "100%", height: "100%", objectFit: "contain", padding: "12px" }}
+                      style={{ width: "100%", height: "100%", objectFit: "contain", padding }}
                     />
                   </div>
                 ))}
