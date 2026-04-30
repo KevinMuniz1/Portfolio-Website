@@ -26,16 +26,16 @@ export default function NavBar() {
       }}
     >
       {/* Main bar */}
-      <div className="flex items-center justify-between px-4 md:px-8 py-3">
+      <div className="flex items-center justify-between px-4 md:px-8 py-4">
 
         {/* Left: section links (desktop only) */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map(({ label, href }) => (
             <a
               key={label}
               href={href}
               style={{
-                fontSize: "10px",
+                fontSize: "13px",
                 color: "#f0e8ff",
                 textDecoration: "none",
                 letterSpacing: "0.1em",
@@ -50,24 +50,24 @@ export default function NavBar() {
         </div>
 
         {/* Right: social icons */}
-        <div className="hidden md:flex items-center gap-5 ml-auto">
+        <div className="hidden md:flex items-center gap-6 ml-auto">
           <a href="https://github.com/KevinMuniz1" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 hover:scale-110 transition-transform">
-            <img src="/github.png" className="w-8 h-8" alt="GitHub" />
-            <span style={{ color: "#aa44ff", fontSize: "9px" }}>GitHub</span>
+            <img src="/github.png" className="w-10 h-10" alt="GitHub" />
+            <span style={{ color: "#aa44ff", fontSize: "10px" }}>GitHub</span>
           </a>
           <a href="/KevinMunizResume.pdf" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 hover:scale-110 transition-transform">
-            <img src="/resumeIcon.png" className="w-8 h-8" alt="Resume" />
-            <span style={{ color: "#aa44ff", fontSize: "9px" }}>Resume</span>
+            <img src="/resumeIcon.png" className="w-10 h-10" alt="Resume" />
+            <span style={{ color: "#aa44ff", fontSize: "10px" }}>Resume</span>
           </a>
           <a href="https://www.linkedin.com/in/muniz-kevin/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 hover:scale-110 transition-transform">
-            <img src="/linkedin.png" className="w-8 h-8" alt="LinkedIn" />
-            <span style={{ color: "#aa44ff", fontSize: "9px" }}>LinkedIn</span>
+            <img src="/linkedin.png" className="w-10 h-10" alt="LinkedIn" />
+            <span style={{ color: "#aa44ff", fontSize: "10px" }}>LinkedIn</span>
           </a>
           <a
             href="mailto:muniz.kevin@outlook.com"
             style={{
-              fontSize: "9px",
-              padding: "8px 16px",
+              fontSize: "11px",
+              padding: "10px 18px",
               background: "transparent",
               color: "#fff",
               border: "2px solid #aa44ff",
@@ -81,15 +81,15 @@ export default function NavBar() {
 
         {/* Mobile: social icons + hamburger */}
         <div className="flex md:hidden items-center gap-4 w-full justify-between">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <a href="https://github.com/KevinMuniz1" target="_blank" rel="noopener noreferrer">
-              <img src="/github.png" className="w-8 h-8" alt="GitHub" />
+              <img src="/github.png" className="w-10 h-10" alt="GitHub" />
             </a>
             <a href="/KevinMunizResume.pdf" target="_blank" rel="noopener noreferrer">
-              <img src="/resumeIcon.png" className="w-8 h-8" alt="Resume" />
+              <img src="/resumeIcon.png" className="w-10 h-10" alt="Resume" />
             </a>
             <a href="https://www.linkedin.com/in/muniz-kevin/" target="_blank" rel="noopener noreferrer">
-              <img src="/linkedin.png" className="w-8 h-8" alt="LinkedIn" />
+              <img src="/linkedin.png" className="w-10 h-10" alt="LinkedIn" />
             </a>
           </div>
 
@@ -99,10 +99,10 @@ export default function NavBar() {
             style={{ background: "none", border: "none", cursor: "pointer", padding: "4px" }}
             aria-label="Toggle menu"
           >
-            <div style={{ width: "22px", display: "flex", flexDirection: "column", gap: "5px" }}>
-              <span style={{ display: "block", height: "2px", background: open ? "#ff2060" : "#f0e8ff", transition: "background 0.15s", transform: open ? "translateY(7px) rotate(45deg)" : "none", transformOrigin: "center" }} />
-              <span style={{ display: "block", height: "2px", background: open ? "transparent" : "#f0e8ff", transition: "background 0.15s" }} />
-              <span style={{ display: "block", height: "2px", background: open ? "#ff2060" : "#f0e8ff", transition: "background 0.15s", transform: open ? "translateY(-7px) rotate(-45deg)" : "none", transformOrigin: "center" }} />
+            <div style={{ width: "26px", display: "flex", flexDirection: "column", gap: "6px" }}>
+              <span style={{ display: "block", height: "2px", background: open ? "#ff2060" : "#f0e8ff", transition: "all 0.15s", transform: open ? "translateY(8px) rotate(45deg)" : "none", transformOrigin: "center" }} />
+              <span style={{ display: "block", height: "2px", background: open ? "transparent" : "#f0e8ff", transition: "all 0.15s" }} />
+              <span style={{ display: "block", height: "2px", background: open ? "#ff2060" : "#f0e8ff", transition: "all 0.15s", transform: open ? "translateY(-8px) rotate(-45deg)" : "none", transformOrigin: "center" }} />
             </div>
           </button>
         </div>
@@ -120,8 +120,8 @@ export default function NavBar() {
               href={href}
               onClick={() => setOpen(false)}
               style={{
-                padding: "14px 24px",
-                fontSize: "11px",
+                padding: "16px 24px",
+                fontSize: "12px",
                 color: "#f0e8ff",
                 textDecoration: "none",
                 letterSpacing: "0.1em",
@@ -135,8 +135,8 @@ export default function NavBar() {
             href="mailto:muniz.kevin@outlook.com"
             onClick={() => setOpen(false)}
             style={{
-              padding: "14px 24px",
-              fontSize: "11px",
+              padding: "16px 24px",
+              fontSize: "12px",
               color: "#ff2060",
               textDecoration: "none",
               letterSpacing: "0.1em",

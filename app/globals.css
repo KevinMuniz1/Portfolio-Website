@@ -4,6 +4,10 @@ html {
   scroll-behavior: smooth;
 }
 
+#about, #skills, #experience, #projects {
+  scroll-margin-top: 80px;
+}
+
 @theme {
   --color-cyber-neon: #31E8FF;
   --color-cyber-purple: #C238FF;
