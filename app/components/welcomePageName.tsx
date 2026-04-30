@@ -569,7 +569,7 @@ export default function Home() {
                     </div>
                     <div className="flex flex-col items-center gap-1">
                       {roles.map((role) => (
-                        <span key={role} style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "11px", color: "#aa44ff", textAlign: "center" }}>
+                        <span key={role} style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "11px", color: "#ffffff", textAlign: "center" }}>
                           {role}
                         </span>
                       ))}
