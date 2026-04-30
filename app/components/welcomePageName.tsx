@@ -429,7 +429,7 @@ export default function Home() {
               { category: "TOOLS & DATABASES", items: ["POSTGRESQL", "GIT", "DOCKER"] },
             ].map(({ category, items }) => (
               <div key={category} className="flex flex-col gap-2">
-                <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "8px", color: "#aa44ff", letterSpacing: "0.15em" }}>
+                <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px", color: "#aa44ff", letterSpacing: "0.15em" }}>
                   {category}
                 </span>
                 <div className="flex gap-2 flex-wrap">
