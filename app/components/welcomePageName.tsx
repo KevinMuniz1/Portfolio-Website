@@ -524,7 +524,7 @@ export default function Home() {
               <div className="flex flex-row gap-6 flex-wrap">
                 {[
                   { src: "/AppleLogo.png", alt: "Apple Inc.", size: "140px", padding: "12px" },
-                  { src: "/lmlogo.jpeg", alt: "LM", size: "190px", padding: "4px" },
+                  { src: "/lmlogo.jpeg", alt: "LM", size: "140px", padding: "4px" },
                 ].map(({ src, alt, size, padding }) => (
                   <div
                     key={alt}
