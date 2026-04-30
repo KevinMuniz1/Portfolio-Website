@@ -139,13 +139,30 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: trimmed }),
       });
-      const data = await res.json();
-      const assistantMsg: Message = {
-        role: "assistant",
-        text: data.reply ?? "No response received.",
-        sources: data.sources ?? [],
-      };
-      setMessages((prev) => [...prev, assistantMsg]);
+
+      if (!res.body) throw new Error("No response body");
+
+      // Add an empty assistant message that we'll fill in token by token
+      setMessages((prev) => [...prev, { role: "assistant", text: "" }]);
+      setLoading(false);
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+
+      // Read chunks from the stream as they arrive and append to the last message
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const token = decoder.decode(value, { stream: true });
+        setMessages((prev) => {
+          const updated = [...prev];
+          updated[updated.length - 1] = {
+            ...updated[updated.length - 1],
+            text: updated[updated.length - 1].text + token,
+          };
+          return updated;
+        });
+      }
     } catch (err) {
       setMessages((prev) => [
         ...prev,
