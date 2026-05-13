@@ -61,6 +61,19 @@ html, body {
   50%       { transform: translateY(-12px); }
 }
 
+.profile-photo {
+  width: 140px;
+  height: 140px;
+  box-shadow: 0 0 0 2px #54A0FF;
+}
+
+@media (min-width: 768px) {
+  .profile-photo {
+    width: 200px;
+    height: 200px;
+  }
+}
+
 .exp-card {
   display: flex;
   align-items: flex-start;

@@ -327,7 +327,7 @@ export default function PageContent() {
       >
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           {/* Profile photo — floating */}
-          <div style={{ width: "140px", height: "140px", borderRadius: "50%", overflow: "hidden", border: "1px solid var(--border-hover)", marginBottom: "36px", flexShrink: 0, animation: "float 3.5s ease-in-out infinite" }}>
+          <div className="profile-photo" style={{ borderRadius: "50%", overflow: "hidden", marginBottom: "36px", flexShrink: 0, animation: "float 3.5s ease-in-out infinite", marginTop: "6px" }}>
             <img src="/profilePic.JPG" alt="Kevin Muniz" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
 
