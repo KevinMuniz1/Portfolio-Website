@@ -143,6 +143,7 @@ export default function NavBar() {
           style={{
             background: "var(--bg-surface)",
             borderTop: "1px solid var(--border)",
+            borderRadius: "0 0 20px 20px",
             padding: "8px 24px 20px",
           }}
         >
