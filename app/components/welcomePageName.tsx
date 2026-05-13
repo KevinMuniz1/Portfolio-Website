@@ -8,7 +8,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const INTRO_LINES = [
   "Hey! Thanks for stopping by.",
   "I'm a Computer Science graduate from UCF, passionate about building impactful software.",
-  "Currently seeking full-time roles in software engineering, data engineering, or AI/ML.",
+  "I'm currently at Southern Glazer's Wine & Spirits building data, ML, and AI pipelines that help drive smarter business decisions at scale.",
   "Ask me anything below.",
 ];
 
@@ -343,7 +343,7 @@ export default function PageContent() {
           </p>
 
           <p style={{ margin: "0 0 52px 0", fontSize: "17px", color: "var(--text-tertiary)", maxWidth: "480px", lineHeight: 1.65 }}>
-            UCF Computer Science Graduate · Seeking full-time roles in Web Development, Mobile, or AI/ML.
+            UCF Computer Science Graduate · Seeking full-time roles in software engineering, data engineering, or AI/ML.
           </p>
 
           <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "center" }}>
@@ -382,8 +382,7 @@ export default function PageContent() {
             across software, data, AI, and emerging technologies so I can contribute as much as I can to building
             solutions that improve the world around us.
             <br /><br />
-            I&apos;m currently a Data Intern at Southern Glazer&apos;s Wine &amp; Spirits and actively seeking
-            full-time roles in software engineering, data engineering, or AI/ML.
+            
           </p>
 
           {/* Chat */}
