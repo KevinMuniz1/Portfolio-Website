@@ -377,10 +377,10 @@ export default function PageContent() {
 
           {/* Bio paragraph */}
           <p style={{ margin: "0 0 40px 0", fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.75 }}>
-            I&apos;m a software engineer who loves turning ideas into polished, real-world products. I graduated from the
-            University of Central Florida with a degree in Computer Science and have shipped everything from cross-platform
-            mobile apps to AI-powered trading platforms. I&apos;m currently interning at Southern Glazer&apos;s Wine &amp; Spirits
-            and actively looking for my next full-time opportunity — somewhere I can build things that actually matter.
+            Engineering is more than a title to me. It is a mindset built on curiosity, problem-solving, and
+            the desire to make things better. As a Computer Science graduate from UCF, I want to keep learning
+            across software, data, AI, and emerging technologies so I can contribute as much as I can to building
+            solutions that improve the world around me.
           </p>
 
           {/* Chat */}
