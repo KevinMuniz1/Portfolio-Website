@@ -227,6 +227,8 @@ export default function PageContent() {
   const [loading, setLoading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
   useEffect(() => {
     const t = setInterval(() => setShowCursor((v) => !v), 500);
     return () => clearInterval(t);
