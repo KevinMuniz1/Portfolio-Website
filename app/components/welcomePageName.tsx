@@ -63,7 +63,12 @@ const EXPERIENCE_CURRENT = {
   alt: "Southern Glazer's Wine & Spirits",
   company: "Southern Glazer's Wine & Spirits",
   role: "OneTech Data Intern",
-  period: "2025 – Present",
+  period: "May 2026 – Present",
+  bullets: [
+    "Built internal AI agents using Python and ML tooling to automate stakeholder workflows, reducing manual overhead across business units.",
+    "Maintained ML forecasting pipelines through data preprocessing and model monitoring to support business-critical decision-making at scale.",
+    "Partnered with engineering and business teams to scope and deliver scalable AI/ML tools that streamline operations and improve productivity.",
+  ],
 };
 
 const EXPERIENCE_PREVIOUS = [
@@ -71,15 +76,25 @@ const EXPERIENCE_PREVIOUS = [
     src: "/AppleLogo.png",
     alt: "Apple Inc.",
     company: "Apple Inc.",
-    roles: ["Apple College Program"],
-    period: "2023 – 2024",
+    roles: ["Apple College Program AHA"],
+    period: "Mar 2023 – Sept 2024",
+    bullets: [
+      "Resolved 75+ weekly user cases in Apple's CORE system, maintaining a 92% satisfaction rate through efficient issue triage and resolution.",
+      "Authored detailed technical case notes for senior engineers to improve issue traceability and knowledge sharing across the support team.",
+      "Mentored peers on career development and Apple internship pathways, directly contributing to multiple students securing Apple internships.",
+    ],
   },
   {
     src: "/lmlogo.jpeg",
     alt: "Lockheed Martin",
     company: "Lockheed Martin",
-    roles: ["Systems Engineer Intern", "Full Stack Software Engineer Intern"],
-    period: "2022 – 2023",
+    roles: ["Full Stack Software Engineer Intern", "Systems Engineer Intern"],
+    period: "Sept 2024 – May 2026",
+    bullets: [
+      "Developed an internal reporting web app with a searchable data grid, enabling senior stakeholders to view, filter, and manage structured workforce data efficiently.",
+      "Built a Python-based Excel transformation tool to standardize legacy datasets, saving employees ~30 minutes per sheet by eliminating manual table restructuring.",
+      "Documented systems engineering workflows and created onboarding materials for targeting-system programs, cutting new engineer ramp-up time by 25%.",
+    ],
   },
 ];
 
@@ -506,20 +521,25 @@ export default function PageContent() {
           <p style={{ margin: "0 0 20px 0", fontSize: "12px", fontWeight: 600, color: "#1DD1A1", letterSpacing: "0.1em", textTransform: "uppercase" }}>
             Currently
           </p>
-          <div style={{ display: "flex", alignItems: "center", gap: "20px", padding: "24px", background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "18px", boxShadow: "var(--shadow)", marginBottom: "48px" }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: "20px", padding: "24px", background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "18px", boxShadow: "var(--shadow)", marginBottom: "48px" }}>
             <div style={{ width: "100px", height: "100px", borderRadius: "14px", overflow: "hidden", background: "#fff", flexShrink: 0, border: "1px solid var(--border)" }}>
               <img src={EXPERIENCE_CURRENT.src} alt={EXPERIENCE_CURRENT.alt} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
             </div>
             <div style={{ flex: 1 }}>
-              <p style={{ margin: "0 0 4px 0", fontSize: "17px", fontWeight: 600, color: "var(--text-primary)" }}>
+              <p style={{ margin: "0 0 2px 0", fontSize: "17px", fontWeight: 600, color: "var(--text-primary)" }}>
                 {EXPERIENCE_CURRENT.company}
               </p>
-              <p style={{ margin: "0 0 6px 0", fontSize: "15px", color: "var(--text-secondary)" }}>
+              <p style={{ margin: "0 0 2px 0", fontSize: "15px", color: "var(--text-secondary)" }}>
                 {EXPERIENCE_CURRENT.role}
               </p>
-              <p style={{ margin: 0, fontSize: "12px", color: "var(--text-tertiary)", fontWeight: 500 }}>
+              <p style={{ margin: "0 0 14px 0", fontSize: "12px", color: "var(--text-tertiary)", fontWeight: 500 }}>
                 {EXPERIENCE_CURRENT.period}
               </p>
+              <ul style={{ margin: 0, padding: "0 0 0 16px", display: "flex", flexDirection: "column", gap: "6px" }}>
+                {EXPERIENCE_CURRENT.bullets.map((b) => (
+                  <li key={b} style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.55 }}>{b}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </FadeIn>
@@ -529,17 +549,22 @@ export default function PageContent() {
             Previously
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-            {EXPERIENCE_PREVIOUS.map(({ src, alt, company, roles, period }) => (
-              <div key={company} style={{ display: "flex", alignItems: "center", gap: "20px", padding: "24px", background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "18px", boxShadow: "var(--shadow)" }}>
+            {EXPERIENCE_PREVIOUS.map(({ src, alt, company, roles, period, bullets }) => (
+              <div key={company} style={{ display: "flex", alignItems: "flex-start", gap: "20px", padding: "24px", background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "18px", boxShadow: "var(--shadow)" }}>
                 <div style={{ width: "100px", height: "100px", borderRadius: "14px", overflow: "hidden", background: "#fff", flexShrink: 0, border: "1px solid var(--border)" }}>
                   <img src={src} alt={alt} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
                 </div>
                 <div style={{ flex: 1 }}>
-                  <p style={{ margin: "0 0 4px 0", fontSize: "17px", fontWeight: 600, color: "var(--text-primary)" }}>{company}</p>
+                  <p style={{ margin: "0 0 2px 0", fontSize: "17px", fontWeight: 600, color: "var(--text-primary)" }}>{company}</p>
                   {roles.map((role) => (
                     <p key={role} style={{ margin: "2px 0 0 0", fontSize: "15px", color: "var(--text-secondary)" }}>{role}</p>
                   ))}
-                  <p style={{ margin: "6px 0 0 0", fontSize: "12px", color: "var(--text-tertiary)", fontWeight: 500 }}>{period}</p>
+                  <p style={{ margin: "2px 0 14px 0", fontSize: "12px", color: "var(--text-tertiary)", fontWeight: 500 }}>{period}</p>
+                  <ul style={{ margin: 0, padding: "0 0 0 16px", display: "flex", flexDirection: "column", gap: "6px" }}>
+                    {bullets.map((b) => (
+                      <li key={b} style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.55 }}>{b}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             ))}
