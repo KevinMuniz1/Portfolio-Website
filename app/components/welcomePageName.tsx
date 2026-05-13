@@ -1,106 +1,231 @@
 "use client";
 
 import { useEffect, useState, useRef, ChangeEvent, KeyboardEvent } from "react";
-import Link from "next/link";
+import { motion } from "framer-motion";
 
-// ── CONFIG ──────────────────────────────────────────────────────────────────
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-// ── INTRO LINES ──────────────────────────────────────────────────────────────
-const LINES = [
-  { prefix: "C:\\> ", text: "Hey! I'm so happy you're here! Here is a little bit about me.", color: "#fff" },
-  { prefix: "> ", text: "NAME    : Kevin Muniz", color: "#f0e8ff" },
-  { prefix: "> ", text: "EDUCATION  : UCF — B.S. Computer Science", color: "#f0e8ff" },
-  { prefix: "> ", text: "Currently looking for full-time roles involving Web/App development or AI and Machine Learning", color: "#f0e8ff" },
-  { prefix: "> ", text: "Ask me anything below!", color: "#f0e8ff" },
+const INTRO_LINES = [
+  "Hey! Thanks for stopping by.",
+  "I'm a Computer Science graduate from UCF, passionate about building impactful software.",
+  "Currently seeking full-time roles in Web Development, Mobile, or AI/ML.",
+  "Ask me anything below.",
 ];
 
-const CHAR_DELAY = 28;
+const CHAR_DELAY = 22;
 const LINE_DELAY = 180;
 
-// ── PROJECTS DATA ─────────────────────────────────────────────────────────────
+const SKILLS = [
+  {
+    area: "Frontend",
+    color: "#54A0FF",
+    items: [
+      { name: "TypeScript", icon: "typescript", iconColor: "3178C6" },
+      { name: "React",      icon: "react",      iconColor: "087EA4" },
+    ],
+  },
+  {
+    area: "Backend",
+    color: "#FF6B6B",
+    items: [
+      { name: "Python",      icon: "python",     iconColor: "3776AB" },
+      { name: "Java",        icon: "openjdk",    iconColor: "ED8B00" },
+      { name: "Node.js",     icon: "nodedotjs",  iconColor: "339933" },
+      { name: "Spring Boot", icon: "springboot", iconColor: "6DB33F" },
+    ],
+  },
+  {
+    area: "Mobile",
+    color: "#FF9F43",
+    items: [
+      { name: "Swift",        icon: "swift", iconColor: "FA7343" },
+      { name: "React Native", icon: "react", iconColor: "087EA4" },
+    ],
+  },
+  {
+    area: "Tools & Infrastructure",
+    color: "#1DD1A1",
+    items: [
+      { name: "PostgreSQL", icon: "postgresql", iconColor: "4169E1" },
+      { name: "Docker",     icon: "docker",     iconColor: "2496ED" },
+      { name: "Git",        icon: "git",        iconColor: "F05032" },
+    ],
+  },
+];
+
+// Flat list used by the floating skill bubbles
+const ALL_SKILLS = SKILLS.flatMap(({ color, items }) =>
+  items.map((item) => ({ ...item, categoryColor: color }))
+);
+
+const EXPERIENCE_CURRENT = {
+  src: "/SGWSlogo.png",
+  alt: "Southern Glazer's Wine & Spirits",
+  company: "Southern Glazer's Wine & Spirits",
+  role: "OneTech Data Intern",
+  period: "2025 – Present",
+};
+
+const EXPERIENCE_PREVIOUS = [
+  {
+    src: "/AppleLogo.png",
+    alt: "Apple Inc.",
+    company: "Apple Inc.",
+    roles: ["Apple College Program"],
+    period: "2023 – 2024",
+  },
+  {
+    src: "/lmlogo.jpeg",
+    alt: "Lockheed Martin",
+    company: "Lockheed Martin",
+    roles: ["Systems Engineer Intern", "Full Stack Software Engineer Intern"],
+    period: "2022 – 2023",
+  },
+];
+
 const PROJECTS = [
-    {
+  {
     id: "01",
     name: "Secure Payment Network",
     description:
-      "Built a secure payment backend using Spring Boot and PostgreSQL supporting deposits and peer-to-peer transfers. Implemented JWT authentication, HTTPS encryption, and ACID-compliant transaction handling to ensure data security and integrity.",
-    stack: ["SPRING BOOT", "REACT TYPESCRIPT", "POSTGRESQL", "OPENAI API", "DOCKER"],
-    status: "INDEV",
+      "Secure payment backend using Spring Boot and PostgreSQL supporting deposits and peer-to-peer transfers. Implemented JWT authentication, HTTPS encryption, and ACID-compliant transaction handling.",
+    stack: ["Spring Boot", "React", "PostgreSQL", "OpenAI API", "Docker"],
+    status: "IN DEV",
+    accent: "#FECA57",
+    github: "",
+    demo: "",
   },
   {
     id: "02",
     name: "Data Insight Engine",
     description:
-      "A full-stack analytics tool that ingests datasets and automatically generates insights, including summary statistics, visualizations, and anomaly detection. Implements dynamic charting, data type inference, and scalable backend processing for efficient analysis.",
-    stack: [""],
-    status: "SOON",
+      "Full-stack analytics tool that ingests datasets and automatically generates insights — summary statistics, visualizations, and anomaly detection with dynamic charting.",
+    stack: [],
+    status: "COMING SOON",
+    accent: "#FF9FF3",
+    github: "",
+    demo: "",
   },
   {
     id: "03",
-    name: "LEMA ENERGY AGGREGATOR",
+    name: "Lema Energy Aggregator",
     description:
-      "Cross-platform mobile app for scalable energy monitoring, reducing facility costs by up to 80%. Supports offline LAN-based meter polling with 95%+ uptime and modular reporting tools that process 1,500+ daily data points per facility.",
-    stack: ["REACT TYPESCRIPT", "POSTGRESQL", "EXPRESS", "NODE.JS"],
+      "Cross-platform mobile app for scalable energy monitoring, reducing facility costs by up to 80%. Supports offline LAN-based meter polling with 95%+ uptime.",
+    stack: ["React Native", "PostgreSQL", "Express", "Node.js"],
     status: "LIVE",
+    accent: "#1DD1A1",
+    github: "",
+    demo: "",
   },
   {
     id: "04",
-    name: "AI PAPER TRADING PLATFORM",
+    name: "AI Paper Trading Platform",
     description:
-      "Full-stack MERN trading simulator with sub-100ms latency for real-time trade execution and analysis. Integrates OpenAI API for market sentiment insights and uses Dockerized microservices for scalable, fault-tolerant deployment.",
-    stack: ["MONGODB", "EXPRESS", "REACT", "NODE.JS", "OPENAI API", "DOCKER"],
+      "Full-stack MERN trading simulator with sub-100ms latency for real-time trade execution. Integrates OpenAI API for market sentiment insights and Dockerized microservices.",
+    stack: ["MongoDB", "Express", "React", "Node.js", "OpenAI API", "Docker"],
     status: "LIVE",
+    accent: "#54A0FF",
+    github: "",
+    demo: "",
   },
 ];
 
-const STATUS_STYLE: Record<string, { color: string; border: string; bg: string }> = {
-  LIVE:     { color: "#00cc66", border: "#00cc66", bg: "rgba(0,204,102,0.1)" },
-  INDEV: { color: "#ffcc00", border: "#ffcc00", bg: "rgba(255,204,0,0.1)" },
-  SOON:     { color: "#FF0000", border: "#FF0000", bg: "rgba(170,68,255,0.1)" },
-};
-
-// ── TYPES ─────────────────────────────────────────────────────────────────────
 interface Message {
   role: "user" | "assistant";
   text: string;
-  sources?: { title?: string; url?: string }[];
 }
 
-// ── COMPONENT ─────────────────────────────────────────────────────────────────
-export default function Home() {
-  // intro typing
-  const [displayed, setDisplayed] = useState<{ prefix: string; text: string; color: string }[]>([]);
+// ── FadeIn wrapper — slides + fades in when scrolled into view ─────────────────
+
+function FadeIn({
+  children,
+  delay = 0,
+  style = {},
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  style?: React.CSSProperties;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(28px)",
+        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+// ── Sub-components ─────────────────────────────────────────────────────────────
+
+function SectionLabel({ children, color = "var(--text-secondary)" }: { children: React.ReactNode; color?: string }) {
+  return (
+    <p style={{ margin: "0 0 10px 0", fontSize: "12px", fontWeight: 600, color, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+      {children}
+    </p>
+  );
+}
+
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 style={{ margin: "0 0 48px 0", fontSize: "clamp(28px, 5vw, 40px)", fontWeight: 600, color: "var(--text-primary)", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+      {children}
+    </h2>
+  );
+}
+
+// ── Main component ─────────────────────────────────────────────────────────────
+
+export default function PageContent() {
   const [currentLine, setCurrentLine] = useState(0);
   const [currentChar, setCurrentChar] = useState(0);
+  const [displayedLines, setDisplayedLines] = useState<string[]>([]);
   const [introComplete, setIntroComplete] = useState(false);
+  const [showCursor, setShowCursor] = useState(true);
 
-  // chat
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [showCursor, setShowCursor] = useState(true);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  // ── cursor blink ────────────────────────────────────────────────────────────
   useEffect(() => {
-    const t = setInterval(() => setShowCursor((v) => !v), 530);
+    const t = setInterval(() => setShowCursor((v) => !v), 500);
     return () => clearInterval(t);
   }, []);
 
-  // ── intro animation ─────────────────────────────────────────────────────────
   useEffect(() => {
-    if (currentLine >= LINES.length) {
-      setIntroComplete(true);
-      return;
-    }
-    const line = LINES[currentLine];
-    if (currentChar < line.text.length) {
+    if (currentLine >= INTRO_LINES.length) { setIntroComplete(true); return; }
+    const line = INTRO_LINES[currentLine];
+    if (currentChar < line.length) {
       const t = setTimeout(() => setCurrentChar((c) => c + 1), CHAR_DELAY);
       return () => clearTimeout(t);
     } else {
       const t = setTimeout(() => {
-        setDisplayed((prev) => [...prev, line]);
+        setDisplayedLines((prev) => [...prev, line]);
         setCurrentLine((l) => l + 1);
         setCurrentChar(0);
       }, LINE_DELAY);
@@ -108,601 +233,416 @@ export default function Home() {
     }
   }, [currentLine, currentChar]);
 
-  // ── auto-scroll in the terminal only ─────────────────────────────────────────────────────────────
   useEffect(() => {
-  if (bottomRef.current) {
-    bottomRef.current.scrollTop = bottomRef.current.scrollHeight;
-  }
-}, [displayed, messages, loading]);
+    const el = chatContainerRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [displayedLines, messages, loading]);
 
-  // ── send message ────────────────────────────────────────────────────────────
   const sendMessage = async () => {
     const trimmed = input.trim();
     if (!trimmed || loading) return;
-
-    const userMsg: Message = { role: "user", text: trimmed };
-    setMessages((prev) => [...prev, userMsg]);
+    setMessages((prev) => [...prev, { role: "user", text: trimmed }]);
     setInput("");
     setLoading(true);
-
     try {
       const res = await fetch(`${API_URL}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: trimmed }),
       });
-
       if (!res.body) throw new Error("No response body");
-
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
       let firstToken = true;
-
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
         const token = decoder.decode(value, { stream: true });
-
         if (firstToken) {
-          // Hide loading indicator and add the first token as a new message
           setLoading(false);
           setMessages((prev) => [...prev, { role: "assistant", text: token }]);
           firstToken = false;
         } else {
           setMessages((prev) => {
             const updated = [...prev];
-            updated[updated.length - 1] = {
-              ...updated[updated.length - 1],
-              text: updated[updated.length - 1].text + token,
-            };
+            updated[updated.length - 1] = { ...updated[updated.length - 1], text: updated[updated.length - 1].text + token };
             return updated;
           });
         }
       }
-    } catch (err) {
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", text: "ERROR: Could not reach the backend. Is it running?" },
-      ]);
+    } catch {
+      setMessages((prev) => [...prev, { role: "assistant", text: "Sorry, I couldn't reach the backend. Please try again later." }]);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") sendMessage();
-  };
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => { if (e.key === "Enter") sendMessage(); };
 
-  const activeLine = currentLine < LINES.length ? LINES[currentLine] : null;
-  const activeText = activeLine ? activeLine.text.slice(0, currentChar) : "";
+  const activeLine = currentLine < INTRO_LINES.length ? INTRO_LINES[currentLine] : null;
+  const activeText = activeLine ? activeLine.slice(0, currentChar) : "";
 
-  // ── RENDER ──────────────────────────────────────────────────────────────────
   return (
-    <main
-      className="min-h-screen w-full relative overflow-hidden"
-      style={{ background: "#0a0010" }}
-    >
-      {/* Pixel grid background */}
-      <div
-        className="absolute inset-0 pointer-events-none z-0"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(180,60,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(180,60,255,0.04) 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }}
-      />
+    <div style={{ position: "relative", background: "var(--bg)", minHeight: "100vh" }}>
 
-      {/* Perspective grid floor */}
-      <div
-        className="absolute bottom-0 left-0 right-0 pointer-events-none z-0"
-        style={{
-          height: "40vh",
-          backgroundImage:
-            "linear-gradient(rgba(255,60,120,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,60,120,0.15) 1px, transparent 1px)",
-          backgroundSize: "48px 24px",
-          transform: "perspective(260px) rotateX(62deg)",
-          transformOrigin: "bottom center",
-        }}
-      />
+      {/* ── FULL-PAGE BACKGROUND ORBS ─────────────────────────────────────────── */}
+      <div aria-hidden style={{
+        position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0,
+        background: `
+          radial-gradient(ellipse 700px 500px at 10% 15%,  rgba(255,107,107,0.14) 0%, transparent 70%),
+          radial-gradient(ellipse 600px 450px at 90% 10%,  rgba(84,160,255,0.11)  0%, transparent 70%),
+          radial-gradient(ellipse 500px 400px at 75% 45%,  rgba(254,202,87,0.09)  0%, transparent 70%),
+          radial-gradient(ellipse 650px 500px at 5%  60%,  rgba(29,209,161,0.10)  0%, transparent 70%),
+          radial-gradient(ellipse 600px 400px at 85% 75%,  rgba(255,159,243,0.10) 0%, transparent 70%),
+          radial-gradient(ellipse 500px 350px at 40% 90%,  rgba(95,39,205,0.08)   0%, transparent 70%)
+        `,
+      }} />
 
-      {/* Scanline overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none z-10"
-        style={{
-          background:
-            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(180,60,255,0.015) 2px, rgba(180,60,255,0.015) 3px)",
-        }}
-      />
-
-      {/* Glow top-right */}
-      <div
-        className="absolute pointer-events-none z-0"
-        style={{
-          top: "-160px", right: "-80px",
-          width: "500px", height: "500px",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(255,60,120,0.25) 0%, transparent 65%)",
-        }}
-      />
-
-      {/* Glow bottom-left */}
-      <div
-        className="absolute pointer-events-none z-0"
-        style={{
-          bottom: "10%", left: "-80px",
-          width: "350px", height: "350px",
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(100,0,255,0.25) 0%, transparent 65%)",
-        }}
-      />
-
-      {/* ── ABOVE-FOLD CONTENT ────────────────────────────────────────────────── */}
-      <div id="about" className="relative z-20 flex flex-col items-center justify-center min-h-[calc(100vh-64px)] px-4 py-12 md:pt-24 gap-10">
-
-        {/* Player badge */}
-        <div className="flex items-center gap-2">
-          <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
-          <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "16px", color: "#f0e8ff", letterSpacing: "0.25em" }}>
-            
-          </span>
-        </div>
-
-        {/* Avatar + Terminal */}
-        <div className="flex flex-col items-center gap-8 w-full max-w-2xl">
-
-          {/* Avatar frame */}
-          <div className="relative">
-            <div style={{ border: "3px solid #ff2060", background: "#0f0018" }}>
-              <div style={{ background: "#ff2060", padding: "5px 10px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px", color: "#fff" }}>PLAYER AVATAR</span>
-                <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px", color: "#fff" }}>P1</span>
-              </div>
-              <div style={{ position: "relative" }}>
-                <img
-                  src="/profilePic.JPG"
-                  alt="Kevin Muniz"
-                  className="object-cover w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 block"
-                  style={{ filter: "contrast(1.05) saturate(1.1)" }}
-                />
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{ background: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(170,68,255,0.025) 2px, rgba(170,68,255,0.025) 3px)" }}
-                />
-                <div
-                  className="absolute bottom-2 left-2 flex items-center gap-1.5 px-2 py-1"
-                  style={{ background: "rgba(10,0,16,0.9)", border: "2px solid #aa44ff" }}
-                >
-                  <div className="w-1.5 h-1.5 bg-[#00cc66] animate-pulse" />
-                  <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px", color: "#aa44ff", letterSpacing: "0.1em" }}>ONLINE</span>
-                </div>
-              </div>
-            </div>
-            <div className="absolute -top-[3px] -left-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
-            <div className="absolute -top-[3px] -right-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
-            <div className="absolute -bottom-[3px] -left-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
-            <div className="absolute -bottom-[3px] -right-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
+      {/* ── HERO ──────────────────────────────────────────────────────────────── */}
+      <section
+        id="about"
+        style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "100px 24px 40px", textAlign: "center" }}
+      >
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          {/* Profile photo — floating */}
+          <div style={{ width: "140px", height: "140px", borderRadius: "50%", overflow: "hidden", border: "1px solid var(--border-hover)", marginBottom: "36px", flexShrink: 0, animation: "float 3.5s ease-in-out infinite" }}>
+            <img src="/profilePic.JPG" alt="Kevin Muniz" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
 
-          {/* Terminal / Chat */}
-          <div className="w-full" style={{ border: "2px solid #aa44ff", background: "#0f0018" }}>
-            {/* Title bar */}
-            <div style={{ background: "#aa44ff", padding: "5px 12px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px", color: "#0a0010" }}>TERMINAL v2.4</span>
-              <div className="flex gap-1">
-                <div className="w-2 h-2 bg-[#ff2060]" />
-                <div className="w-2 h-2 bg-[#ffcc00]" />
-                <div className="w-2 h-2 bg-[#00cc66]" />
-              </div>
-            </div>
+          <h1 style={{ margin: "0 0 6px 0", fontSize: "clamp(48px, 8vw, 80px)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 1.02, color: "var(--text-primary)" }}>
+            Kevin Muniz
+          </h1>
 
-            {/* Scrollable message area */}
-            <div
-            ref={bottomRef}
-              style={{
-                padding: "14px 16px",
-                fontFamily: "'Share Tech Mono', monospace",
-                fontSize: "14px",
-                lineHeight: "1.9",
-                minHeight: "200px",
-                maxHeight: "420px",
-                overflowY: "auto",
-                display: "flex",
-                flexDirection: "column",
-                gap: "4px",
-              }}
+          {/* Rainbow accent line */}
+          <div style={{ width: "80px", height: "3px", borderRadius: "2px", background: "linear-gradient(90deg, #FF6B6B, #FF9F43, #FECA57, #1DD1A1, #54A0FF, #FF9FF3)", margin: "0 auto 20px" }} />
+
+          <p style={{ margin: "0 0 18px 0", fontSize: "clamp(18px, 3vw, 24px)", fontWeight: 400, color: "var(--text-secondary)", letterSpacing: "-0.01em" }}>
+            Software Engineer
+          </p>
+
+          <p style={{ margin: "0 0 52px 0", fontSize: "17px", color: "var(--text-tertiary)", maxWidth: "480px", lineHeight: 1.65 }}>
+            UCF Computer Science Graduate · Seeking full-time roles in Web Development, Mobile, or AI/ML.
+          </p>
+
+          <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "center" }}>
+            <a
+              href="/KevinMunizResume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ padding: "14px 28px", background: "linear-gradient(135deg, #FF6B6B, #FF9F43)", color: "#fff", borderRadius: "980px", textDecoration: "none", fontSize: "15px", fontWeight: 500, transition: "opacity 0.15s", boxShadow: "0 4px 20px rgba(255,107,107,0.35)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.88")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
-              {/* Intro animation */}
-              {displayed.map((line, i) => (
-                <div key={i}>
-                  <span style={{ color: "#ff2060" }}>{line.prefix}</span>
-                  <span style={{ color: line.color }}>{line.text}</span>
-                </div>
+              View Resume
+            </a>
+            <a
+              href="mailto:muniz.kevin@outlook.com"
+              style={{ padding: "14px 28px", background: "transparent", color: "var(--text-primary)", borderRadius: "980px", border: "1px solid var(--border-hover)", textDecoration: "none", fontSize: "15px", fontWeight: 500, transition: "border-color 0.15s, background 0.15s" }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--text-secondary)"; e.currentTarget.style.background = "var(--bg-pill)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border-hover)"; e.currentTarget.style.background = "transparent"; }}
+            >
+              Get in Touch
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── ABOUT + CHAT ──────────────────────────────────────────────────────── */}
+      <section style={{ position: "relative", zIndex: 1, padding: "40px 24px 80px", maxWidth: "680px", margin: "0 auto" }}>
+        <FadeIn>
+          <SectionLabel color="#FF9FF3">About</SectionLabel>
+          <SectionHeading>A bit about me</SectionHeading>
+
+          {/* Bio paragraph */}
+          <p style={{ margin: "0 0 40px 0", fontSize: "17px", color: "var(--text-secondary)", lineHeight: 1.75 }}>
+            I&apos;m a software engineer who loves turning ideas into polished, real-world products. I graduated from the
+            University of Central Florida with a degree in Computer Science and have shipped everything from cross-platform
+            mobile apps to AI-powered trading platforms. I&apos;m currently interning at Southern Glazer&apos;s Wine &amp; Spirits
+            and actively looking for my next full-time opportunity — somewhere I can build things that actually matter.
+          </p>
+
+          {/* Chat */}
+          <p style={{ margin: "0 0 16px 0", fontSize: "13px", fontWeight: 500, color: "var(--text-tertiary)" }}>
+            Or skip the bio and just ask me directly ↓
+          </p>
+
+          <div style={{ background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "18px", overflow: "hidden", boxShadow: "var(--shadow)" }}>
+            <div ref={chatContainerRef} style={{ padding: "24px", minHeight: "220px", maxHeight: "380px", overflowY: "auto", display: "flex", flexDirection: "column", gap: "10px" }}>
+              {displayedLines.map((line, i) => (
+                <p key={i} style={{ margin: 0, fontSize: "15px", color: "var(--text-primary)", lineHeight: 1.6 }}>{line}</p>
               ))}
               {activeLine && (
-                <div>
-                  <span style={{ color: "#ff2060" }}>{activeLine.prefix}</span>
-                  <span style={{ color: activeLine.color }}>{activeText}</span>
-                  <span style={{ opacity: showCursor ? 1 : 0, color: "#aa44ff" }}>█</span>
-                </div>
+                <p style={{ margin: 0, fontSize: "15px", color: "var(--text-primary)", lineHeight: 1.6 }}>
+                  {activeText}<span style={{ opacity: showCursor ? 1 : 0, color: "#FF9F43" }}>|</span>
+                </p>
               )}
-
-              {/* Chat history */}
               {introComplete && messages.map((msg, i) => (
-                <div key={i} style={{ marginTop: "6px" }}>
-                  {msg.role === "user" ? (
-                    <div>
-                      <span style={{ color: "#ff2060" }}>C:\&gt; </span>
-                      <span style={{ color: "#fff" }}>{msg.text}</span>
-                    </div>
-                  ) : (
-                    <div>
-                      <span style={{ color: "#aa44ff" }}>&gt; </span>
-                      <span style={{ color: "#f0e8ff" }}>{msg.text}</span>
-                      {msg.sources && msg.sources.length > 0 && (
-                        <div style={{ marginTop: "4px", paddingLeft: "16px" }}>
-                          {msg.sources.map((s, si) => s.url ? (
-                            <div key={si} style={{ fontSize: "11px", color: "#aa44ff", opacity: 0.7 }}>
-                              <span style={{ color: "#ff2060" }}>SRC: </span>
-                              <a href={s.url} target="_blank" rel="noopener noreferrer" style={{ color: "#aa44ff", textDecoration: "underline" }}>
-                                {s.title ?? s.url}
-                              </a>
-                            </div>
-                          ) : null)}
-                        </div>
-                      )}
-                    </div>
-                  )}
+                <div key={i} style={{ display: "flex", justifyContent: msg.role === "user" ? "flex-end" : "flex-start", marginTop: "4px" }}>
+                  <div style={{
+                    maxWidth: "80%", padding: "10px 16px",
+                    borderRadius: msg.role === "user" ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
+                    background: msg.role === "user" ? "linear-gradient(135deg, #54A0FF, #FF9FF3)" : "var(--bg-chat-ai)",
+                    color: msg.role === "user" ? "#fff" : "var(--text-primary)",
+                    fontSize: "15px", lineHeight: 1.5,
+                  }}>
+                    {msg.text}
+                  </div>
                 </div>
               ))}
-
-              {/* Loading indicator */}
               {loading && (
-                <div style={{ marginTop: "6px" }}>
-                  <span style={{ color: "#aa44ff" }}>&gt; </span>
-                  <span style={{ color: "#aa44ff", opacity: showCursor ? 1 : 0.3 }}>█ █ █</span>
+                <div style={{ display: "flex", justifyContent: "flex-start", marginTop: "4px" }}>
+                  <div style={{ padding: "12px 18px", borderRadius: "18px 18px 18px 4px", background: "var(--bg-chat-ai)" }}>
+                    <span style={{ color: "var(--text-tertiary)", fontSize: "18px", letterSpacing: "3px" }}>···</span>
+                  </div>
                 </div>
               )}
-
-              
-              
             </div>
-
-            {/* Input row */}
-            <div
-              style={{
-                borderTop: "1px solid #aa44ff33",
-                padding: "10px 16px",
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                background: "#0a0010",
-              }}
-            >
-              <span style={{ color: "#ff2060", fontFamily: "'Share Tech Mono', monospace", fontSize: "14px", whiteSpace: "nowrap" }}>
-                C:\&gt;
-              </span>
+            <div style={{ borderTop: "1px solid var(--border)", padding: "14px 18px", display: "flex", alignItems: "center", gap: "12px", background: "var(--bg-input)" }}>
               <input
                 type="text"
                 value={input}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder={introComplete ? "Type your question..." : ""}
+                placeholder={introComplete ? "Ask anything about Kevin…" : ""}
                 disabled={!introComplete || loading}
-                autoFocus={introComplete}
-                style={{
-                  flex: 1,
-                  background: "transparent",
-                  border: "none",
-                  outline: "none",
-                  color: "#fff",
-                  fontFamily: "'Share Tech Mono', monospace",
-                  fontSize: "16px",
-                  caretColor: "#aa44ff",
-                  opacity: introComplete ? 1 : 0.4,
-                }}
+                style={{ flex: 1, background: "transparent", border: "none", outline: "none", color: "var(--text-primary)", fontSize: "15px", caretColor: "#FF9F43", opacity: introComplete ? 1 : 0.4 }}
               />
               <button
                 onClick={sendMessage}
                 disabled={!introComplete || loading || !input.trim()}
                 style={{
-                  fontFamily: "'Press Start 2P', monospace",
-                  fontSize: "9px",
-                  padding: "6px 12px",
-                  background: input.trim() && introComplete && !loading ? "#ff2060" : "#2a0020",
-                  color: input.trim() && introComplete && !loading ? "#fff" : "#aa44ff",
-                  border: "2px solid #ff2060",
+                  width: "34px", height: "34px", borderRadius: "50%", border: "none", flexShrink: 0,
+                  background: input.trim() && introComplete && !loading ? "linear-gradient(135deg, #FF6B6B, #FF9F43)" : "var(--bg-pill)",
                   cursor: input.trim() && introComplete && !loading ? "pointer" : "not-allowed",
-                  transition: "background 0.15s",
-                  letterSpacing: "0.05em",
-                  whiteSpace: "nowrap",
+                  display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.15s",
                 }}
               >
-                SEND &gt;
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+                  <path d="M7.5 13V2M7.5 2L3 6.5M7.5 2L12 6.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </button>
             </div>
           </div>
-        </div>        
+        </FadeIn>
+      </section>
 
-        {/* Tech stack */}
-        <div id="skills" className="w-full max-w-4xl flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-3">
-              <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
-              <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(18px, 4vw, 26px)", color: "#fff", margin: 0, letterSpacing: "0.05em" }}>
-                SKILLS
-              </h2>
-            </div>
-            <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "180px", marginLeft: "22px" }} />
+      {/* ── SKILLS ────────────────────────────────────────────────────────────── */}
+      <section id="skills" style={{ position: "relative", zIndex: 1, padding: "80px 24px", maxWidth: "980px", margin: "0 auto" }}>
+        <FadeIn>
+          <SectionLabel color="#FF9F43">Expertise</SectionLabel>
+          <SectionHeading>Skills</SectionHeading>
+        </FadeIn>
+
+        {/* Category legend */}
+        <FadeIn>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", marginBottom: "32px" }}>
+            {SKILLS.map(({ area, color }) => (
+              <div key={area} style={{ display: "flex", alignItems: "center", gap: "7px" }}>
+                <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: color, flexShrink: 0 }} />
+                <span style={{ fontSize: "13px", color: "var(--text-secondary)" }}>{area}</span>
+              </div>
+            ))}
           </div>
+        </FadeIn>
 
-          <div className="flex flex-col gap-4">
-            {[
-              { category: "LANGUAGES", items: ["TYPESCRIPT", "PYTHON", "JAVA", "SWIFT"] },
-              { category: "FRAMEWORKS", items: ["REACT", "REACT NATIVE", "NODE.JS", "SPRING BOOT"] },
-              { category: "TOOLS & DATABASES", items: ["POSTGRESQL", "GIT", "DOCKER"] },
-            ].map(({ category, items }) => (
-              <div key={category} className="flex flex-col gap-2">
-                <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "12px", color: "#aa44ff", letterSpacing: "0.15em" }}>
-                  {category}
-                </span>
-                <div className="flex gap-2 flex-wrap">
-                  {items.map((label) => (
-                    <span
-                      key={label}
-                      style={{
-                        fontFamily: "'Share Tech Mono', monospace", fontSize: "13px",
-                        color: "#ff2060", padding: "3px 10px",
-                        border: "2px solid #ff2060", background: "#1a000a", letterSpacing: "0.06em",
-                      }}
-                    >
-                      {label}
-                    </span>
+        {/* Floating bubbles */}
+        <FadeIn>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
+            {ALL_SKILLS.map((skill, i) => (
+              <motion.div
+                key={skill.name}
+                animate={{
+                  y: [0, -(10 + (i % 4) * 4), 5, -(7 + (i % 3) * 5), 0],
+                  x: [0, (i % 2 === 0 ? 6 : -6) + (i % 3) * 2, -(i % 4) * 2, (i % 3) * 3, 0],
+                }}
+                transition={{
+                  duration: 4 + i * 0.65,
+                  repeat: Infinity,
+                  repeatType: "mirror",
+                  ease: "easeInOut",
+                  delay: i * 0.2,
+                }}
+                whileHover={{ scale: 1.12, transition: { duration: 0.15 } }}
+                style={{ display: "flex", cursor: "default" }}
+              >
+                <div style={{
+                  display: "flex", alignItems: "center", gap: "8px",
+                  padding: "10px 16px", borderRadius: "980px", whiteSpace: "nowrap",
+                  background: `${skill.categoryColor}15`,
+                  border: `1px solid ${skill.categoryColor}45`,
+                  boxShadow: `0 4px 16px ${skill.categoryColor}20`,
+                  color: "var(--text-primary)", fontSize: "14px", fontWeight: 400,
+                }}>
+                  <img
+                    src={`https://cdn.simpleicons.org/${skill.icon}/${skill.iconColor}`}
+                    alt={skill.name}
+                    width={16}
+                    height={16}
+                    style={{ flexShrink: 0 }}
+                  />
+                  {skill.name}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </FadeIn>
+      </section>
+
+      {/* ── EXPERIENCE ────────────────────────────────────────────────────────── */}
+      <section id="experience" style={{ position: "relative", zIndex: 1, padding: "80px 24px", maxWidth: "980px", margin: "0 auto" }}>
+        <FadeIn>
+          <SectionLabel color="#1DD1A1">Work History</SectionLabel>
+          <SectionHeading>Experience</SectionHeading>
+        </FadeIn>
+
+        <FadeIn delay={80}>
+          <p style={{ margin: "0 0 20px 0", fontSize: "12px", fontWeight: 600, color: "#1DD1A1", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            Currently
+          </p>
+          <div style={{ display: "flex", alignItems: "center", gap: "20px", padding: "24px", background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "18px", boxShadow: "var(--shadow)", marginBottom: "48px" }}>
+            <div style={{ width: "100px", height: "100px", borderRadius: "14px", overflow: "hidden", background: "#fff", flexShrink: 0, border: "1px solid var(--border)" }}>
+              <img src={EXPERIENCE_CURRENT.src} alt={EXPERIENCE_CURRENT.alt} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+            </div>
+            <div style={{ flex: 1 }}>
+              <p style={{ margin: "0 0 4px 0", fontSize: "17px", fontWeight: 600, color: "var(--text-primary)" }}>
+                {EXPERIENCE_CURRENT.company}
+              </p>
+              <p style={{ margin: "0 0 6px 0", fontSize: "15px", color: "var(--text-secondary)" }}>
+                {EXPERIENCE_CURRENT.role}
+              </p>
+              <p style={{ margin: 0, fontSize: "12px", color: "var(--text-tertiary)", fontWeight: 500 }}>
+                {EXPERIENCE_CURRENT.period}
+              </p>
+            </div>
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={160}>
+          <p style={{ margin: "0 0 20px 0", fontSize: "12px", fontWeight: 500, color: "var(--text-secondary)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            Previously
+          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            {EXPERIENCE_PREVIOUS.map(({ src, alt, company, roles, period }) => (
+              <div key={company} style={{ display: "flex", alignItems: "center", gap: "20px", padding: "24px", background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "18px", boxShadow: "var(--shadow)" }}>
+                <div style={{ width: "100px", height: "100px", borderRadius: "14px", overflow: "hidden", background: "#fff", flexShrink: 0, border: "1px solid var(--border)" }}>
+                  <img src={src} alt={alt} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <p style={{ margin: "0 0 4px 0", fontSize: "17px", fontWeight: 600, color: "var(--text-primary)" }}>{company}</p>
+                  {roles.map((role) => (
+                    <p key={role} style={{ margin: "2px 0 0 0", fontSize: "15px", color: "var(--text-secondary)" }}>{role}</p>
                   ))}
+                  <p style={{ margin: "6px 0 0 0", fontSize: "12px", color: "var(--text-tertiary)", fontWeight: 500 }}>{period}</p>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-          </div>
-
-        <div id="experience" className="relative z-20 flex flex-col items-center px-4 w-full">
-          <div className="w-full max-w-4xl flex flex-col gap-8">
-
-            {/* Experience heading */}
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-3">
-                <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
-                <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(18px, 4vw, 26px)", color: "#fff", margin: 0, letterSpacing: "0.05em" }}>
-                  EXPERIENCE
-                </h2>
-              </div>
-              <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "220px", marginLeft: "22px" }} />
-            </div>
-
-            {/* Currently @ */}
-            <div className="flex flex-col gap-4">
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-3">
-                  <span style={{ color: "#00cc66", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
-                  <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(14px, 3vw, 20px)", color: "#00cc66", margin: 0, letterSpacing: "0.05em" }}>
-                    CURRENTLY @
-                  </h2>
-                </div>
-                <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #00cc66 0, #00cc66 6px, transparent 6px, transparent 12px)", maxWidth: "180px", marginLeft: "22px" }} />
-              </div>
-              <div className="flex flex-row gap-6 flex-wrap items-center">
-                <div
-                  style={{
-                    width: "200px",
-                    height: "200px",
-                    borderRadius: "50%",
-                    overflow: "hidden",
-                    border: "3px solid #00cc66",
-                    background: "#fff",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                    boxShadow: "0 0 18px rgba(0,204,102,0.3)",
-                  }}
-                >
-                  <img
-                    src="/SGWSlogo.png"
-                    alt="Southern Glazer's Wine & Spirits"
-                    style={{ width: "100%", height: "100%", objectFit: "contain", padding: "8px" }}
-                  />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "13px", color: "#fff", letterSpacing: "0.05em" }}>
-                    Southern Glazer&apos;s Wine &amp; Spirits
-                  </span>
-                  <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "13px", color: "#00cc66" }}>
-                    OneTech Data Intern
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Prev @ */}
-            <div className="flex flex-col gap-4">
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-3">
-                  <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
-                  <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(14px, 3vw, 20px)", color: "#fff", margin: 0, letterSpacing: "0.05em" }}>
-                    PREV @
-                  </h2>
-                </div>
-                <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "120px", marginLeft: "22px" }} />
-              </div>
-              <div className="flex flex-row gap-8 flex-wrap">
-                {[
-                  { src: "/AppleLogo.png", alt: "Apple Inc.", size: "140px", padding: "12px", roles: ["Apple College Program"] },
-                  { src: "/lmlogo.jpeg", alt: "LM", size: "140px", padding: "4px", roles: ["Systems Engineer Intern", "Full Stack Software Engineer Intern"] },
-                ].map(({ src, alt, size, padding, roles }) => (
-                  <div key={alt} className="flex flex-col items-center gap-2" style={{ flexShrink: 0 }}>
-                    <div
-                      style={{
-                        width: size,
-                        height: size,
-                        borderRadius: "50%",
-                        overflow: "hidden",
-                        border: "2px solid #aa44ff",
-                        background: "#fff",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <img
-                        src={src}
-                        alt={alt}
-                        style={{ width: "100%", height: "100%", objectFit: "contain", padding }}
-                      />
-                    </div>
-                    <div className="flex flex-col items-center gap-1">
-                      {roles.map((role) => (
-                        <span key={role} style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: "11px", color: "#ffffff", textAlign: "center" }}>
-                          {role}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      {/* ── PROJECTS SECTION ──────────────────────────────────────────────────── */}
-      <section
-        id="projects"
-        className="relative z-20 flex flex-col items-center px-4 pb-20 pt-4 gap-10"
-      >
-        {/* Section heading */}
-        <div className="w-full max-w-4xl flex flex-col gap-2">
-          <div className="flex items-center gap-3">
-            <span style={{ color: "#ff2060", fontSize: "10px", fontFamily: "'Press Start 2P', monospace" }}>&#9658;</span>
-            <h2 style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "clamp(18px, 4vw, 26px)", color: "#fff", margin: 0, letterSpacing: "0.05em" }}>
-              PROJECTS
-            </h2>
-          </div>
-          <div style={{ height: "2px", background: "repeating-linear-gradient(90deg, #ff2060 0, #ff2060 6px, transparent 6px, transparent 12px)", maxWidth: "180px", marginLeft: "22px" }} />
-        </div>
-
-        {/* Project cards grid */}
-        <div
-          className="w-full max-w-4xl"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 340px), 1fr))",
-            gap: "24px",
-          }}
-        >
-          {PROJECTS.map((project) => {
-            const statusStyle = STATUS_STYLE[project.status] ?? STATUS_STYLE["SOON"];
-            return (
-              <div key={project.id} className="relative" style={{ border: "2px solid #aa44ff", background: "#0f0018" }}>
-
-                {/* Pixel corner dots */}
-                <div className="absolute -top-[3px] -left-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
-                <div className="absolute -top-[3px] -right-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
-                <div className="absolute -bottom-[3px] -left-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
-                <div className="absolute -bottom-[3px] -right-[3px] w-[5px] h-[5px] bg-[#ff2060]" />
-
-                {/* Card header bar */}
-                <div
-                  style={{
-                    background: "#aa44ff",
-                    padding: "5px 12px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  
-                  <span
-                    style={{
-                      fontFamily: "'Press Start 2P', monospace",
-                      fontSize: "8px",
-                      color: statusStyle.color,
-                      background: statusStyle.bg,
-                      border: `1px solid ${statusStyle.border}`,
-                      padding: "2px 6px",
-                    }}
-                  >
-                    {project.status}
-                  </span>
-                </div>
-
-                {/* Card body */}
-                <div style={{ padding: "16px" }}>
-                  <h3
-                    style={{
-                      fontFamily: "'Press Start 2P', monospace",
-                      fontSize: "13px",
-                      color: "#fff",
-                      margin: "0 0 10px 0",
-                      letterSpacing: "0.05em",
-                    }}
-                  >
-                    {project.name}
-                  </h3>
-
-                  <p
-                    style={{
-                      fontFamily: "'Share Tech Mono', monospace",
-                      fontSize: "13px",
-                      color: "#f0e8ff",
-                      lineHeight: "1.8",
-                      margin: "0 0 16px 0",
-                      opacity: 0.85,
-                    }}
-                  >
-                    {project.description}
-                  </p>
-
-                  <div style={{ height: "1px", background: "#aa44ff33", marginBottom: "12px" }} />
-
-                  <div>
-                    <span
-                      style={{
-                        fontFamily: "'Press Start 2P', monospace",
-                        fontSize: "8px",
-                        color: "#ff2060",
-                        display: "block",
-                        marginBottom: "8px",
-                        letterSpacing: "0.1em",
-                      }}
-                    >
-                      STACK:
-                    </span>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
-                      {project.stack.map((tech) => (
-                        <span
-                          key={tech}
-                          style={{
-                            fontFamily: "'Share Tech Mono', monospace",
-                            fontSize: "11px",
-                            color: "#ff2060",
-                            padding: "2px 8px",
-                            border: "2px solid #ff2060",
-                            background: "#1a000a",
-                            letterSpacing: "0.06em",
-                          }}
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
+        </FadeIn>
       </section>
-    </main>
+
+      {/* ── PROJECTS ──────────────────────────────────────────────────────────── */}
+      <section id="projects" style={{ position: "relative", zIndex: 1, padding: "80px 24px", maxWidth: "980px", margin: "0 auto" }}>
+        <FadeIn>
+          <SectionLabel color="#54A0FF">Work</SectionLabel>
+          <SectionHeading>Projects</SectionHeading>
+        </FadeIn>
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 440px), 1fr))", gap: "16px" }}>
+          {PROJECTS.map((project, i) => (
+            <FadeIn key={project.id} delay={i * 80}>
+              <div
+                style={{ background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "18px", padding: "28px", display: "flex", flexDirection: "column", gap: "14px", boxShadow: "var(--shadow)", transition: "border-color 0.2s, box-shadow 0.2s", height: "100%" }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = project.accent; e.currentTarget.style.boxShadow = `0 0 0 1px ${project.accent}40, var(--shadow)`; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.boxShadow = "var(--shadow)"; }}
+              >
+                {/* Status + number */}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontSize: "11px", fontWeight: 700, color: project.accent, letterSpacing: "0.1em", textTransform: "uppercase" }}>{project.status}</span>
+                  <span style={{ fontSize: "12px", color: "var(--text-tertiary)", fontWeight: 500 }}>{project.id}</span>
+                </div>
+
+                <h3 style={{ margin: 0, fontSize: "20px", fontWeight: 600, color: "var(--text-primary)", letterSpacing: "-0.01em", lineHeight: 1.25 }}>
+                  {project.name}
+                </h3>
+
+                <p style={{ margin: 0, fontSize: "14px", color: "var(--text-secondary)", lineHeight: 1.65, flexGrow: 1 }}>
+                  {project.description}
+                </p>
+
+                {project.stack.length > 0 && (
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                    {project.stack.map((tech) => (
+                      <span key={tech} style={{ padding: "4px 12px", borderRadius: "980px", background: "var(--bg-pill)", border: "1px solid var(--border)", color: "var(--text-secondary)", fontSize: "12px", fontWeight: 400 }}>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Links — only rendered when a URL is provided */}
+                {(project.github || project.demo) && (
+                  <div style={{ display: "flex", gap: "10px", paddingTop: "4px" }}>
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "13px", fontWeight: 500, color: "var(--text-secondary)", textDecoration: "none", transition: "color 0.15s" }}
+                        onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
+                        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub
+                      </a>
+                    )}
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "13px", fontWeight: 500, color: project.accent, textDecoration: "none", transition: "opacity 0.15s" }}
+                        onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
+                        onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                      >
+                        Live Demo ↗
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </section>
+
+      {/* ── CONTACT ───────────────────────────────────────────────────────────── */}
+      <section
+        id="contact"
+        style={{ position: "relative", zIndex: 1, padding: "100px 24px 120px", textAlign: "center" }}
+      >
+        <FadeIn>
+          <SectionLabel color="#FF6B6B">Get in touch</SectionLabel>
+
+          <h2 style={{ margin: "0 0 20px 0", fontSize: "clamp(36px, 7vw, 64px)", fontWeight: 700, color: "var(--text-primary)", letterSpacing: "-0.04em", lineHeight: 1.05 }}>
+            Let&apos;s work together.
+          </h2>
+
+          <p style={{ margin: "0 auto 48px", fontSize: "17px", color: "var(--text-secondary)", maxWidth: "440px", lineHeight: 1.7 }}>
+            I&apos;m open to full-time opportunities and always happy to connect. Whether you have a role in mind or just want to say hello — reach out.
+          </p>
+
+          <a
+            href="mailto:muniz.kevin@outlook.com"
+            style={{ display: "inline-block", padding: "18px 40px", background: "linear-gradient(135deg, #FF6B6B, #FF9F43)", color: "#fff", borderRadius: "980px", textDecoration: "none", fontSize: "17px", fontWeight: 600, boxShadow: "0 8px 32px rgba(255,107,107,0.35)", transition: "opacity 0.15s, transform 0.15s" }}
+            onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.88"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "translateY(0)"; }}
+          >
+            muniz.kevin@outlook.com
+          </a>
+
+        </FadeIn>
+      </section>
+
+    </div>
   );
 }

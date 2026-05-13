@@ -3,10 +3,16 @@
 import { useState } from "react";
 
 const NAV_LINKS = [
-  { label: "ABOUT",      href: "#about" },
-  { label: "SKILLS",     href: "#skills" },
-  { label: "EXPERIENCE", href: "#experience" },
-  { label: "PROJECTS",   href: "#projects" },
+  { label: "About",      href: "#about" },
+  { label: "Skills",     href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Projects",   href: "#projects" },
+];
+
+const SOCIAL_LINKS = [
+  { label: "GitHub",   href: "https://github.com/KevinMuniz1" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/muniz-kevin/" },
+  { label: "Resume",   href: "/KevinMunizResume.pdf" },
 ];
 
 export default function NavBar() {
@@ -15,104 +21,122 @@ export default function NavBar() {
   return (
     <nav
       style={{
-        background: "rgba(10,0,16,0.97)",
-        borderBottom: "2px solid #cc0044",
-        fontFamily: "'Press Start 2P', monospace",
         position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
+        top: 0, left: 0, right: 0,
         zIndex: 1000,
+        height: "64px",
+        backdropFilter: "saturate(180%) blur(20px)",
+        WebkitBackdropFilter: "saturate(180%) blur(20px)",
+        background: "var(--bg-nav)",
+        borderBottom: "1px solid var(--border)",
       }}
     >
-      {/* Main bar */}
-      <div className="flex items-center justify-between px-4 md:px-8 py-4">
+      <div
+        style={{
+          maxWidth: "980px",
+          margin: "0 auto",
+          padding: "0 24px",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        {/* Name / logo */}
+        <a
+          href="#about"
+          style={{
+            fontSize: "17px",
+            fontWeight: 600,
+            color: "var(--text-primary)",
+            textDecoration: "none",
+            letterSpacing: "-0.02em",
+          }}
+        >
+          Kevin Muniz
+        </a>
 
-        {/* Left: section links (desktop only) */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop nav */}
+        <div className="hidden md:flex items-center gap-7">
           {NAV_LINKS.map(({ label, href }) => (
             <a
               key={label}
               href={href}
               style={{
-                fontSize: "13px",
-                color: "#f0e8ff",
+                fontSize: "14px",
+                fontWeight: 400,
+                color: "var(--text-secondary)",
                 textDecoration: "none",
-                letterSpacing: "0.1em",
                 transition: "color 0.15s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#ff2060")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#f0e8ff")}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
             >
               {label}
             </a>
           ))}
         </div>
 
-        {/* Right: social icons */}
-        <div className="hidden md:flex items-center gap-6 ml-auto">
-          <a href="https://github.com/KevinMuniz1" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 hover:scale-110 transition-transform">
-            <img src="/github.png" className="w-14 h-14" alt="GitHub" />
-            <span style={{ color: "#aa44ff", fontSize: "13px" }}>GitHub</span>
-          </a>
-          <a href="/KevinMunizResume.pdf" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 hover:scale-110 transition-transform">
-            <img src="/resumeIcon.png" className="w-14 h-14" alt="Resume" />
-            <span style={{ color: "#aa44ff", fontSize: "13px" }}>Resume</span>
-          </a>
-          <a href="https://www.linkedin.com/in/muniz-kevin/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 hover:scale-110 transition-transform">
-            <img src="/linkedin.png" className="w-14 h-14" alt="LinkedIn" />
-            <span style={{ color: "#aa44ff", fontSize: "13px" }}>LinkedIn</span>
-          </a>
+        {/* Desktop social + contact CTA */}
+        <div className="hidden md:flex items-center gap-5">
+          {SOCIAL_LINKS.map(({ label, href }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontSize: "14px",
+                color: "var(--text-secondary)",
+                textDecoration: "none",
+                transition: "color 0.15s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
+            >
+              {label}
+            </a>
+          ))}
           <a
             href="mailto:muniz.kevin@outlook.com"
             style={{
-              fontSize: "11px",
-              padding: "10px 18px",
-              background: "transparent",
+              fontSize: "14px",
+              fontWeight: 500,
+              padding: "7px 18px",
+              background: "var(--accent)",
               color: "#fff",
-              border: "2px solid #aa44ff",
+              borderRadius: "980px",
               textDecoration: "none",
-              letterSpacing: "0.08em",
+              transition: "opacity 0.15s",
             }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
           >
-            CONTACT
+            Contact
           </a>
         </div>
 
-        {/* Mobile: social icons + hamburger */}
-        <div className="flex md:hidden items-center gap-4 w-full justify-between">
-          <div className="flex items-center gap-4">
-            <a href="https://github.com/KevinMuniz1" target="_blank" rel="noopener noreferrer">
-              <img src="/github.png" className="w-12 h-12" alt="GitHub" />
-            </a>
-            <a href="/KevinMunizResume.pdf" target="_blank" rel="noopener noreferrer">
-              <img src="/resumeIcon.png" className="w-12 h-12" alt="Resume" />
-            </a>
-            <a href="https://www.linkedin.com/in/muniz-kevin/" target="_blank" rel="noopener noreferrer">
-              <img src="/linkedin.png" className="w-12 h-12" alt="LinkedIn" />
-            </a>
-          </div>
-
-          {/* Hamburger button */}
-          <button
-            onClick={() => setOpen((v) => !v)}
-            style={{ background: "none", border: "none", cursor: "pointer", padding: "4px" }}
-            aria-label="Toggle menu"
-          >
-            <div style={{ width: "26px", display: "flex", flexDirection: "column", gap: "6px" }}>
-              <span style={{ display: "block", height: "2px", background: open ? "#ff2060" : "#f0e8ff", transition: "all 0.15s", transform: open ? "translateY(8px) rotate(45deg)" : "none", transformOrigin: "center" }} />
-              <span style={{ display: "block", height: "2px", background: open ? "transparent" : "#f0e8ff", transition: "all 0.15s" }} />
-              <span style={{ display: "block", height: "2px", background: open ? "#ff2060" : "#f0e8ff", transition: "all 0.15s", transform: open ? "translateY(-8px) rotate(-45deg)" : "none", transformOrigin: "center" }} />
-            </div>
-          </button>
-        </div>
+        {/* Mobile hamburger */}
+        <button
+          className="flex md:hidden flex-col gap-[5px] p-2"
+          onClick={() => setOpen((v) => !v)}
+          style={{ background: "none", border: "none", cursor: "pointer" }}
+          aria-label="Toggle menu"
+        >
+          <span style={{ display: "block", width: "22px", height: "1.5px", background: "var(--text-primary)", transition: "all 0.2s", transform: open ? "translateY(6.5px) rotate(45deg)" : "none" }} />
+          <span style={{ display: "block", width: "22px", height: "1.5px", background: "var(--text-primary)", transition: "all 0.2s", opacity: open ? 0 : 1 }} />
+          <span style={{ display: "block", width: "22px", height: "1.5px", background: "var(--text-primary)", transition: "all 0.2s", transform: open ? "translateY(-6.5px) rotate(-45deg)" : "none" }} />
+        </button>
       </div>
 
       {/* Mobile dropdown */}
       {open && (
         <div
-          className="flex md:hidden flex-col"
-          style={{ borderTop: "1px solid #aa44ff33", background: "rgba(10,0,16,0.99)" }}
+          style={{
+            background: "var(--bg-surface)",
+            borderTop: "1px solid var(--border)",
+            padding: "8px 24px 20px",
+          }}
         >
           {NAV_LINKS.map(({ label, href }) => (
             <a
@@ -120,12 +144,12 @@ export default function NavBar() {
               href={href}
               onClick={() => setOpen(false)}
               style={{
-                padding: "16px 24px",
-                fontSize: "12px",
-                color: "#f0e8ff",
+                display: "block",
+                padding: "14px 0",
+                fontSize: "17px",
+                color: "var(--text-primary)",
                 textDecoration: "none",
-                letterSpacing: "0.1em",
-                borderBottom: "1px solid #aa44ff22",
+                borderBottom: "1px solid var(--border)",
               }}
             >
               {label}
@@ -135,14 +159,14 @@ export default function NavBar() {
             href="mailto:muniz.kevin@outlook.com"
             onClick={() => setOpen(false)}
             style={{
-              padding: "16px 24px",
-              fontSize: "12px",
-              color: "#ff2060",
+              display: "block",
+              padding: "14px 0",
+              fontSize: "17px",
+              color: "var(--accent)",
               textDecoration: "none",
-              letterSpacing: "0.1em",
             }}
           >
-            CONTACT
+            Contact
           </a>
         </div>
       )}
