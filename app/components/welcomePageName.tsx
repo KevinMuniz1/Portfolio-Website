@@ -83,6 +83,21 @@ const EXPERIENCE_PREVIOUS = [
   },
 ];
 
+const TECH_ICONS: Record<string, { icon: string; iconColor: string }> = {
+  "Spring Boot":  { icon: "springboot",  iconColor: "6DB33F" },
+  "React":        { icon: "react",       iconColor: "087EA4" },
+  "React Native": { icon: "react",       iconColor: "087EA4" },
+  "PostgreSQL":   { icon: "postgresql",  iconColor: "4169E1" },
+  "OpenAI API":   { icon: "openai",      iconColor: "412991" },
+  "Docker":       { icon: "docker",      iconColor: "2496ED" },
+  "Node.js":      { icon: "nodedotjs",   iconColor: "339933" },
+  "Express":      { icon: "express",     iconColor: "888888" },
+  "MongoDB":      { icon: "mongodb",     iconColor: "47A248" },
+  "TypeScript":   { icon: "typescript",  iconColor: "3178C6" },
+  "Python":       { icon: "python",      iconColor: "3776AB" },
+  "Swift":        { icon: "swift",       iconColor: "FA7343" },
+};
+
 const PROJECTS = [
   {
     id: "01",
@@ -286,17 +301,7 @@ export default function PageContent() {
     <div style={{ position: "relative", background: "var(--bg)", minHeight: "100vh" }}>
 
       {/* ── FULL-PAGE BACKGROUND ORBS ─────────────────────────────────────────── */}
-      <div aria-hidden style={{
-        position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0,
-        background: `
-          radial-gradient(ellipse 700px 500px at 10% 15%,  rgba(255,107,107,0.14) 0%, transparent 70%),
-          radial-gradient(ellipse 600px 450px at 90% 10%,  rgba(84,160,255,0.11)  0%, transparent 70%),
-          radial-gradient(ellipse 500px 400px at 75% 45%,  rgba(254,202,87,0.09)  0%, transparent 70%),
-          radial-gradient(ellipse 650px 500px at 5%  60%,  rgba(29,209,161,0.10)  0%, transparent 70%),
-          radial-gradient(ellipse 600px 400px at 85% 75%,  rgba(255,159,243,0.10) 0%, transparent 70%),
-          radial-gradient(ellipse 500px 350px at 40% 90%,  rgba(95,39,205,0.08)   0%, transparent 70%)
-        `,
-      }} />
+      <div aria-hidden className="bg-orbs" />
 
       {/* ── HERO ──────────────────────────────────────────────────────────────── */}
       <section
@@ -571,11 +576,15 @@ export default function PageContent() {
 
                 {project.stack.length > 0 && (
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
-                    {project.stack.map((tech) => (
-                      <span key={tech} style={{ padding: "4px 12px", borderRadius: "980px", background: "var(--bg-pill)", border: "1px solid var(--border)", color: "var(--text-secondary)", fontSize: "12px", fontWeight: 400 }}>
-                        {tech}
-                      </span>
-                    ))}
+                    {project.stack.map((tech) => {
+                      const meta = TECH_ICONS[tech];
+                      return (
+                        <span key={tech} style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 12px", borderRadius: "980px", background: "var(--bg-pill)", border: "1px solid var(--border)", color: "var(--text-secondary)", fontSize: "12px", fontWeight: 400 }}>
+                          {meta && <img src={`https://cdn.simpleicons.org/${meta.icon}/${meta.iconColor}`} alt="" width={12} height={12} style={{ display: "block" }} />}
+                          {tech}
+                        </span>
+                      );
+                    })}
                   </div>
                 )}
 
