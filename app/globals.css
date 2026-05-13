@@ -61,6 +61,23 @@ html, body {
   50%       { transform: translateY(-12px); }
 }
 
+.exp-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+@media (max-width: 600px) {
+  .exp-card {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .exp-card .exp-logo {
+    width: 72px !important;
+    height: 72px !important;
+  }
+}
+
 .bg-orbs {
   position: fixed;
   inset: 0;
