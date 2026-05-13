@@ -381,6 +381,9 @@ export default function PageContent() {
             the desire to make things better. As a Computer Science graduate from UCF, I want to keep learning
             across software, data, AI, and emerging technologies so I can contribute as much as I can to building
             solutions that improve the world around me.
+            <br /><br />
+            I&apos;m currently a Data Intern at Southern Glazer&apos;s Wine &amp; Spirits and actively seeking
+            full-time roles in software engineering, data engineering, or AI/ML.
           </p>
 
           {/* Chat */}
