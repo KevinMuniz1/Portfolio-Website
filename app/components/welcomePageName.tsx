@@ -8,7 +8,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const INTRO_LINES = [
   "Hey! Thanks for stopping by.",
   "I'm a Computer Science graduate from UCF, passionate about building impactful software.",
-  "Currently seeking full-time roles in Web Development, Mobile, or AI/ML.",
+  "Currently seeking full-time roles in software engineering, data engineering, or AI/ML.",
   "Ask me anything below.",
 ];
 
