@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, ChangeEvent, KeyboardEvent } from "react";
 import { motion } from "framer-motion";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 const INTRO_LINES = [
   "Hey! Thanks for stopping by.",
@@ -277,7 +277,7 @@ export default function PageContent() {
     setInput("");
     setLoading(true);
     try {
-      const res = await fetch(`${API_URL}/chat`, {
+      const res = await fetch(`${API_URL}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: trimmed }),
