@@ -240,6 +240,7 @@ export default function PageContent() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [inputFocused, setInputFocused] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
@@ -390,7 +391,9 @@ export default function PageContent() {
             Or skip the bio and just ask me directly ↓
           </p>
 
-          <div style={{ background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "18px", overflow: "hidden", boxShadow: "var(--shadow)" }}>
+          <div style={{ position: "relative", borderRadius: "20px", padding: "1.5px", overflow: "hidden", background: inputFocused ? "var(--accent)" : "var(--border)", transition: "background 0.3s" }}>
+            {!inputFocused && <div className="chat-border-ring" />}
+          <div style={{ background: "var(--bg-card)", borderRadius: "18px", overflow: "hidden", boxShadow: "var(--shadow)", position: "relative", zIndex: 1 }}>
             <div ref={chatContainerRef} style={{ padding: "24px", minHeight: "220px", maxHeight: "380px", overflowY: "auto", display: "flex", flexDirection: "column", gap: "10px" }}>
               {displayedLines.map((line, i) => (
                 <p key={i} style={{ margin: 0, fontSize: "15px", color: "var(--text-primary)", lineHeight: 1.6 }}>{line}</p>
@@ -427,9 +430,14 @@ export default function PageContent() {
                 value={input}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
+                onFocus={(e) => {
+                  setInputFocused(true);
+                  setTimeout(() => e.target.scrollIntoView({ behavior: "smooth", block: "nearest" }), 300);
+                }}
+                onBlur={() => setInputFocused(false)}
                 placeholder={introComplete ? "Ask anything about Kevin…" : ""}
                 disabled={!introComplete || loading}
-                style={{ flex: 1, background: "transparent", border: "none", outline: "none", color: "var(--text-primary)", fontSize: "15px", caretColor: "#FF9F43", opacity: introComplete ? 1 : 0.4 }}
+                style={{ flex: 1, background: "transparent", border: "none", outline: "none", color: "var(--text-primary)", fontSize: "16px", caretColor: "#FF9F43", opacity: introComplete ? 1 : 0.4 }}
               />
               <button
                 onClick={sendMessage}
@@ -446,6 +454,7 @@ export default function PageContent() {
                 </svg>
               </button>
             </div>
+          </div>
           </div>
         </FadeIn>
       </section>
