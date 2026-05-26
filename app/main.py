@@ -1,16 +1,14 @@
 import os
-from typing import List, Dict, Any, Generator
+import asyncio
 from dotenv import load_dotenv
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import StreamingResponse
-from pydantic import BaseModel
-from openai import OpenAI
+from openai import AsyncOpenAI
 from openai.types.chat import ChatCompletionMessageParam
 from retrieval import retrieve_chunks
 
 load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+async_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 app = FastAPI()
 
 app.add_middleware(
@@ -21,47 +19,53 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-class ChatRequest(BaseModel):
-    message: str
+SYSTEM_PROMPT = (
+    "You are Kevin Muniz's portfolio assistant. "
+    "Answer using the provided context. If you can reason an answer from the context, do so. "
+    "If the context has no relevant information to answer the question, say you're not sure but let the user know they can reach Kevin directly at Muniz.Kevin@outlook.com. "
+    "Keep answers short and to the point — 1 to 3 sentences max unless the question genuinely requires more detail. "
+    "Do not repeat information or pad your response."
+)
+
 
 @app.get("/")
 def root():
     return {"message": "Portfolio chatbot backend is running."}
 
-@app.post("/chat")
-def chat(request: ChatRequest):
-    question = request.message
-    chunks = retrieve_chunks(question, limit=10)
-    context = "\n\n".join([chunk["content"] for chunk in chunks])
 
-    messages: list[ChatCompletionMessageParam] = [
-        {
-            "role": "system",
-            "content": (
-                "You are Kevin Muniz's portfolio assistant. "
-                "Answer using the provided context. If you can reason an answer from the context, do so. "
-                "Only say you don't know if the context has truly no relevant information. "
-                "Keep answers short and to the point — 1 to 3 sentences max unless the question genuinely requires more detail. "
-                "Do not repeat information or pad your response."
+@app.websocket("/ws/chat")
+async def ws_chat(websocket: WebSocket):
+    await websocket.accept()
+    try:
+        while True:
+            data = await websocket.receive_json()
+            question = data.get("message", "").strip()
+            if not question:
+                continue
+
+            chunks = await asyncio.to_thread(retrieve_chunks, question, 10)
+            context = "\n\n".join([chunk["content"] for chunk in chunks])
+
+            messages: list[ChatCompletionMessageParam] = [
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user", "content": f"Context:\n{context}\n\nQuestion:\n{question}"},
+            ]
+
+            stream = await async_client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=messages,
+                stream=True,
             )
-        },
-        {
-            "role": "user",
-            "content": f"Context:\n{context}\n\nQuestion:\n{question}"
-        }
-    ]
+            async for chunk in stream:
+                token = chunk.choices[0].delta.content
+                if token:
+                    await websocket.send_text(token)
 
-    # stream=True tells OpenAI to send tokens as they're generated
-    def generate() -> Generator[str, None, None]:
-        stream = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=messages,
-            stream=True,
-        )
-        for chunk in stream:
-            token = chunk.choices[0].delta.content
-            if token:
-                yield token
-
-    # StreamingResponse forwards each token to the frontend as it arrives
-    return StreamingResponse(generate(), media_type="text/plain")
+            await websocket.send_text("[DONE]")
+    except WebSocketDisconnect:
+        pass
+    except Exception:
+        try:
+            await websocket.send_text("[DONE]")
+        except Exception:
+            pass

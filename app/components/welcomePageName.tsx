@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, ChangeEvent, KeyboardEvent } from "react";
 import { motion } from "framer-motion";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
+const WS_URL = process.env.NEXT_PUBLIC_WS_URL ?? "";
 
 const INTRO_LINES = [
   "Hey! Thanks for stopping by.",
@@ -243,8 +243,61 @@ export default function PageContent() {
   const [loading, setLoading] = useState(false);
   const [inputFocused, setInputFocused] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const wsRef = useRef<WebSocket | null>(null);
+  const isFirstTokenRef = useRef(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  useEffect(() => {
+    if (!WS_URL) return;
+    let ws: WebSocket;
+    let reconnectTimeout: ReturnType<typeof setTimeout>;
+
+    const connect = () => {
+      ws = new WebSocket(WS_URL);
+      wsRef.current = ws;
+
+      ws.onmessage = (event: MessageEvent) => {
+        const token: string = event.data;
+        if (token === "[DONE]") {
+          setLoading(false);
+          return;
+        }
+        if (isFirstTokenRef.current) {
+          isFirstTokenRef.current = false;
+          setLoading(false);
+          setMessages((prev) => [...prev, { role: "assistant", text: token }]);
+        } else {
+          setMessages((prev) => {
+            const updated = [...prev];
+            updated[updated.length - 1] = {
+              ...updated[updated.length - 1],
+              text: updated[updated.length - 1].text + token,
+            };
+            return updated;
+          });
+        }
+      };
+
+      ws.onerror = () => {
+        if (isFirstTokenRef.current) {
+          isFirstTokenRef.current = false;
+          setLoading(false);
+          setMessages((prev) => [...prev, { role: "assistant", text: "Sorry, I couldn't reach the backend. Please try again later." }]);
+        }
+      };
+
+      ws.onclose = () => {
+        reconnectTimeout = setTimeout(connect, 3000);
+      };
+    };
+
+    connect();
+    return () => {
+      clearTimeout(reconnectTimeout);
+      ws?.close();
+    };
+  }, []);
 
   useEffect(() => {
     const t = setInterval(() => setShowCursor((v) => !v), 500);
@@ -272,43 +325,14 @@ export default function PageContent() {
     if (el) el.scrollTop = el.scrollHeight;
   }, [displayedLines, messages, loading]);
 
-  const sendMessage = async () => {
+  const sendMessage = () => {
     const trimmed = input.trim();
-    if (!trimmed || loading) return;
+    if (!trimmed || loading || !wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) return;
     setMessages((prev) => [...prev, { role: "user", text: trimmed }]);
     setInput("");
     setLoading(true);
-    try {
-      const res = await fetch(`${API_URL}/api/chat`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed }),
-      });
-      if (!res.body) throw new Error("No response body");
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      let firstToken = true;
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        const token = decoder.decode(value, { stream: true });
-        if (firstToken) {
-          setLoading(false);
-          setMessages((prev) => [...prev, { role: "assistant", text: token }]);
-          firstToken = false;
-        } else {
-          setMessages((prev) => {
-            const updated = [...prev];
-            updated[updated.length - 1] = { ...updated[updated.length - 1], text: updated[updated.length - 1].text + token };
-            return updated;
-          });
-        }
-      }
-    } catch {
-      setMessages((prev) => [...prev, { role: "assistant", text: "Sorry, I couldn't reach the backend. Please try again later." }]);
-    } finally {
-      setLoading(false);
-    }
+    isFirstTokenRef.current = true;
+    wsRef.current.send(JSON.stringify({ message: trimmed }));
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => { if (e.key === "Enter") sendMessage(); };
