@@ -59,9 +59,21 @@ def flatten_profile(profile: dict) -> list[tuple[str, str]]:
     if profile.get("work_history_summary"):
         chunks.append(("work_history_summary", profile["work_history_summary"]))
 
-    # Education
+    # Education (supports both dict and list formats)
     edu = profile.get("education", {})
-    if edu:
+    if isinstance(edu, list):
+        for entry in edu:
+            parts = [
+                f"School: {entry.get('school', '')}",
+                f"Degree: {entry.get('degree', '')}",
+                f"Graduation: {entry.get('graduation', '')}",
+            ]
+            if entry.get("status"):
+                parts.append(f"Status: {entry['status']}")
+            if entry.get("coursework"):
+                parts.append(f"Relevant Coursework: {', '.join(entry['coursework'])}")
+            chunks.append(("education", "\n".join(parts)))
+    elif edu:
         edu_text = (
             f"School: {edu.get('school', '')}\n"
             f"Degree: {edu.get('degree', '')}\n"
@@ -127,6 +139,18 @@ def flatten_profile(profile: dict) -> list[tuple[str, str]]:
     if contact:
         contact_text = "\n".join(f"{k}: {v}" for k, v in contact.items())
         chunks.append(("contact", contact_text))
+
+    # QA variants — each topic becomes one chunk combining question phrasings + answer
+    for qa in profile.get("qa_variants", []):
+        topic = qa.get("topic", "qa")
+        variants = qa.get("variants", [])
+        answer = qa.get("answer", "")
+        if variants and answer:
+            text = (
+                f"Questions people might ask: {' | '.join(variants)}\n"
+                f"Answer: {answer}"
+            )
+            chunks.append((f"qa_{topic}", text))
 
     return chunks
 
