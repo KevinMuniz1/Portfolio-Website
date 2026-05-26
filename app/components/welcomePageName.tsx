@@ -65,13 +65,25 @@ const EXPERIENCE_CURRENT = {
   role: "OneTech Data Intern",
   period: "May 2026 – Present",
   bullets: [
-    "Built internal AI agents using Python and ML tooling to automate stakeholder workflows, reducing manual overhead across business units.",
-    "Maintained ML forecasting pipelines through data preprocessing and model monitoring to support business-critical decision-making at scale.",
-    "Partnered with engineering and business teams to scope and deliver scalable AI/ML tools that streamline operations and improve productivity.",
+    "Developed AI/ML solutions and internal automation tools that improved business workflows, forecasting processes, and enterprise productivity.",
+    "Collaborated with data engineering and business teams to analyze large datasets, monitor model performance, and support data-driven decision making.",
+    "Built and supported scalable data and analytics workflows, including data preprocessing, evaluation metrics, and backtesting for AI-driven initiatives.",
   ],
 };
 
 const EXPERIENCE_PREVIOUS = [
+    {
+    src: "/lmlogo.jpeg",
+    alt: "Lockheed Martin",
+    company: "Lockheed Martin",
+    roles: ["Full Stack Software Engineer Intern", "Systems Engineer Intern"],
+    period: "Sept 2024 – May 2026",
+    bullets: [
+      "Developed an internal reporting web app with a searchable data grid, enabling senior stakeholders to view, filter, and manage structured workforce data efficiently.",
+      "Built a Python-based Excel transformation tool to standardize legacy datasets, saving employees ~30 minutes per sheet by eliminating manual table restructuring.",
+      "Documented systems engineering workflows and created onboarding materials for targeting-system programs, cutting new engineer ramp-up time by 25%.",
+    ],
+  },
   {
     src: "/AppleLogo.png",
     alt: "Apple Inc.",
@@ -84,18 +96,7 @@ const EXPERIENCE_PREVIOUS = [
       "Mentored peers on career development and Apple internship pathways, directly contributing to multiple students securing Apple internships.",
     ],
   },
-  {
-    src: "/lmlogo.jpeg",
-    alt: "Lockheed Martin",
-    company: "Lockheed Martin",
-    roles: ["Full Stack Software Engineer Intern", "Systems Engineer Intern"],
-    period: "Sept 2024 – May 2026",
-    bullets: [
-      "Developed an internal reporting web app with a searchable data grid, enabling senior stakeholders to view, filter, and manage structured workforce data efficiently.",
-      "Built a Python-based Excel transformation tool to standardize legacy datasets, saving employees ~30 minutes per sheet by eliminating manual table restructuring.",
-      "Documented systems engineering workflows and created onboarding materials for targeting-system programs, cutting new engineer ramp-up time by 25%.",
-    ],
-  },
+
 ];
 
 const TECH_ICONS: Record<string, { icon: string; iconColor: string }> = {
