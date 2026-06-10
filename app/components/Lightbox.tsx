@@ -36,54 +36,54 @@ export default function Lightbox({ photos, initialIndex, onClose }: LightboxProp
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm px-4"
       onClick={onClose}
     >
       <div
-        className="relative flex flex-col items-center w-full max-w-4xl mx-4 px-12"
+        className="relative flex flex-col items-center w-full max-w-4xl"
         onClick={e => e.stopPropagation()}
       >
-        {/* Close */}
-        <button
-          onClick={onClose}
-          className="absolute -top-10 right-0 text-cyan-400 hover:text-cyber-magenta text-2xl font-bold transition-colors"
-        >
-          ✕
-        </button>
-
-        {/* Image */}
+        {/* Image + close button + arrows all relative to this wrapper */}
         <div className="relative w-full rounded-xl overflow-hidden border border-cyan-500/30 shadow-[0_0_30px_rgba(0,234,255,0.15)]">
           <img
             src={photo.src}
             alt={photo.title}
-            className="w-full max-h-[62vh] object-contain bg-cyber-navy"
+            className="w-full max-h-[45vh] md:max-h-[60vh] object-contain bg-cyber-navy"
           />
+
+          {/* Close — inside the image frame, always visible */}
+          <button
+            onClick={onClose}
+            className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center rounded-full bg-black/60 text-cyan-400 hover:text-white hover:bg-black/90 text-base font-bold transition-colors"
+          >
+            ✕
+          </button>
+
+          {/* Prev arrow */}
+          <button
+            onClick={() => setCurrentIndex(i => (i - 1 + photos.length) % photos.length)}
+            className="absolute left-1 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-black/50 text-cyan-400 hover:bg-black/80 text-2xl leading-none transition-colors"
+          >
+            ‹
+          </button>
+
+          {/* Next arrow */}
+          <button
+            onClick={() => setCurrentIndex(i => (i + 1) % photos.length)}
+            className="absolute right-1 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-black/50 text-cyan-400 hover:bg-black/80 text-2xl leading-none transition-colors"
+          >
+            ›
+          </button>
         </div>
-
-        {/* Prev arrow */}
-        <button
-          onClick={() => setCurrentIndex(i => (i - 1 + photos.length) % photos.length)}
-          className="absolute left-0 top-1/2 -translate-y-1/2 text-cyan-400 hover:text-cyber-magenta text-5xl font-thin transition-colors leading-none"
-        >
-          ‹
-        </button>
-
-        {/* Next arrow */}
-        <button
-          onClick={() => setCurrentIndex(i => (i + 1) % photos.length)}
-          className="absolute right-0 top-1/2 -translate-y-1/2 text-cyan-400 hover:text-cyber-magenta text-5xl font-thin transition-colors leading-none"
-        >
-          ›
-        </button>
 
         {/* Caption */}
-        <div className="mt-4 glass-card px-6 py-4 text-center w-full">
-          <h3 className="text-cyan-400 font-bold text-base orbitron-text">{photo.title}</h3>
-          <p className="text-cyber-text mt-1 text-sm leading-relaxed">{photo.description}</p>
+        <div className="mt-3 glass-card px-4 py-3 text-center w-full">
+          <h3 className="text-cyan-400 font-bold text-sm md:text-base orbitron-text">{photo.title}</h3>
+          <p className="text-cyber-text mt-1 text-xs md:text-sm leading-relaxed">{photo.description}</p>
         </div>
 
-        {/* Dot indicators */}
-        <div className="flex gap-2 mt-3">
+        {/* Dots + counter */}
+        <div className="flex gap-2 mt-2 items-center">
           {photos.map((_, i) => (
             <button
               key={i}
@@ -93,12 +93,8 @@ export default function Lightbox({ photos, initialIndex, onClose }: LightboxProp
               }`}
             />
           ))}
+          <span className="text-cyber-text/50 text-xs ml-2">{currentIndex + 1} / {photos.length}</span>
         </div>
-
-        {/* Counter */}
-        <p className="text-cyber-text/50 text-xs mt-2">
-          {currentIndex + 1} / {photos.length}
-        </p>
       </div>
     </div>
   );
