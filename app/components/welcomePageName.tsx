@@ -157,17 +157,17 @@ const PROJECTS = [
     accent: "#1DD1A1",
     github: "",
     demo: "",
-  },
-  {
-    id: "04",
-    name: "AI Paper Trading Platform",
-    description:
-      "Full-stack MERN trading simulator with sub-100ms latency for real-time trade execution. Integrates OpenAI API for market sentiment insights and Dockerized microservices.",
-    stack: ["MongoDB", "Express", "React", "Node.js", "OpenAI API", "Docker"],
-    status: "LIVE",
-    accent: "#54A0FF",
-    github: "",
-    demo: "",
+    photos: [
+      { src: "/loginpage.png",              title: "Login",               description: "Secure user authentication to access the energy monitoring platform." },
+      { src: "/registerpage.png",           title: "Registration",        description: "New user account creation with facility and organization setup." },
+      { src: "/homepage.png",               title: "Dashboard",           description: "Main dashboard providing a real-time overview of energy consumption across all monitored devices." },
+      { src: "/devicespage.png",            title: "Devices",             description: "Manage and monitor all connected energy meters and hardware devices from a single view." },
+      { src: "/syncingpage.png",            title: "Syncing",             description: "Offline-capable LAN-based meter polling that syncs readings to the backend with 95%+ uptime." },
+      { src: "/analyticspage.png",          title: "Analytics",           description: "Detailed energy usage analytics with historical trends and consumption breakdowns." },
+      { src: "/analytics and alerts.png",   title: "Analytics & Alerts",  description: "Configurable alerts that notify users when consumption thresholds are exceeded." },
+      { src: "/routinespage.png",           title: "Routines",            description: "Automated routines to schedule device actions and optimize energy usage patterns." },
+      { src: "/settings.png",              title: "Settings",            description: "App and account settings including notifications, preferences, and facility configuration." },
+    ],
   },
 ];
 
