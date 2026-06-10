@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, ChangeEvent, KeyboardEvent } from "react";
+import Lightbox from "./Lightbox";
 import { motion } from "framer-motion";
 
 const WS_URL = process.env.NEXT_PUBLIC_WS_URL ?? "";
@@ -125,6 +126,15 @@ const PROJECTS = [
     accent: "#FECA57",
     github: "",
     demo: "",
+    photos: [
+      { src: "/registration.png",    title: "User Registration",                    description: "New users can create a secure account with form validation and encrypted credential storage." },
+      { src: "/signinpage.png",       title: "Sign In",                              description: "Clean authentication flow with secure login handling and session management." },
+      { src: "/2fasetup.png",         title: "Two-Factor Authentication Setup",       description: "Users can enable 2FA to add an extra layer of security using an authenticator app." },
+      { src: "/2fasignin.png",        title: "Two-Factor Authentication — Verify",    description: "On subsequent logins, users are prompted to enter a one-time passcode from their authenticator app." },
+      { src: "/accountoverview.png",  title: "Account Overview",                     description: "A dashboard view showing account balance, recent activity, and quick-action shortcuts." },
+      { src: "/accountspage.png",     title: "Accounts",                             description: "Manage multiple linked accounts from a single interface with clear balance and status indicators." },
+      { src: "/activitypage.png",     title: "Transaction Activity",                 description: "A full log of payments, transfers, and activity sorted chronologically." },
+    ],
   },
   {
     id: "02",
@@ -226,6 +236,113 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
     <h2 style={{ margin: "0 0 48px 0", fontSize: "clamp(28px, 5vw, 40px)", fontWeight: 600, color: "var(--text-primary)", letterSpacing: "-0.02em", lineHeight: 1.1 }}>
       {children}
     </h2>
+  );
+}
+
+// ── Project card with optional photo gallery ───────────────────────────────────
+
+function ProjectItem({ project, i }: { project: (typeof PROJECTS)[number]; i: number }) {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const photos = "photos" in project ? project.photos : undefined;
+
+  return (
+    <>
+      <FadeIn delay={i * 80}>
+        <div
+          style={{ background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "18px", padding: "28px", display: "flex", flexDirection: "column", gap: "14px", boxShadow: "var(--shadow)", transition: "border-color 0.2s, box-shadow 0.2s", height: "100%" }}
+          onMouseEnter={(e) => { e.currentTarget.style.borderColor = project.accent; e.currentTarget.style.boxShadow = `0 0 0 1px ${project.accent}40, var(--shadow)`; }}
+          onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.boxShadow = "var(--shadow)"; }}
+        >
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span style={{ fontSize: "11px", fontWeight: 700, color: project.accent, letterSpacing: "0.1em", textTransform: "uppercase" }}>{project.status}</span>
+            <span style={{ fontSize: "12px", color: "var(--text-tertiary)", fontWeight: 500 }}>{project.id}</span>
+          </div>
+
+          <h3 style={{ margin: 0, fontSize: "20px", fontWeight: 600, color: "var(--text-primary)", letterSpacing: "-0.01em", lineHeight: 1.25 }}>
+            {project.name}
+          </h3>
+
+          <p style={{ margin: 0, fontSize: "14px", color: "var(--text-secondary)", lineHeight: 1.65, flexGrow: 1 }}>
+            {project.description}
+          </p>
+
+          {photos && photos.length > 0 && (
+            <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "6px" }}>
+                {photos.slice(0, 3).map((photo, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => { setLightboxIndex(idx); setLightboxOpen(true); }}
+                    style={{ aspectRatio: "16/9", overflow: "hidden", borderRadius: "8px", border: "1px solid var(--border)", cursor: "pointer", padding: 0, background: "none" }}
+                  >
+                    <img src={photo.src} alt={photo.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  </button>
+                ))}
+              </div>
+              {photos.length > 3 && (
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "6px" }}>
+                  {photos.slice(3).map((photo, idx) => (
+                    <button
+                      key={idx + 3}
+                      onClick={() => { setLightboxIndex(idx + 3); setLightboxOpen(true); }}
+                      style={{ aspectRatio: "16/9", overflow: "hidden", borderRadius: "8px", border: "1px solid var(--border)", cursor: "pointer", padding: 0, background: "none" }}
+                    >
+                      <img src={photo.src} alt={photo.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                    </button>
+                  ))}
+                </div>
+              )}
+              <p style={{ fontSize: "11px", color: "var(--text-tertiary)", margin: "2px 0 0", textAlign: "center" }}>
+                Click any screenshot to view gallery
+              </p>
+            </div>
+          )}
+
+          {project.stack.length > 0 && (
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+              {project.stack.map((tech) => {
+                const meta = TECH_ICONS[tech];
+                return (
+                  <span key={tech} style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 12px", borderRadius: "980px", background: "var(--bg-pill)", border: "1px solid var(--border)", color: "var(--text-secondary)", fontSize: "12px", fontWeight: 400 }}>
+                    {meta && <img src={`https://cdn.simpleicons.org/${meta.icon}/${meta.iconColor}`} alt="" width={12} height={12} style={{ display: "block" }} />}
+                    {tech}
+                  </span>
+                );
+              })}
+            </div>
+          )}
+
+          {(project.github || project.demo) && (
+            <div style={{ display: "flex", gap: "10px", paddingTop: "4px" }}>
+              {project.github && (
+                <a href={project.github} target="_blank" rel="noopener noreferrer"
+                  style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "13px", fontWeight: 500, color: "var(--text-secondary)", textDecoration: "none", transition: "color 0.15s" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              )}
+              {project.demo && (
+                <a href={project.demo} target="_blank" rel="noopener noreferrer"
+                  style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "13px", fontWeight: 500, color: project.accent, textDecoration: "none", transition: "opacity 0.15s" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                >
+                  Live Demo ↗
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+      </FadeIn>
+
+      {photos && lightboxOpen && (
+        <Lightbox photos={photos} initialIndex={lightboxIndex} onClose={() => setLightboxOpen(false)} />
+      )}
+    </>
   );
 }
 
@@ -617,72 +734,7 @@ export default function PageContent() {
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 440px), 1fr))", gap: "16px" }}>
           {PROJECTS.map((project, i) => (
-            <FadeIn key={project.id} delay={i * 80}>
-              <div
-                style={{ background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "18px", padding: "28px", display: "flex", flexDirection: "column", gap: "14px", boxShadow: "var(--shadow)", transition: "border-color 0.2s, box-shadow 0.2s", height: "100%" }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = project.accent; e.currentTarget.style.boxShadow = `0 0 0 1px ${project.accent}40, var(--shadow)`; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.boxShadow = "var(--shadow)"; }}
-              >
-                {/* Status + number */}
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ fontSize: "11px", fontWeight: 700, color: project.accent, letterSpacing: "0.1em", textTransform: "uppercase" }}>{project.status}</span>
-                  <span style={{ fontSize: "12px", color: "var(--text-tertiary)", fontWeight: 500 }}>{project.id}</span>
-                </div>
-
-                <h3 style={{ margin: 0, fontSize: "20px", fontWeight: 600, color: "var(--text-primary)", letterSpacing: "-0.01em", lineHeight: 1.25 }}>
-                  {project.name}
-                </h3>
-
-                <p style={{ margin: 0, fontSize: "14px", color: "var(--text-secondary)", lineHeight: 1.65, flexGrow: 1 }}>
-                  {project.description}
-                </p>
-
-                {project.stack.length > 0 && (
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
-                    {project.stack.map((tech) => {
-                      const meta = TECH_ICONS[tech];
-                      return (
-                        <span key={tech} style={{ display: "inline-flex", alignItems: "center", gap: "5px", padding: "4px 12px", borderRadius: "980px", background: "var(--bg-pill)", border: "1px solid var(--border)", color: "var(--text-secondary)", fontSize: "12px", fontWeight: 400 }}>
-                          {meta && <img src={`https://cdn.simpleicons.org/${meta.icon}/${meta.iconColor}`} alt="" width={12} height={12} style={{ display: "block" }} />}
-                          {tech}
-                        </span>
-                      );
-                    })}
-                  </div>
-                )}
-
-                {/* Links — only rendered when a URL is provided */}
-                {(project.github || project.demo) && (
-                  <div style={{ display: "flex", gap: "10px", paddingTop: "4px" }}>
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "13px", fontWeight: 500, color: "var(--text-secondary)", textDecoration: "none", transition: "color 0.15s" }}
-                        onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
-                        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
-                      >
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                        GitHub
-                      </a>
-                    )}
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "13px", fontWeight: 500, color: project.accent, textDecoration: "none", transition: "opacity 0.15s" }}
-                        onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
-                        onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                      >
-                        Live Demo ↗
-                      </a>
-                    )}
-                  </div>
-                )}
-              </div>
-            </FadeIn>
+            <ProjectItem key={project.id} project={project} i={i} />
           ))}
         </div>
       </section>
