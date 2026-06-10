@@ -122,7 +122,7 @@ const PROJECTS = [
     description:
       "Secure payment backend using Spring Boot and PostgreSQL supporting deposits and peer-to-peer transfers. Implemented JWT authentication, HTTPS encryption, and ACID-compliant transaction handling.",
     stack: ["Spring Boot", "React", "PostgreSQL", "OpenAI API", "Docker"],
-    status: "IN DEV",
+    status: "LIVE",
     accent: "#FECA57",
     github: "",
     demo: "",
