@@ -137,17 +137,6 @@ const PROJECTS = [
     ],
   },
   {
-    id: "02",
-    name: "Data Insight Engine",
-    description:
-      "Full-stack analytics tool that ingests datasets and automatically generates insights — summary statistics, visualizations, and anomaly detection with dynamic charting.",
-    stack: [],
-    status: "COMING SOON",
-    accent: "#FF9FF3",
-    github: "",
-    demo: "",
-  },
-  {
     id: "03",
     name: "Lema Energy Aggregator",
     description:
